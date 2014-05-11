@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="/WEB-INF/jsp/common/taglibs.jsp"%>
+
+<head>
+<%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
+<%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+</head>
+
+<body>
+<!--[if IE 8]><div class="wrapper ie8"><![endif]-->
+<!--[if IE 9]><div class="wrapper ie9"><![endif]-->
+<!--[if !IE]><div class="wrapper ienone"><![endif]-->
+
+
+<!-- // POPUP - start // -->
+<div class="popup" style="width:550px; height:;">
+
+
+	<!-- Title/Btn_close - start -->
+	<div class="popup_title">
+		<ul>
+			<li class="title fl"><div>로그인</div></li>
+			<li class="btn fr"><input type="button" class="btni_close02" title="닫기"  onclick="javascript:self.close();" /></li>
+		</ul>
+	</div>
+	<!-- Title/Btn_close - end -->
+
+	<!-- 내용 들어가는 곳 - start -->
+	<div class="popup_contents">
+
+		<!-- start -->
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		  <tr>
+		    <td class="popup_contents_txt">컨텐츠 등록이 완료되었습니다.</td>
+		  </tr>
+		</table>
+		<!-- end -->
+
+	</div>
+	<!-- 내용 들어가는 곳 - end -->
+
+	<!-- Popup_Style01_Btn - start -->
+	<div class="popup_btn">
+		<input type="button" class="btnm" value="확인" onclick="" /><input type="button" class="btnm_cancel" value="취소" onclick="" />
+	</div>
+	<!-- Popup_Style01_Btn - end -->
+
+
+</div>
+<!-- // POPUP - end // -->
+
+
+<!--[if IE]></div><![endif]-->
+<!--[if !IE]></div><![endif]-->
+</body>
+</html>
