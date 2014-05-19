@@ -32,9 +32,9 @@
 		<h2 class="blind">회원정보</h2>
 		<ul class="gnb_info">
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
-			<li class="login"><a href="login.html" target="_blank">로그인</a></li>
+			<li class="login"><a href="${ctx}/login" target="_blank">로그인</a></li>
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
-			<li class="members"><a href="regist_01.html" target="_top">회원가입</a></li>
+			<li class="members"><a href="${ctx}/member/regist_01" target="_top">회원가입</a></li>
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
 		</ul>
 		<!-- 로그인 전 - end -->
@@ -102,7 +102,7 @@
 </div>
 
 <!-- Category_Area - start -->
-<div style="position:absolute; left:0px; top:193px; width:100%; height:225px; z-index:100000;">
+<div style="position:absolute; left:0px; top:193px; width:100%; height:125px; z-index:100000;">
 	<div id="totalCategory1" style="display:none;" class="category_area">
 	<!-- category_menu - start  -->
 		<ul id="category_menu" style="position:relative">
@@ -163,4 +163,4 @@
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->
- s
+ 

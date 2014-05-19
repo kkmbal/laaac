@@ -20,13 +20,12 @@
     <mvc:view-controller path="/contents" view-name="history"/>
     
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="defaultErrorView" value="cmmn/egovError"/>
+        <property name="defaultErrorView" value="common/layout/egovError"/>
         <property name="exceptionMappings">
             <props>
-                <prop key="org.springframework.dao.DataAccessException">cmmn/dataAccessFailure</prop>
-                <prop key="org.springframework.transaction.TransactionException">cmmn/transactionFailure</prop>
-<!--                 <prop key="egovframework.rte.fdl.cmmn.exception.EgovBizException">cmmn/egovBizException</prop> -->
-                <prop key="org.springframework.security.AccessDeniedException">cmmn/accessDenied</prop>
+                <prop key="org.springframework.dao.DataAccessException">common/layout/egovError</prop>
+                <prop key="org.springframework.transaction.TransactionException">common/layout/egovError</prop>
+                <prop key="org.springframework.security.AccessDeniedException">common/layout/egovError</prop>
             </props>
         </property>
     </bean>
@@ -35,6 +34,9 @@
 		<property name="order" value="1"/>
 		<property name="ignoreAcceptHeader" value="true" />
 		<property name="defaultContentType" value="text/html" />
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="true" />
+		<property name="parameterName" value="format" />
 		
 	    <property name="mediaTypes">
 	        <map>

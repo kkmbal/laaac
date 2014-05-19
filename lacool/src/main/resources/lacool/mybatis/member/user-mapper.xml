@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lacool.member.mapper.UserMapper">
+	
+	<select id="getUser" parameterType="lacool.member.vo.UserVo" resultType="lacool.member.vo.UserVo">
+		<![CDATA[	
+			SELECT USER_ID
+				  ,USER_NM
+				  ,EMAIL
+				  ,PWD
+				  ,MOBILE
+				  ,NATION_NM
+				  ,BIRTH_YMD
+				  ,SEX
+				  ,USER_URL
+				  ,FB_ID
+				  ,MAIL_RECV_YN
+				  ,END_DTTM
+				  ,END_YN
+				  ,USER_FILE_NM
+				  ,USER_FILE_PATH
+				  ,REG_ID
+				  ,REG_DTTM
+				  ,UPD_ID
+				  ,UPD_DTTM
+			FROM PSN_USER
+			WHERE 1 = 1
+		]]>
+			<if test="userId != null and userId != ''"> 
+				AND USER_ID = #{userId}
+			</if>	  	   
+			<if test="email != null and email != ''"> 
+				AND EMAIL = #{email}
+			</if>	  	   
+	</select>
+	
+
+		
+</mapper>
