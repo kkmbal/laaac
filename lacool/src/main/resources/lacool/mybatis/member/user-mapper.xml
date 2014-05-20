@@ -35,6 +35,52 @@
 			</if>	  	   
 	</select>
 	
-
+	<insert id="registerUser" parameterType="lacool.member.vo.UserVo">
+	<![CDATA[
+		INSERT INTO PSN_USER(
+		 USER_NM
+		, EMAIL
+		, PWD
+		, MOBILE
+		, NATION_NM
+		, BIRTH_YMD
+		, EMAIL_YN
+		, EMAIL_DTTM
+		, SEX
+		, USER_URL
+		, FB_ID
+		, MAIL_RECV_YN
+		, END_YN
+		, END_DTTM
+		, USER_FILE_NM
+		, USER_FILE_PATH
+		, REG_ID
+		, REG_DTTM
+		, UPD_ID
+		, UPD_DTTM
+		) VALUES (
+		 #{userNm}
+		, #{email}
+		, #{pwd}
+		, #{mobile}
+		, #{nationNm}
+		, #{birthYmd}
+		, #{emailYn}
+		, NULL
+		, #{sex}
+		, #{userUrl}
+		, #{fbId}
+		, #{mailRecvYn}
+		, #{endYn}
+		, NULL
+		, #{userFileNm}
+		, #{userFilePath}
+		, #{regId}
+		, NOW()
+		, #{updId}
+		, NOW()
+		)
+	]]>
+	</insert>
 		
 </mapper>
