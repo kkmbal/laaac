@@ -39,8 +39,8 @@ public class UserController {
 			ObjectMapper mapper = new ObjectMapper();
 			UserVo userVo = mapper.readValue(data, UserVo.class);
 			
-			//UserVo user = userService.regUser(userVo);
-			//modelMap.put("user", user);
+			UserVo user = userService.registerUser(userVo);
+			modelMap.put("user", user);
 		}catch(Exception e){
 			throw new LaCoolException(e);
 		}

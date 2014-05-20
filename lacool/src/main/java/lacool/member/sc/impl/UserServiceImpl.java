@@ -18,5 +18,10 @@ public class UserServiceImpl implements UserService {
 	public UserVo getUser(UserVo userVo) throws LaCoolException{
 		return userMapper.getUser(userVo);
 	}
+	
+	@Override
+	public UserVo registerUser(UserVo userVo) throws LaCoolException{
+		return userMapper.registerUser(userVo);
+	}
 
 }

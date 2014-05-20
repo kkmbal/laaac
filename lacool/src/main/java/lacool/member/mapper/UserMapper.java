@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository("userMapper")
 public interface UserMapper {
 	public UserVo getUser(UserVo userVo);
+	public UserVo registerUser(UserVo userVo);
 }
