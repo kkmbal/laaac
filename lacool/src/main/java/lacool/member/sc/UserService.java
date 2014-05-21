@@ -4,5 +4,5 @@ import lacool.member.vo.UserVo;
 
 public interface UserService {
 	public UserVo getUser(UserVo userVo);
-	public UserVo registerUser(UserVo userVo);
+	public void registerUser(UserVo userVo);
 }

@@ -32,7 +32,8 @@
 			</if>	  	   
 			<if test="email != null and email != ''"> 
 				AND EMAIL = #{email}
-			</if>	  	   
+			</if>	  	
+			LIMIT 1   
 	</select>
 	
 	<insert id="registerUser" parameterType="lacool.member.vo.UserVo">

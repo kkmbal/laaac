@@ -6,6 +6,8 @@ import lacool.common.exception.LaCoolException;
 import lacool.member.sc.UserService;
 import lacool.member.vo.UserVo;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("member")
 public class UserController {
+	
+	private Log log = LogFactory.getLog(getClass());
 	
 	@Autowired
 	private UserService userService;
@@ -34,15 +38,22 @@ public class UserController {
 	}
 	
 	@RequestMapping("/userReg")
-	public ModelMap userReq(HttpServletRequest request, ModelMap modelMap, String data){
+	public ModelMap userReg(HttpServletRequest request, ModelMap modelMap, String data){
 		try{
 			ObjectMapper mapper = new ObjectMapper();
 			UserVo userVo = mapper.readValue(data, UserVo.class);
 			
-			UserVo user = userService.registerUser(userVo);
-			modelMap.put("user", user);
+			UserVo user = userService.getUser(userVo);
+			if(user == null){
+				userService.registerUser(userVo);
+				modelMap.put("user", userVo);
+			}else{
+				throw new LaCoolException("Email Dup");
+			}
 		}catch(Exception e){
-			throw new LaCoolException(e);
+			modelMap.put("result", "error");
+			log.error(e);
+			//throw new LaCoolException(e);
 		}
 		return modelMap;
 	}

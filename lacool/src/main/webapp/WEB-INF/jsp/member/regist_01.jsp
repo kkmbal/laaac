@@ -9,28 +9,41 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#userNm, #email, #pwd, #pwd2").click(function(){
-		$(this).val("");
-		var id = $(this).attr("id");
-		if(id == "pwd"){
-			$("#pwd_div").hide();
-		}else if(id == "pwd2"){
-			$("#pwd2_div").hide();
+	$("#userNm, #email, #pwd, #pwd2").focus(function(){
+		if($(this).val() == ""){
+			var id = $(this).attr("id");
+			if(id == "userNm"){
+				$("#usernm_div").hide();
+			}else if(id == "email"){
+				$("#email_div").hide();
+			}else if(id == "pwd"){
+				$("#pwd_div").hide();
+			}else if(id == "pwd2"){
+				$("#pwd2_div").hide();
+			}
 		}
 	});
 	$("#userNm, #email, #pwd, #pwd2").focusout(function(){
 		var id = $(this).attr("id");
 		if($(this).val() == ""){
 			if(id == "userNm"){
-				$(this).val("사용자 이름");
+				$("#usernm_div").show();
 			}else if(id == "email"){
-				$(this).val("이메일");
+				$("#email_div").show();
 			}else if(id == "pwd"){
 				$("#pwd_div").show();
 			}else if(id == "pwd2"){
 				$("#pwd2_div").show();
 			}
 		}
+	});
+	$("#usernm_div").click(function(){
+		$(this).hide();
+		$("#userNm").focus();
+	});
+	$("#email_div").click(function(){
+		$(this).hide();
+		$("#email").focus();
 	});
 	$("#pwd_div").click(function(){
 		$(this).hide();
@@ -48,8 +61,6 @@ $(document).ready(function(){
 				alert("사용할 수 있는 이메일 입니다.");
 				$("#chkEmail").val("Y");
 			}else{
-				//alert(JSON.stringify(data))
-				alert(data.user.email);
 				alert("사용할 수 없는 이메일 입니다.");
 				$("#chkEmail").val("N");
 			}
@@ -77,7 +88,8 @@ $(document).ready(function(){
 			return;
 		}
 		if (!$("#chkEqual").is(":checked")){
-			alert('회원 약관에 동의해야 합니다.')
+			alert('회원 약관에 동의해야 합니다.');
+			return;
 		}
 		var data = {userNm:"", email:"", pwd:""};
 		data.userNm = $("#userNm").val();
@@ -86,6 +98,7 @@ $(document).ready(function(){
 		$.post("${ctx}/member/userReg?format=json", {data:JSON.stringify(data)}, function(data){
 			if(data.result){
 				alert(data.result);
+				return;
 			}
 			location.href = "${ctx}/member/regist_02";
 		});
@@ -139,14 +152,14 @@ $(document).ready(function(){
 	<!-- Grid_Table_Input - start -->
 	<table cellpadding="0" cellspacing="0" border="0" width="500" class="gridt_input" style="border-top:0px solid #f0f0f0;">
 		<tr>
-			<td class="left_st01"><input name="userNm" id="userNm" type="text" class="input" style="width:480px;" value="사용자 이름" maxlength="16"></td>
+			<td class="left_st01"><input name="userNm" id="userNm" type="text" class="input" style="width:480px;" value="" maxlength="16"></td>
 		</tr>
 		<tr>
 			<td class="left_st01">
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input name="email" id="email" type="text" class="input" style="width:390px;" value="이메일" maxlength="80"></td>
+						<td><input name="email" id="email" type="text" class="input" style="width:390px;" value="" maxlength="80"></td>
 						<td class="gridt_blank" nowrap></td>
 						<td><input type="button" class="btnd" value="중복확인" id="dup" /></td>
 					</tr>
@@ -158,7 +171,7 @@ $(document).ready(function(){
 			<td class="left_st01"><input name="pwd" id="pwd" type="password" class="input" style="width:480px;" value="" maxlength="30"></td>
 		</tr>
 		<tr>
-			<td class="left_st01"><input name="pwd" id="pwd2" type="password" class="input" style="width:480px;" value="" maxlength="30"></td>
+			<td class="left_st01"><input name="pwd2" id="pwd2" type="password" class="input" style="width:480px;" value="" maxlength="30"></td>
 		</tr>
 		<tr>
 			<td class="left_st01">
@@ -198,6 +211,12 @@ $(document).ready(function(){
 <form name="frm" id="frm">
 <input type="hidden" name="chkEmail" id="chkEmail">
 </form>
+<div id="usernm_div" style="position:absolute; left:445px; top:335px; width:200; height:10px; z-index:1; font-size:14px;">
+사용자 이름
+</div>
+<div id="email_div" style="position:absolute; left:445px; top:395px; width:200; height:10px; z-index:1; font-size:14px;">
+이메일
+</div>
 <div id="pwd_div" style="position:absolute; left:445px; top:453px; width:200; height:10px; z-index:1; font-size:14px;">
 비밀번호 (6자 이상 영문/숫자 혼합)
 </div>

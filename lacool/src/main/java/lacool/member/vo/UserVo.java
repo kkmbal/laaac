@@ -25,7 +25,23 @@ public class UserVo implements Serializable{
 	private String regDttm;
 	private String updId;
 	private String updDttm;
+	private String emailYn;
+	private String emailDttm;
 	
+	
+	
+	public String getEmailYn() {
+		return emailYn;
+	}
+	public void setEmailYn(String emailYn) {
+		this.emailYn = emailYn;
+	}
+	public String getEmailDttm() {
+		return emailDttm;
+	}
+	public void setEmailDttm(String emailDttm) {
+		this.emailDttm = emailDttm;
+	}
 	public String getUserId() {
 		return userId;
 	}
