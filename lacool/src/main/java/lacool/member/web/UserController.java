@@ -1,6 +1,7 @@
 package lacool.member.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import lacool.common.exception.LaCoolException;
 import lacool.member.sc.UserService;
@@ -52,6 +53,26 @@ public class UserController {
 			}
 		}catch(Exception e){
 			modelMap.put("result", "error");
+			log.error(e);
+			//throw new LaCoolException(e);
+		}
+		return modelMap;
+	}
+	
+	@RequestMapping("/doLogin")
+	public ModelMap userLogin(HttpServletRequest request, HttpSession session,ModelMap modelMap, String data){
+		try{
+			ObjectMapper mapper = new ObjectMapper();
+			UserVo userVo = mapper.readValue(data, UserVo.class);
+			
+			UserVo user = userService.getUser(userVo);
+			if(user != null){
+				session.setAttribute("userVo", user);
+			}else{
+				throw new LaCoolException("not user");
+			}
+		}catch(Exception e){
+			modelMap.put("result", e.toString());
 			log.error(e);
 			//throw new LaCoolException(e);
 		}

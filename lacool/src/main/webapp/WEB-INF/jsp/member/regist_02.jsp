@@ -6,6 +6,24 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("#go").click(function(){
+		var data = {email:"", pwd:""};
+		data.email = $("#email").val();
+		data.pwd = $("#pwd").val();
+		$.post("${ctx}/member/doLogin?format=json", {data:JSON.stringify(data)}, function(data){
+			if(data.result){
+				alert(data.result);
+				return;
+			}
+			location.href = "${ctx}/index.jsp";
+		});	
+	});	
+});
+</script>
 </head>
 
 <body>
@@ -54,10 +72,10 @@
 	<!-- Grid_Table_Input - start -->
 	<table cellpadding="0" cellspacing="0" border="0" width="500" class="gridt_input" style="border-top:0px solid #f0f0f0;">
 		<tr>
-			<td class="left_st01"><input name="" type="text" class="input" style="width:480px;" value="이메일"></td>
+			<td class="left_st01"><input name="email" id="email" type="text" class="input" style="width:480px;" value="이메일"></td>
 		</tr>
 		<tr>
-			<td class="left_st01"><input name="" type="text" class="input" style="width:480px;" value="비밀번호"></td>
+			<td class="left_st01"><input name="pwd" id="pwd" type="text" class="input" style="width:480px;" value="비밀번호"></td>
 		</tr>
 		<tr>
 			<td class="left_st01">
@@ -66,7 +84,7 @@
 					<tr>
 						<td align="left" width="100%"><input type="checkbox" name="type" hidefocus="true" class="check" value="A" checked>이메일 저장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="checkbox" name="type" hidefocus="true" class="check" value="B">비밀번호 저장</td>
-						<td align="right"><input type="button" class="btnd_st01" value="비밀번호 찾기" onclick="" /></td>
+						<td align="right"><input type="button" class="btnd_st01" value="비밀번호 찾기" id="go2" /></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -76,7 +94,7 @@
 	<!-- Grid_Table_Input - end -->
 	<div class="blank_height5"></div>
 	<!-- Btn_Form(Main) - start -->
-	<div align="center"><input type="button" class="btnm_st01" value="로그인" style="width:500px;" onclick="" /></div>
+	<div align="center"><input type="button" class="btnm_st01" value="로그인" style="width:500px;" id="go" /></div>
 	<!-- Btn_Form(Main) - end -->
 
 	</div>

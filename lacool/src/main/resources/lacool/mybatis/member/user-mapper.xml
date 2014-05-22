@@ -30,6 +30,9 @@
 			<if test="userId != null and userId != ''"> 
 				AND USER_ID = #{userId}
 			</if>	  	   
+			<if test="pwd != null and pwd != ''"> 
+				AND PWD = #{pwd}
+			</if>	  	   
 			<if test="email != null and email != ''"> 
 				AND EMAIL = #{email}
 			</if>	  	
