@@ -6,7 +6,7 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
-</head>d>
+</head>
 
 <body onLoad="javascript:MenuOn(0105);">
 <!--[if IE 8]><div class="wrapper ie8"><![endif]-->

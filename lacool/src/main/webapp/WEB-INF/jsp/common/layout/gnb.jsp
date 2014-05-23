@@ -15,9 +15,12 @@
 						$(this).find('img').attr("src","${ctx}/images/gnb/menu6.gif").attr("alt","category Open");
 						$("#totalCategory1").hide();
 						
-					});			
- 
-		  });
+					});	
+			
+			$("#goLogin").click(function(){
+				window.open("${ctx}/login", "win", "height=475, width=575, scrollbars=no, resizable=no");
+			}); 
+	});
 	</script>
  
 <!--[if IE 8]><div class="wrapper ie8"><![endif]-->
@@ -32,7 +35,7 @@
 		<h2 class="blind">회원정보</h2>
 		<ul class="gnb_info">
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
-			<li class="login"><a href="${ctx}/login" target="_blank">로그인</a></li>
+			<li class="login"><a href="#" id="goLogin">로그인</a></li>
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
 			<li class="members"><a href="${ctx}/member/regist_01" target="_top">회원가입</a></li>
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
@@ -78,19 +81,19 @@
 		<ul>
 			<li class="logo" style="width:432px;"><a href="home.html" target="_top"><img src="${ctx}/images/gnb/lalalacool_logo.gif" /></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="home.html" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0101','','${ctx}/images/gnb/menu1-ov.gif',1)">
+			<li><a href="${ctx}" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0101','','${ctx}/images/gnb/menu1-ov.gif',1)">
 <img src="${ctx}/images/gnb/menu1.gif" width="69" height="63" border="0" name="gnbmenu0101" id="gnbmenu0101" title="홈"></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="personal_home.html" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0102','','${ctx}/images/gnb/menu2-ov.gif',1)">
+			<li><a href="${ctx}/personal/personal_home" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0102','','${ctx}/images/gnb/menu2-ov.gif',1)">
 <img src="${ctx}/images/gnb/menu2.gif" width="94" height="63" border="0" name="gnbmenu0102" id="gnbmenu0102" title="개인 홈"></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="history.html" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0103','','${ctx}/images/gnb/menu3-ov.gif',1)">
+			<li><a href="${ctx}/contents/history" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0103','','${ctx}/images/gnb/menu3-ov.gif',1)">
 <img src="${ctx}/images/gnb/menu3.gif" width="83" height="63" border="0" name="gnbmenu0103" id="gnbmenu0103" title="히스토리"></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="ask_category.html" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0104','','${ctx}/images/gnb/menu4-ov.gif',1)">
+			<li><a href="${ctx}/category/ask_category" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0104','','${ctx}/images/gnb/menu4-ov.gif',1)">
 <img src="${ctx}/images/gnb/menu4.gif" width="119" height="63" border="0" name="gnbmenu0104" id="gnbmenu0104" title="카테고리 등록"></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="creation.html" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0105','','${ctx}/images/gnb/menu5-ov.gif',1)">
+			<li><a href="${ctx}/contents/creation" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0105','','${ctx}/images/gnb/menu5-ov.gif',1)">
 <img src="${ctx}/images/gnb/menu5.gif" width="131" height="63" border="0" name="gnbmenu0105" id="gnbmenu0105" title="컨텐츠 등록"></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
 			<!-- <li><a href="#" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0106','','${ctx}/images/gnb/menu6-ov.gif',1)">

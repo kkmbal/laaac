@@ -17,7 +17,7 @@
     
     <mvc:default-servlet-handler/>
     
-    <mvc:view-controller path="/contents" view-name="history"/>
+    <mvc:view-controller path="/login" view-name="/login"/>
     
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="common/layout/egovError"/>
