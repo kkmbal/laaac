@@ -6,6 +6,50 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		/*
+		var data = {email:"", pwd:""};
+		data.email = $("#email").val();
+		data.pwd = $("#pwd").val();
+		$.post("${ctx}/member/doLogin?format=json", {data:JSON.stringify(data)}, function(data){
+			if(data.result){
+				alert(data.result);
+				return;
+			}
+			location.href = "${ctx}/index.jsp";
+		});
+		*/
+		
+		$("#go").click(function(){
+			var mobile = $("#phone").val().replace(/-/g,'');
+			$("#mobile").val(mobile);
+			var birthYmd = $("#year").val() + $("#month").val() + $("#day").val(); 
+			$("#birthYmd").val(birthYmd);
+			if ($("#female").is(":checked")){
+				$("#sex").val("F");
+			}else if ($("#male").is(":checked")){
+				$("#sex").val("M");
+			}
+			
+			$("#frm").ajaxSubmit({
+				url : "${ctx}/member/userRegDetail",
+				type : 'POST',
+				data :  $("#frm").serialize(),
+				//action: $("#dummy"),
+				dataType : "script",
+				success : function(data){
+					window.open("${ctx}/member_regist_03_pop", "pop", "height=100,width=100,resizable=no,scrollbars=no");
+				},error : function(){
+					alert("전송 실패 했습니다.");
+				},
+				clearForm: true,
+				resetForm: true
+			});			
+		});
+	});
+</script>
 </head>
 
 <body>
@@ -48,6 +92,11 @@
 	<div class="t_guide01"><img src="${ctx}/images/icon/i_warn.gif" align="texttop"> 컨텐츠를 등록하시려면 아래의 추가정보를 등록해 주십시오.&nbsp;&nbsp;&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"> 표는 필수 입력 항목 입니다.</div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
+	<form name="frm" id="frm" enctype="multipart/form-data" method="post">
+	<input type="hidden" name="mobile" id="mobile">
+	<input type="hidden" name="birthYmd" id="birthYmd">
+	<input type="hidden" name="sex" id="sex">
+
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
 		<colgroup>
 			<col width="160">
@@ -55,7 +104,7 @@
 		</colgroup>
 		<tr>
 			<th class="right">사용자 이름</th>
-			<td class="left"><input name="" type="text" class="input_inact" style="width:340px;" value="김동준"></td>
+			<td class="left"><input name="" type="text" class="input_inact" style="width:340px;" value="${userVo.userNm}" readonly></td>
 		</tr>
 		<tr>
 			<th class="right">휴대전화</th>
@@ -63,7 +112,7 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input name="" type="text" class="input" style="width:340px;" value=""></td>
+						<td><input name="phone" id="phone" type="text" class="input" style="width:340px;" value=""></td>
 						<td class="gridt_blank" nowrap></td>
 						<td><span class="gridt_txt01">- 없이 입력</span></td>
 					</tr>
@@ -73,9 +122,13 @@
 		</tr>
 		<tr>
 			<th class="right">국가&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
-			<td class="left"><select name="" class="select" style="width:360px;">
+			<td class="left"><select name="nationNm" id="nationNm" class="select" style="width:360px;">
 			<option value="">선택</option>
-			<option value="" selected>대한민국</option>
+			<option value="대한민국" selected>대한민국</option>
+			<option value="미국" selected>미국</option>
+			<option value="영국" selected>영국</option>
+			<option value="프랑스" selected>프랑스</option>
+			<option value="독일" selected>독일</option>
 			</select></td>
 		</tr>
 		<tr>
@@ -84,30 +137,54 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><select name="" class="select" style="width:96px;">
+						<td><select name="year" id="year" class="select" style="width:96px;">
 						<option value="">선택</option>
-						<option value="" selected>1999</option>
+						<c:forEach var="y" begin="1950" end="2014" step="1">
+						<option value="${y}">${y}</option>
+						</c:forEach>
 						</select></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>년</td>
 						<td width="30"></td>
-						<td><select name="" class="select" style="width:78px;">
+						<td><select name="month" id="month" class="select" style="width:78px;">
 						<option value="">선택</option>
-						<option value="" selected>12</option>
+						<option value="01">1</option>
+						<option value="02">2</option>
+						<option value="03">3</option>
+						<option value="04">4</option>
+						<option value="05">5</option>
+						<option value="06">6</option>
+						<option value="07">7</option>
+						<option value="08">8</option>
+						<option value="09">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
 						</select></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>월</td>
 						<td width="30"></td>
-						<td><select name="" class="select" style="width:78px;">
+						<td><select name="day" id="day" class="select" style="width:78px;">
 						<option value="">선택</option>
-						<option value="" selected>24</option>
+						<option value="01">1</option>
+						<option value="02">2</option>
+						<option value="03">3</option>
+						<option value="04">4</option>
+						<option value="05">5</option>
+						<option value="06">6</option>
+						<option value="07">7</option>
+						<option value="08">8</option>
+						<option value="09">9</option>
+						<c:forEach var="d" begin="10" end="31" step="1">
+						<option value="${d}">${d}</option>
+						</c:forEach>
 						</select></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>일</td>
 						<td width="60"></td>
-						<td><input type="radio" name="type" hidefocus="true" class="radio" value="AA" checked>여성</td>
+						<td><input type="radio" name="male" id="female" hidefocus="true" class="radio" value="F" checked>여성</td>
 						<td width="30" nowrap></td>
-						<td><input type="radio" name="type" hidefocus="true" class="radio" value="BB">남성</td>
+						<td><input type="radio" name="female" id="male" hidefocus="true" class="radio" value="M">남성</td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -120,7 +197,7 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td><div class="input_textbox">http://</div></td>
-						<td><div style="position:relative; left:-2px; top:0px;"><input name="" type="text" class="input" style="width:761px;" value="블로그 / 카페 등 사용자의 주요 사이트URL 입력"></div></td>
+						<td><div style="position:relative; left:-2px; top:0px;"><input name="userUrl" id="userUrl" type="text" class="input" style="width:761px;" value="블로그 / 카페 등 사용자의 주요 사이트URL 입력"></div></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -133,7 +210,7 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td><div class="input_textbox">http://facebook.com/</div></td>
-						<td><div style="position:relative; left:-2px; top:0px;"><input name="" type="text" class="input" style="width:661px;" value=""></div></td>
+						<td><div style="position:relative; left:-2px; top:0px;"><input name="fbId" id="fbId" type="text" class="input" style="width:661px;" value=""></div></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -141,7 +218,7 @@
 		</tr>
 		<tr>
 			<th class="right">메일 수신</th>
-			<td class="left"><input type="checkbox" name="type" hidefocus="true" class="check" value="A" checked>Lalalacool의 뉴스레터</td>
+			<td class="left"><input type="checkbox" name="mailRecvYn" id="mailRecvYn" hidefocus="true" class="check" value="Y" checked>Lalalacool의 뉴스레터</td>
 		</tr>
 		<tr>
 			<th class="right">사용자 이미지&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
@@ -159,13 +236,14 @@
 							</div>
 						</td>
 						<td class="gridt_blank" nowrap></td>
-						<td><div style="vertical-align:top; height:100px;"><input type="button" class="btnd" value="파일찾기" onclick="" /></div></td>
+						<td><div style="vertical-align:top; height:100px;"><input type="file" class="btnd" value="파일찾기" onclick="" /></div></td>
 					</tr>
 				</table>
 				<!-- end -->
 			</td>
 		</tr>
 	</table>
+	</form>
 	<!-- Grid_Table_Input - end -->
 	
 	<!-- Btn_Form(Sub/Main) - start -->

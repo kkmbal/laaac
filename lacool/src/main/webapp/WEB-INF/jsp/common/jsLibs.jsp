@@ -6,6 +6,7 @@
 <!-- JavaScript -->
 <script type="text/javascript" src="${ctx}/js/menu_link.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${ctx}/js/jquery/jquery.form.js"></script>
 
 <script>
 var ctx = '${ctx}';

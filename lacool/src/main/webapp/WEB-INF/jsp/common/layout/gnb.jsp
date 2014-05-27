@@ -79,7 +79,7 @@
 	<div class="gnb_menu">
 		<h2 class="blind">로고/메뉴</h2>
 		<ul>
-			<li class="logo" style="width:432px;"><a href="home.html" target="_top"><img src="${ctx}/images/gnb/lalalacool_logo.gif" /></a></li>
+			<li class="logo" style="width:432px;"><a href="${ctx}" target="_top"><img src="${ctx}/images/gnb/lalalacool_logo.gif" /></a></li>
 			<li><img src="${ctx}/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
 			<li><a href="${ctx}" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0101','','${ctx}/images/gnb/menu1-ov.gif',1)">
 <img src="${ctx}/images/gnb/menu1.gif" width="69" height="63" border="0" name="gnbmenu0101" id="gnbmenu0101" title="홈"></a></li>
