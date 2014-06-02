@@ -22,7 +22,7 @@
 		});
 		*/
 		
-		$("#go").click(function(){
+		$("#btnGo").click(function(){
 			var mobile = $("#phone").val().replace(/-/g,'');
 			$("#mobile").val(mobile);
 			var birthYmd = $("#year").val() + $("#month").val() + $("#day").val(); 
@@ -47,6 +47,10 @@
 				clearForm: true,
 				resetForm: true
 			});			
+		});
+		
+		$("#btnCancel").click(function(){
+			location.href = '${ctx}';
 		});
 	});
 </script>
@@ -124,11 +128,11 @@
 			<th class="right">국가&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left"><select name="nationNm" id="nationNm" class="select" style="width:360px;">
 			<option value="">선택</option>
-			<option value="대한민국" selected>대한민국</option>
-			<option value="미국" selected>미국</option>
-			<option value="영국" selected>영국</option>
-			<option value="프랑스" selected>프랑스</option>
-			<option value="독일" selected>독일</option>
+			<option value="001">대한민국</option>
+			<option value="002">미국</option>
+			<option value="003">영국</option>
+			<option value="004">프랑스</option>
+			<option value="005">독일</option>
 			</select></td>
 		</tr>
 		<tr>
@@ -226,17 +230,17 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><div class="imgs_user"><img src="${ctx}/images/photo/imgs_user_input.gif" class="photo"></div></td>
+						<td><div class="imgs_user"><img src="${ctx}/images/photo/imgs_user_input.gif" class="photo" id="myImg"></div></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>
 							<div style="vertical-align:top; height:100px;">
 								<input name="" type="text" class="input" style="width:230px;" value=""><br>
 								<div class="blank_height5"></div>
-								<span class="t_num_txt">400KB이하</span>&nbsp;<span class="t_num_txt">/</span>&nbsp;<span class="t_num">315KB</span>
+								<span class="t_num_txt">400KB이하</span>&nbsp;<span class="t_num_txt">/</span>&nbsp;<span class="t_num" id="mySize">315KB</span>
 							</div>
 						</td>
 						<td class="gridt_blank" nowrap></td>
-						<td><div style="vertical-align:top; height:100px;"><input type="file" class="btnd" value="파일찾기" onclick="" /></div></td>
+						<td><div style="vertical-align:top; height:100px;"><input type="text" class="btnd" value="파일찾기" name="userFileNm" id="userFileNm" /></div></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -249,7 +253,7 @@
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
 		<div class="sub"></div>
-		<div class="main"><input type="button" class="btnm" value="완료" onclick="" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div>
+		<div class="main"><input type="button" class="btnm" value="완료" id="btnGo" /><input type="button" class="btnm_cancel" value="취소" id="btnCancel" /></div>
 		<div class="cb"></div>
 	</div>
 	<!-- Btn_Form(Sub/Main) - end -->
