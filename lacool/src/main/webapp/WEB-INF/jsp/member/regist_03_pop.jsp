@@ -6,6 +6,16 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btnGo").click(function(){
+			opener.location.href = "${ctx}/contents/creation";
+			self.close();
+		});
+	});
+
+</script>
 </head>
 
 <body>
@@ -42,7 +52,7 @@
 
 	<!-- Popup_Style01_Btn - start -->
 	<div class="popup_st01_btn">
-		<input type="button" class="btnm" value="확인" onclick="" /><!--<input type="button" class="btnm_cancel" value="취소" onclick="" />-->
+		<input type="button" class="btnm" value="확인" id="btnGo" /><!--<input type="button" class="btnm_cancel" value="취소" onclick="" />-->
 	</div>
 	<!-- Popup_Style01_Btn - end -->
 

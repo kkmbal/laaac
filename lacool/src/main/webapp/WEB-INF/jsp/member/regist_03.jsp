@@ -22,7 +22,24 @@
 		});
 		*/
 		
+		$("#userUrl").click(function(){
+			$("#userUrl").val("");
+		});
+		
 		$("#btnGo").click(function(){
+			if($("#nationNm").val() == ""){
+				alert("국가를 선택하세요.");
+				return;
+			}
+			if($("#year").val()=="" || $("#month").val()=="" || $("#day").val()==""){
+				alert("생년월일을 선택하세요.");
+				return;
+			}
+			if($("#imageFile").val() == ""){
+				alert("파일을 선택하세요.");
+				return;
+			}
+			
 			var mobile = $("#phone").val().replace(/-/g,'');
 			$("#mobile").val(mobile);
 			var birthYmd = $("#year").val() + $("#month").val() + $("#day").val(); 
@@ -33,11 +50,13 @@
 				$("#sex").val("M");
 			}
 			
+			//alert($("#frm").serialize())
+			/*
 			$("#frm").ajaxSubmit({
 				url : "${ctx}/member/userRegDetail",
 				type : 'POST',
 				data :  $("#frm").serialize(),
-				//action: $("#dummy"),
+				action: $("#dummy"),
 				dataType : "script",
 				success : function(data){
 					window.open("${ctx}/member_regist_03_pop", "pop", "height=100,width=100,resizable=no,scrollbars=no");
@@ -46,13 +65,93 @@
 				},
 				clearForm: true,
 				resetForm: true
-			});			
+			});	
+			*/
+			var data = {mobile:"", email:"", pwd:""};
+			data.mobile = $("#mobile").val();
+			data.birthYmd = $("#birthYmd").val();
+			data.sex = $("#sex").val();
+			data.imageFile = $("#imageFile").val();
+			data.nationNm = $("#nationNm").val();
+			data.userUrl = $("#userUrl").val();
+			data.fbId = $("#fbId").val();
+			data.mailRecvYn = $("#mailRecvYn").val();
+			
+			$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(data)}, function(data){
+				if(data.result){
+					alert(data.result);
+					return;
+				}
+				window.open("${ctx}/member_regist_03_pop", "pop", "height=100,width=100,resizable=no,scrollbars=no");
+			});
 		});
 		
 		$("#btnCancel").click(function(){
 			location.href = '${ctx}';
 		});
 	});
+	
+	  window.onload = function() {
+		    var fileInput = document.getElementById('fileInput');
+		    var fileNm = document.getElementById('fileNm');
+
+		    fileInput.addEventListener('change', function(e) {
+		    	var file = fileInput.files[0];
+		    	var imageType = /image.*/;
+
+		    	if (file.type.match(imageType)) {
+		    	  var reader = new FileReader();
+
+		    	  reader.onload = function(e) {
+
+		    	    var img = new Image();
+		    	    img.src = reader.result;
+
+		    	    //fileDisplayArea.appendChild(img);
+		    	    fileNm.value = file.name;
+		    	    
+				    img.onload = function() {
+				 
+				        var MAX_WIDTH = 100;
+				        var MAX_HEIGHT = 100;
+				        var tempW = img.width;
+				        var tempH = img.height;
+				        if (tempW > tempH) {
+				            if (tempW > MAX_WIDTH) {
+				               tempH *= MAX_WIDTH / tempW;
+				               tempW = MAX_WIDTH;
+				            }
+				        } else {
+				            if (tempH > MAX_HEIGHT) {
+				               tempW *= MAX_HEIGHT / tempH;
+				               tempH = MAX_HEIGHT;
+				            }
+				        }
+
+				        var canvas = document.getElementById('myImg');
+				        canvas.width = tempW;
+				        canvas.height = tempH;
+				        var ctx = canvas.getContext("2d");
+				        ctx.drawImage(this, 0, 0, tempW, tempH);
+				        var dataURL = canvas.toDataURL("image/jpeg");
+
+				        //var xhr = new XMLHttpRequest();
+				        //xhr.onreadystatechange = function(ev){
+				            //document.getElementById('filesInfo').innerHTML = 'Done!';
+				        //};
+				        
+				        document.getElementById('imageFile').value = dataURL;
+				      }	    	    
+		    	    
+		    	  }
+
+		    	  reader.readAsDataURL(file); 
+		    	} else {
+		    	  fileDisplayArea.innerHTML = "File not supported!";
+		    	}
+		    });
+		}  	
+	
 </script>
 </head>
 
@@ -96,10 +195,12 @@
 	<div class="t_guide01"><img src="${ctx}/images/icon/i_warn.gif" align="texttop"> 컨텐츠를 등록하시려면 아래의 추가정보를 등록해 주십시오.&nbsp;&nbsp;&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"> 표는 필수 입력 항목 입니다.</div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
-	<form name="frm" id="frm" enctype="multipart/form-data" method="post">
+	
+	<form name="frm" id="frm" method="post">
 	<input type="hidden" name="mobile" id="mobile">
 	<input type="hidden" name="birthYmd" id="birthYmd">
 	<input type="hidden" name="sex" id="sex">
+	<input type="hidden" name="imageFile" id="imageFile" />
 
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
 		<colgroup>
@@ -230,17 +331,18 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><div class="imgs_user"><img src="${ctx}/images/photo/imgs_user_input.gif" class="photo" id="myImg"></div></td>
+<%-- 						<td><div class="imgs_user"><img src="${ctx}/images/photo/imgs_user_input.gif" class="photo" id="myImg"></div></td> --%>
+						<td><div class="imgs_user"><canvas id="myImg" width="100" height="100"></canvas></div></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>
 							<div style="vertical-align:top; height:100px;">
-								<input name="" type="text" class="input" style="width:230px;" value=""><br>
+								<input name="fileNm" id="fileNm" type="text" class="input" readonly style="width:230px;" value=""><br>
 								<div class="blank_height5"></div>
 								<span class="t_num_txt">400KB이하</span>&nbsp;<span class="t_num_txt">/</span>&nbsp;<span class="t_num" id="mySize">315KB</span>
 							</div>
 						</td>
 						<td class="gridt_blank" nowrap></td>
-						<td><div style="vertical-align:top; height:100px;"><input type="text" class="btnd" value="파일찾기" name="userFileNm" id="userFileNm" /></div></td>
+						<td><div style="vertical-align:top; height:100px;"><input type="file" class="btnd" value="파일찾기" name="fileInput" id="fileInput" /></div></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -273,6 +375,7 @@
 </div>
 <!-- ***** WRAPPER - end ***** -->
 
+<iframe id="dummy" name="dummy" width=0 height=0></iframe>
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->

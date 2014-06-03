@@ -27,9 +27,16 @@ public class UserVo implements Serializable{
 	private String updDttm;
 	private String emailYn;
 	private String emailDttm;
+	private String imageFile;
 	
 	
 	
+	public String getImageFile() {
+		return imageFile;
+	}
+	public void setImageFile(String imageFile) {
+		this.imageFile = imageFile;
+	}
 	public String getEmailYn() {
 		return emailYn;
 	}

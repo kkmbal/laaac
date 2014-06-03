@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper {
 	public UserVo getUser(UserVo userVo);
 	public void registerUser(UserVo userVo);
+	public void updateUser(UserVo userVo);
 }
