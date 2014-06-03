@@ -1,12 +1,11 @@
 package lacool.member.web;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import lacool.common.exception.LaCoolException;
+import lacool.common.util.FileUtil;
+import lacool.common.vo.FileVo;
 import lacool.member.sc.UserService;
 import lacool.member.vo.UserVo;
 
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.util.WebUtils;
 
 @Controller
 @RequestMapping("member")
@@ -50,15 +48,14 @@ public class UserController {
 			
 			UserVo user = userService.getUser(userVo);
 			if(user == null){
-				userService.registerUser(userVo);
+				userService.insertUser(userVo);
 				modelMap.put("user", userVo);
 			}else{
 				throw new LaCoolException("Email Dup");
 			}
 		}catch(Exception e){
 			modelMap.put("result", "error");
-			log.error(e);
-			//throw new LaCoolException(e);
+			log.error(e.toString(), e);
 		}
 		return modelMap;
 	}
@@ -77,8 +74,7 @@ public class UserController {
 			}
 		}catch(Exception e){
 			modelMap.put("result", e.toString());
-			log.error(e);
-			//throw new LaCoolException(e);
+			log.error(e.toString(), e);
 		}
 		return modelMap;
 	}
@@ -93,27 +89,10 @@ public class UserController {
 			
 			UserVo user = userService.getUser(userVo);
 			if(user != null){
-				String path = "images/photo/"+sessionUserVo.getUserId()+"/";
-				String dir = WebUtils.getRealPath(request.getServletContext(), "/") + path;
-				File f = new File(dir);
-				if(!f.exists()){
-					f.mkdir();
-				}
-				String name = sessionUserVo.getUserId() + "_" + System.currentTimeMillis() + ".jpg";
-				String image = userVo.getImageFile();
+				FileVo fileVo = FileUtil.saveFile(request, userVo.getImageFile());
 				
-		    	image = image.replace("data:image/jpeg;base64,", "").replaceAll(" ", "+");
-		    	log.debug(image);
-
-		    	byte[] imageByte = org.apache.commons.net.util.Base64.decodeBase64(image.getBytes());
-		    	FileOutputStream fs = new FileOutputStream(new File(dir + name));
-		    	fs.write(imageByte);
-		    	fs.close();
-		    	fs.flush();
-				
-				
-				userVo.setUserFileNm(name);
-				userVo.setUserFilePath(path);
+				userVo.setUserFileNm(fileVo.getName());
+				userVo.setUserFilePath(fileVo.getPath());
 				userService.updateUser(userVo);
 				modelMap.put("user", userVo);
 				
@@ -122,8 +101,10 @@ public class UserController {
 			}
 		}catch(Exception e){
 			modelMap.put("result", "error");
-			log.error(e);
+			log.error(e.toString(), e);
 		}
 		return modelMap;
 	}
+	
+
 }

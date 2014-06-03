@@ -7,6 +7,68 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#mainCateNm, #subCateNm").click(function(){
+			$(this).val("");
+		});
+		
+		$("#btnGo").click(function(){
+			var data = {cateNm:"", upCateId:""};
+			var url = "";
+			
+			if ($("#mainChk").is(":checked")){
+				if($("#mainCateNm").val() == "" || $("#mainCateNm").val() == "10자 이내 입력"){
+					alert("카테고리명을 입력하세요.");
+					return;
+				}
+				data.cateNm = $("#mainCateNm").val();
+			    url = "${ctx}/category/regMainCategory?format=json";
+				
+			}else if ($("#subChk").is(":checked")){
+				if($("#upCateId").val() == ""){
+					alert("대분류를 선택하세요.");
+					return;
+				}
+				if($("#subCateNm").val() == "" || $("#subCateNm").val() == "10자 이내 입력"){
+					alert("카테고리명을 입력하세요.");
+					return;
+				}
+				data.cateNm = $("#subCateNm").val();
+				data.upCateId = $("#upCateId").val();
+			    url = "${ctx}/category/regSubCategory?format=json";
+			}
+			
+			$.post(url, {data:JSON.stringify(data)}, function(data){
+				if(data.result){
+					alert(data.result);
+					return;
+				}
+				window.open("${ctx}/category/ask_category_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
+			});
+		});
+		
+		$("[id^='mainCate_']").click(function(){
+			alert($(this).attr("id"))
+		});
+		
+		//대분류
+		$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
+			if(data.result){
+				alert(data.result);
+				return;
+			}
+			if(data.listCategoryVo){
+				var json = $.parseJSON(JSON.stringify(data.listCategoryVo));
+				for(var i=0;i<json.length;i++){
+					$("#mainCate > ul").append('<li><a href="#" id="mainCate_'+i+'">'+json[i].cateNm+'</a></li>');
+					$("#upCateId").append('<option value="'+json[i].cateId+'">'+json[i].cateNm+'</option>');
+				}
+			}
+		});
+	});
+</script>
 </head>
 
 <body onLoad="javascript:MenuOn(0104);">
@@ -70,8 +132,9 @@
 				<!-- ** Grid_Table_Menu(body) - start ** -->
 				<div class="body" style="height:576px; width:; overflow-x:hidden; overflow-y:scroll;">
 					<!-- gridt_menu - start -->
-					<div class="gridt_menu">
+					<div class="gridt_menu" id="mainCate">
 						<ul>
+						<!-- 
 							<li><a href="#">맛있는 음식</a></li>
 							<li><a href="#">근사한 이벤트</a></li>
 							<li><a href="#">좋은 물건</a></li>
@@ -92,6 +155,7 @@
 							<li class="on"><a href="#">신나는 여행</a></li>
 							<li class="on"><a href="#">Cool Korea</a></li>
 							<li><a href="#">나쁜 사기</a></li>
+						-->
 						</ul>
 					</div>
 					<!-- gridt_menu - end -->
@@ -113,19 +177,18 @@
 					<col width="">
 				</colgroup>
 				<tr>
-					<th class="right"><input type="radio" name="type" hidefocus="true" class="radio" value="AA" checked>대분류 추가</th>
-					<td class="left"><input name="" type="text" class="input" style="width:335px;" value="10자 이내 입력"></td>
+					<th class="right"><input type="radio" name="chk" id="mainChk" hidefocus="true" class="radio" value="AA" checked>대분류 추가</th>
+					<td class="left"><input name="mainCateNm" id="mainCateNm" type="text" class="input" style="width:335px;" value="10자 이내 입력" maxlength="10"></td>
 				</tr>
 				<tr>
-					<th class="right"><input type="radio" name="type" hidefocus="true" class="radio" value="BB" disabled>중분류 추가</th>
-					<td class="left"><select name="" class="select_inact" style="width:355px;">
+					<th class="right"><input type="radio" name="chk" id="subChk" hidefocus="true" class="radio" value="BB">중분류 추가</th>
+					<td class="left"><select name="upCateId" id="upCateId" class="select_inact" style="width:355px;">
 					<option value="">선택</option>
-					<option value="" selected>대분류 선택</option>
 					</select></td>
 				</tr>
 				<tr>
 					<th class="right"></th>
-					<td class="left"><input name="" type="text" class="input_inact" style="width:335px;" value="10자 이내 입력"></td>
+					<td class="left"><input name="subCateNm" id="subCateNm" type="text" class="input_inact" style="width:335px;" value="10자 이내 입력" maxlength="10"></td>
 				</tr>
 			</table>
 			<!-- Grid_Table_Input - end -->
@@ -161,7 +224,7 @@
 			<!-- Btn_Form(Sub/Main) - start -->
 			<div class="btn_form">
 				<div class="sub"></div>
-				<div class="main"><input type="button" class="btnm" value="신청" onclick="" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div>
+				<div class="main"><input type="button" class="btnm" value="신청" id="btnGo" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div>
 				<div class="cb"></div>
 			</div>
 			<!-- Btn_Form(Sub/Main) - end -->

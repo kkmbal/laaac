@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lacool.category.mapper.CategoryMapper">
+
+	<select id="listCategory" parameterType="lacool.category.vo.CategoryVo" resultType="lacool.category.vo.CategoryVo">
+		<![CDATA[	
+			SELECT CATE_ID
+				  ,CATE_NM
+				  ,UP_CATE_ID
+				  ,DEL_YN
+				  ,CATE_ORD_NO
+				  ,DEL_YN
+				  ,REG_ID
+				  ,REG_DTTM
+				  ,UPD_ID
+				  ,UPD_DTTM
+			FROM CATE_INFO
+			WHERE UP_CATE_ID = #{upCateId}
+			ORDER BY CATE_ORD_NO, REG_DTTM
+		]]>
+	</select>	
+
+	
+	<insert id="insertCategory" parameterType="lacool.category.vo.CategoryVo">
+		<selectKey keyProperty="cateId" resultType="String" order="BEFORE" >
+	     SELECT CONCAT(#{prefix} , LPAD(CAST(REPLACE(IFNULL(MAX(CATE_ID),0), #{prefix},'') AS UNSIGNED) + 1, 6, '0')) AS cateId FROM CATE_INFO
+	     WHERE UP_CATE_ID = #{upCateId}   
+	    </selectKey>		
+	    
+	<![CDATA[
+		INSERT INTO CATE_INFO(
+		 CATE_ID
+		, CATE_NM
+		, UP_CATE_ID
+		, DEL_YN
+		, CATE_ORD_NO
+		, REG_ID
+		, REG_DTTM
+		, UPD_ID
+		, UPD_DTTM
+		) VALUES (
+		 #{cateId}
+		, #{cateNm}
+		, #{upCateId}
+		, #{delYn}
+		, #{cateOrdNo}
+		, #{regId}
+		, NOW()
+		, #{updId}
+		, NOW()
+		)
+	]]>
+	</insert>
+	
+		
+</mapper>

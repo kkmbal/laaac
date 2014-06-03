@@ -82,7 +82,7 @@
 					alert(data.result);
 					return;
 				}
-				window.open("${ctx}/member_regist_03_pop", "pop", "height=100,width=100,resizable=no,scrollbars=no");
+				window.open("${ctx}/member/member_regist_03_pop", "pop", "height=100,width=100,resizable=no,scrollbars=no");
 			});
 		});
 		

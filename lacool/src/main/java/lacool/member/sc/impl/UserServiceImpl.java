@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void registerUser(UserVo userVo) throws LaCoolException{
+	public void insertUser(UserVo userVo) throws LaCoolException{
 		userVo.setRegId("system");
 		userVo.setUpdId("system");
-		userMapper.registerUser(userVo);
+		userMapper.insertUser(userVo);
 	}
 	
 	@Override

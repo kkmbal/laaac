@@ -39,7 +39,7 @@
 			LIMIT 1   
 	</select>
 	
-	<insert id="registerUser" parameterType="lacool.member.vo.UserVo">
+	<insert id="insertUser" parameterType="lacool.member.vo.UserVo">
 	<![CDATA[
 		INSERT INTO PSN_USER(
 		 USER_NM
