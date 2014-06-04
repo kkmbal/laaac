@@ -19,6 +19,48 @@
     
     <mvc:view-controller path="/login" view-name="/login"/>
     
+	<mvc:interceptors>
+	 	<mvc:interceptor>
+		    <mvc:mapping path="/category/*" />
+			<bean class="lacool.common.web.AuthInterceptor">
+				<property name="exceptLogin">
+					<list>
+						<value>/login</value>
+					</list>
+				</property>		
+			</bean>
+		</mvc:interceptor>
+	 	<mvc:interceptor>
+		    <mvc:mapping path="/contents/*" />
+			<bean class="lacool.common.web.AuthInterceptor">
+			</bean>
+		</mvc:interceptor>
+	 	<mvc:interceptor>
+		    <mvc:mapping path="/customer/*" />
+			<bean class="lacool.common.web.AuthInterceptor">
+			</bean>
+		</mvc:interceptor>
+	 	<mvc:interceptor>
+		    <mvc:mapping path="/member/*" />
+			<bean class="lacool.common.web.AuthInterceptor">
+				<property name="exceptLogin">
+					<list>
+						<value>/member/regist_01</value>
+						<value>/member/doLogin</value>
+						<value>/member/doLogout</value>
+					</list>
+				</property>				
+			</bean>
+		</mvc:interceptor>
+	 	<mvc:interceptor>
+		    <mvc:mapping path="/personal/*" />
+			<bean class="lacool.common.web.AuthInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+<!-- 	<mvc:resources mapping="/resources/**" location="/resources/mytheme/" /> -->
+    
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="common/layout/egovError"/>
         <property name="exceptionMappings">
