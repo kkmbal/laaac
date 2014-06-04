@@ -13,7 +13,7 @@ import org.springframework.web.util.WebUtils;
 public class FileUtil {
 
 	public static FileVo saveFile(HttpServletRequest request, String imageFile) throws Exception{
-		UserVo userVo = (UserVo)request.getAttribute("userVo");
+		UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
 		
 		String path = "images/photo/"+userVo.getUserId()+"/";
 		String dir = WebUtils.getRealPath(request.getServletContext(), "/") + path;

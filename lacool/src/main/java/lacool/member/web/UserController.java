@@ -79,6 +79,17 @@ public class UserController {
 		return modelMap;
 	}
 	
+	@RequestMapping("/doLogout")
+	public String userLogout(HttpServletRequest request){
+		try{
+			request.getSession().removeAttribute("userVo");
+	    	request.getSession().invalidate();
+		}catch(Exception e){
+			log.error(e.toString(), e);
+		}
+		return "redirect:/index.jsp";
+	}
+	
 	@RequestMapping("/userRegDetail")
 	public ModelMap userRegDetail(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
 		try{
