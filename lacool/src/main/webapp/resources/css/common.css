@@ -6,7 +6,7 @@
     font-family:'NanumGothic';
     src: url('fonts/NanumGothic.eot'); /* IE */
     src: url('fonts/NanumGothic.eot?#iefix') format('embedded-opentype'), /* IE */
-         url('fonts/NanumGothic.woff') format('woff'), /* Chrome,Firefox */
+       /*  url('fonts/NanumGothic.woff') format('woff'),  Chrome,Firefox */
          url('fonts/NanumGothic.ttf') format('truetype'); /* Safari */
     font-weight: normal;
     font-style: normal;

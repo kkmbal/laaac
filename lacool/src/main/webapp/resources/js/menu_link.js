@@ -73,11 +73,11 @@ function GoMenu(name) {
 		menuId = gnbNum;
 		switch(gnbNum) {
 
-		case 0101 : gnbmenu0101.src=ctx+"/images/gnb/menu1-sel.gif"; break;
-		case 0102 : gnbmenu0102.src=ctx+"/images/gnb/menu2-sel.gif"; break;
-		case 0103 : gnbmenu0103.src=ctx+"/images/gnb/menu3-sel.gif"; break;
-		case 0104 : gnbmenu0104.src=ctx+"/images/gnb/menu4-sel.gif"; break;
-		case 0105 : gnbmenu0105.src=ctx+"/images/gnb/menu5-sel.gif"; break;
+		case 0101 : gnbmenu0101.src=ctx+"/resources/images/gnb/menu1-sel.gif"; break;
+		case 0102 : gnbmenu0102.src=ctx+"/resources/images/gnb/menu2-sel.gif"; break;
+		case 0103 : gnbmenu0103.src=ctx+"/resources/images/gnb/menu3-sel.gif"; break;
+		case 0104 : gnbmenu0104.src=ctx+"/resources/images/gnb/menu4-sel.gif"; break;
+		case 0105 : gnbmenu0105.src=ctx+"/resources/images/gnb/menu5-sel.gif"; break;
 		
 		}
 	}
