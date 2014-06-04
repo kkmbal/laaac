@@ -82,7 +82,7 @@
 				<!-- gridt_file - start -->
 				<table cellpadding="0" cellspacing="0" border="0" class="gridt_file">
 					<tr>
-						<td class="filel"><img src="${ctx}/images/icon/i_file.gif"></td>
+						<td class="filel"><img src="${ctx}/resources/images/icon/i_file.gif"></td>
 						<td width="5" nowrap></td>
 						<td class="filel"><span class="t_file"><a href="#">파일명.ppt</a></span></td>
 						<td width="5" nowrap></td>
@@ -99,7 +99,7 @@
 					<tr>
 						<td class="listtxt01">이전</td>
 						<td class="gridt_blank" nowrap></td>
-						<td><img src="${ctx}/images/icon/i_prev.gif"></td>
+						<td><img src="${ctx}/resources/images/icon/i_prev.gif"></td>
 						<td width="25" nowrap></td>
 						<td><a href="#">이전 글의 제목 들어가는 곳</a></td>
 					</tr>
@@ -114,7 +114,7 @@
 					<tr>
 						<td class="listtxt01">다음</td>
 						<td class="gridt_blank" nowrap></td>
-						<td><img src="${ctx}/images/icon/i_next.gif"></td>
+						<td><img src="${ctx}/resources/images/icon/i_next.gif"></td>
 						<td width="25" nowrap></td>
 						<td><a href="#">다음 글의 제목 들어가는 곳</a></td>
 					</tr>

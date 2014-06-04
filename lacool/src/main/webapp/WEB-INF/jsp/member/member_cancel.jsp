@@ -59,7 +59,7 @@
 	</div>
 	<!-- Contents_Title - end -->
 	<div class="blank_height30"></div>
-	<div class="t_guide01"><img src="${ctx}/images/icon/i_warn.gif" align="texttop"> <strong>아래의 회원탈퇴 안내를 반드시 확인하시기 바랍니다.</strong></div>
+	<div class="t_guide01"><img src="${ctx}/resources/images/icon/i_warn.gif" align="texttop"> <strong>아래의 회원탈퇴 안내를 반드시 확인하시기 바랍니다.</strong></div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
@@ -68,19 +68,19 @@
 			<col width="">
 		</colgroup>
 		<tr>
-			<td class="right"><img src="${ctx}/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
+			<td class="right"><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
 			<td class="left">회원탈퇴 후 사용하고 계신 사용자 이름<strong>(abcd)</strong>은 재가입 및 복구가 불가능합니다.</td>
 		</tr>
 		<tr>
-			<td class="right"><img src="${ctx}/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
+			<td class="right"><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
 			<td class="left">생성한 컨텐츠는 모두 삭제되며 복구할 수 없습니다.</td>
 		</tr>
 		<tr>
-			<td class="right"><img src="${ctx}/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
+			<td class="right"><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
 			<td class="left">회원의 컨텐츠에 속해 있는 타인의 게시글은 탈퇴 후에도 삭제할 수 없습니다.</td>
 		</tr>
 		<tr>
-			<td class="right"><img src="${ctx}/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
+			<td class="right"><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
 			<td class="left">회원께서 작성하신 게시글도 탈회 후 삭제할 수 없습니다.</td>
 		</tr>
 		<tr>

@@ -84,14 +84,14 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="right">국가&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+			<th class="right">국가&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left"><select name="" class="select" style="width:360px;">
 			<option value="">선택</option>
 			<option value="" selected>대한민국</option>
 			</select></td>
 		</tr>
 		<tr>
-			<th class="right">생년월일&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+			<th class="right">생년월일&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left">
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
@@ -156,12 +156,12 @@
 			<td class="left"><input type="checkbox" name="type" hidefocus="true" class="check" value="A" checked>Lalalacool의 뉴스레터</td>
 		</tr>
 		<tr>
-			<th class="right">사용자 이미지&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+			<th class="right">사용자 이미지&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left">
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><div class="imgs_user"><img src="${ctx}/images/photo/imgs_user_input.gif" class="photo"></div></td>
+						<td><div class="imgs_user"><img src="${ctx}/resources/images/photo/imgs_user_input.gif" class="photo"></div></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>
 							<div style="vertical-align:top; height:100px;">

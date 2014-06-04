@@ -59,28 +59,28 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0102 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0103 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0104.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0104 - end -->
 			</li>
@@ -93,21 +93,21 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0102 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0103 - end -->
 			</li>
@@ -133,28 +133,28 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0102 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0103 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0104.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:230px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족 여행권</a></span></div>
 				<!-- 0104 - end -->
 			</li>
@@ -165,7 +165,7 @@
 	<!-- More_Btn - start -->
 	<div class="more">
 		<div class="btn fl">&nbsp;</div>
-		<div class="center fl"><img src="${ctx}/images/icon/i-more.gif" align="absmiddle"><a href="#">더보기</a></div>
+		<div class="center fl"><img src="${ctx}/resources/images/icon/i-more.gif" align="absmiddle"><a href="#">더보기</a></div>
 		<div class="btn fr"><input type="button" class="btni_top" title="위로" onclick="" /></div>
 		<div class="cb"></div>
 	</div>

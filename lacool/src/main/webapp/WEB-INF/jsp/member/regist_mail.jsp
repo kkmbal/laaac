@@ -70,7 +70,7 @@ a {selector-dummy:expression(this.hideFocus=true);}
 <div style="background-color: #ffffff; vertical-align: top; text-align: left; border: 0px; font-family: '돋움',Dotum,Helvetica,Arial,Sans-serif; font-size: 14px; color: #111111; line-height:2.0em; margin: 0; padding: 49px; width:550px;">
 
 	<!-- logo - start -->
-	<div style="height: 47px; border-bottom: 2px solid #111111; padding: 0px;"><img src="../images/mail/lalalacool_logo.gif" border="0"></div>
+	<div style="height: 47px; border-bottom: 2px solid #111111; padding: 0px;"><img src="../resources/images/mail/lalalacool_logo.gif" border="0"></div>
 	<!-- logo - end -->
 
 	<!-- Blank - start -->
@@ -81,13 +81,13 @@ a {selector-dummy:expression(this.hideFocus=true);}
 		<tr>
 			<td align="left" valign="bottom" nowrap><span style="font-family:'돋움', Dotum, Tahoma, Arial, sans-serif; font-size: 35px; font-weight: bold; color: #000000; letter-spacing: -1px;">000</span></td>
 			<td width="10">&nbsp;</td>
-			<td align="left" valign="bottom"><img src="../images/mail/regist01.gif" border="0"></td>
+			<td align="left" valign="bottom"><img src="../resources/images/mail/regist01.gif" border="0"></td>
 		</tr>
 		<tr>
 			<td colspan="3" align="left" height="10"></td>
 		</tr>
 		<tr>
-			<td colspan="3" align="left" valign="bottom"><img src="../images/mail/regist02.gif" border="0"></td>
+			<td colspan="3" align="left" valign="bottom"><img src="../resources/images/mail/regist02.gif" border="0"></td>
 		</tr>
 	</table>
 

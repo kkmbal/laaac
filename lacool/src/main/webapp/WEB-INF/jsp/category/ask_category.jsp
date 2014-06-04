@@ -49,9 +49,6 @@
 			});
 		});
 		
-		$("[id^='mainCate_']").click(function(){
-			alert($(this).attr("id"))
-		});
 		
 		//대분류
 		$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
@@ -62,10 +59,35 @@
 			if(data.listCategoryVo){
 				var json = $.parseJSON(JSON.stringify(data.listCategoryVo));
 				for(var i=0;i<json.length;i++){
-					$("#mainCate > ul").append('<li><a href="#" id="mainCate_'+i+'">'+json[i].cateNm+'</a></li>');
+					$("#mainCate > ul").append('<li><a href="#" id="'+json[i].cateId+'">'+json[i].cateNm+'</a></li>');
 					$("#upCateId").append('<option value="'+json[i].cateId+'">'+json[i].cateNm+'</option>');
 				}
 			}
+		});
+		
+		$(document).on('click',"#mainCate li", function() {	
+			var data = {upCateId:$(this).find("a").attr("id")};
+			var thi = $(this);
+			var obj = $(thi).find("ul");
+			if(obj.length > 0 ) return false;
+			$.post("${ctx}/category/listSubCategory?format=json", {data:JSON.stringify(data)}, function(data){
+				if(data.result){
+					alert(data.result);
+					return;
+				}
+				if(data.listCategoryVo){
+					var json = $.parseJSON(JSON.stringify(data.listCategoryVo));
+					for(var i=0;i<json.length;i++){
+						if(i==0){
+							$(thi).addClass("sel");
+							$(thi).append('<ul><li><a href="#" id="'+json[i].cateId+'">'+json[i].cateNm+'</a></li></ul>');
+						}else{
+							$(thi).find("ul").append('<li><a href="#" id="'+json[i].cateId+'">'+json[i].cateNm+'</a></li>');
+						}
+					}
+				}
+			});	
+			return false;
 		});
 	});
 </script>
@@ -193,7 +215,7 @@
 			</table>
 			<!-- Grid_Table_Input - end -->
 			<div class="blank_height40"></div>
-			<div class="t_guide01">신청 결과를 안내할 연락처를 입력해 주십시오.&nbsp;&nbsp;&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"> 표는 필수 입력 항목 입니다.</div>
+			<div class="t_guide01">신청 결과를 안내할 연락처를 입력해 주십시오.&nbsp;&nbsp;&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"> 표는 필수 입력 항목 입니다.</div>
 			<div class="blank_height5"></div>
 			<!-- Grid_Table_Input - start -->
 			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
@@ -202,7 +224,7 @@
 					<col width="">
 				</colgroup>
 				<tr>
-					<th class="right">휴대전화&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+					<th class="right">휴대전화&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 					<td class="left">
 						<!-- start -->
 						<table cellpadding="0" cellspacing="0" border="0">
@@ -216,7 +238,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="right">E-mail&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+					<th class="right">E-mail&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 					<td class="left"><input name="" type="text" class="input" style="width:335px;" value=""></td>
 				</tr>
 			</table>

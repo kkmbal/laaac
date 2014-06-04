@@ -73,7 +73,7 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0101 - end -->
@@ -81,7 +81,7 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><img src="${ctx}/images/photo/imgs_no_232.gif" class="photo"></div>
+				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
 				<div class="title"><span class="t_inact">제목 미등록</span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0102 - end -->
@@ -89,7 +89,7 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0103 - end -->
@@ -97,7 +97,7 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><img src="${ctx}/images/photo/imgs_no_232.gif" class="photo"></div>
+				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
 				<div class="title"><span class="t_inact">제목 미등록</span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0104 - end -->
@@ -111,7 +111,7 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0101 - end -->
@@ -119,7 +119,7 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><img src="${ctx}/images/photo/imgs_no_232.gif" class="photo"></div>
+				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
 				<div class="title"><span class="t_inact">제목 미등록</span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0102 - end -->
@@ -127,7 +127,7 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0103 - end -->
@@ -135,7 +135,7 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><img src="${ctx}/images/photo/imgs_no_232.gif" class="photo"></div>
+				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
 				<div class="title"><span class="t_inact">제목 미등록</span></div>
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0104 - end -->

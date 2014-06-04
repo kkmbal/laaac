@@ -6,6 +6,65 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//대분류
+		$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
+			if(data.result){
+				alert(data.result);
+				return;
+			}
+			if(data.listCategoryVo){
+				var json = $.parseJSON(JSON.stringify(data.listCategoryVo));
+				for(var i=0;i<json.length;i++){
+					$("#mainCateId").append('<option value="'+json[i].cateId+'">'+json[i].cateNm+'</option>');
+				}
+			}
+		});	
+		
+		//중분류
+		$("#mainCateId").change(function(){
+			$("#subCateId option:gt(0)").remove();
+			if($(this).val() != ""){
+				var data = {upCateId:$(this).val()};
+				$.post("${ctx}/category/listSubCategory?format=json", {data:JSON.stringify(data)}, function(data){
+					if(data.result){
+						alert(data.result);
+						return;
+					}
+					if(data.listCategoryVo){
+						var json = $.parseJSON(JSON.stringify(data.listCategoryVo));
+						for(var i=0;i<json.length;i++){
+							$("#subCateId").append('<option value="'+json[i].cateId+'">'+json[i].cateNm+'</option>');
+						}
+					}
+				});					
+			}
+		});
+		
+		$("#notiTitle, #notiConts, #notiKindA, #notiKindB").click(function(){
+			var id = $(this).attr("id");
+			if(id == "notiTitle"){
+				$(this).val("");
+			}else if(id == "notiConts"){
+				$(this).val("");
+			}else if(id == "notiKindA"){
+				$("#notiUrlA").attr("disabled", true);
+				$("#notiUrlB").attr("disabled", false);
+			}else if(id == "notiKindB"){
+				$("#notiUrlB").attr("disabled", true);
+				$("#notiUrlA").attr("disabled", false);
+			}
+		});
+
+		
+		//등록
+		$("#btnGo").click(function(){
+			
+		});
+	});
+</script>
 </head>
 
 <body onLoad="javascript:MenuOn(0105);">
@@ -45,9 +104,13 @@
 	</div>
 	<!-- Contents_Title - end -->
 	<div class="blank_height30"></div>
-	<div class="t_guide01"><img src="${ctx}/images/icon/i_warn.gif" align="texttop"> 이미지나 동영상 등의 게시물이 저작권을 포함하여 타인의 권리를 침해하거나 명예를 훼손하는 경우 이용약관 및 관련 법률에 의하여 제재를 받을 수 있습니다.</div>
+	<div class="t_guide01"><img src="${ctx}/resources/images/icon/i_warn.gif" align="texttop"> 이미지나 동영상 등의 게시물이 저작권을 포함하여 타인의 권리를 침해하거나 명예를 훼손하는 경우 이용약관 및 관련 법률에 의하여 제재를 받을 수 있습니다.</div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
+	
+	<form name="frm" id="frm">
+	<input type="hidden" name="cateId" id="cateId">
+	<input type="hidden" name="notiUrl" id="notiUrl">
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
 		<colgroup>
 			<col width="160">
@@ -59,14 +122,12 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><select name="" class="select" style="width:200px;">
+						<td><select name="mainCateId" id="mainCateId" class="select" style="width:200px;">
 						<option value="">선택</option>
-						<option value="" selected>1차</option>
 						</select></td>
 						<td class="gridt_blank" nowrap></td>
-						<td><select name="" class="select" style="width:200px;">
+						<td><select name="subCateId" id="subCateId" class="select" style="width:200px;">
 						<option value="">선택</option>
-						<option value="" selected>2차</option>
 						</select></td>
 					</tr>
 				</table>
@@ -75,7 +136,7 @@
 		</tr>
 		<tr>
 			<th class="right">제목</th>
-			<td class="left"><input name="" type="text" class="input" style="width:820px;" value="제목을 30자 이내로 입력하세요."></td>
+			<td class="left"><input name="notiTitle" id="notiTitle" type="text" class="input" style="width:820px;" value="제목을 30자 이내로 입력하세요." maxlength="30"></td>
 		</tr>
 		<tr>
 			<th class="right">종류</th>
@@ -83,9 +144,9 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input type="radio" name="type" hidefocus="true" class="radio" value="AA" checked>이미지</td>
 						<td width="30" nowrap></td>
-						<td><input type="radio" name="type" hidefocus="true" class="radio" value="BB">동영상</td>
+						<td><input type="radio" name="notiKind" id="notiKindA" hidefocus="true" class="radio" value="001" checked>이미지</td>
+						<td><input type="radio" name="notiKind" id="notiKindB" hidefocus="true" class="radio" value="002">동영상</td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -97,16 +158,16 @@
 				<!-- 대표이미지 - start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><img src="${ctx}/images/icon/i_check.gif" align="absmiddle"> <strong>대표 이미지 등록 (필수)</strong></td>
+						<td><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"> <strong>대표 이미지 등록 (필수)</strong></td>
 					</tr>
 				</table>
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td width="200" valign="top"><div class="imgs_main01_input"><a href="#" target="_top" onMouseOver="document.main01.src='${ctx}/images/photo/imgs_main01_input-ov.gif'" onMouseOut="document.main01.src='${ctx}/images/photo/imgs_main01_input.gif'"><img src="${ctx}/images/photo/imgs_main01_input.gif" class="photo" name="main01"></a></div></td>
+						<td width="200" valign="top"><div class="imgs_main01_input"><a href="#" target="_top" onMouseOver="document.main01.src='${ctx}/resources/images/photo/imgs_main01_input-ov.gif'" onMouseOut="document.main01.src='${ctx}/resources/images/photo/imgs_main01_input.gif'"><img src="${ctx}/resources/images/photo/imgs_main01_input.gif" class="photo" name="main01"></a></div></td>
 						<td width="45"></td>
-						<td width="290" valign="top"><div class="imgs_main02_input"><a href="#" target="_top" onMouseOver="document.main02.src='${ctx}/images/photo/imgs_main02_input-ov.gif'" onMouseOut="document.main02.src='${ctx}/images/photo/imgs_main02_input.gif'"><img src="${ctx}/images/photo/imgs_main02_input.gif" class="photo" name="main02"></a></div></td>
+						<td width="290" valign="top"><div class="imgs_main02_input"><a href="#" target="_top" onMouseOver="document.main02.src='${ctx}/resources/images/photo/imgs_main02_input-ov.gif'" onMouseOut="document.main02.src='${ctx}/resources/images/photo/imgs_main02_input.gif'"><img src="${ctx}/resources/images/photo/imgs_main02_input.gif" class="photo" name="main02"></a></div></td>
 						<td width="45"></td>
-						<td width="240" valign="top"><div class="imgs_main03_input"><a href="#" target="_top" onMouseOver="document.main03.src='${ctx}/images/photo/imgs_main03_input-ov.gif'" onMouseOut="document.main03.src='${ctx}/images/photo/imgs_main03_input.gif'"><img src="${ctx}/images/photo/imgs_main03_input.gif" class="photo" name="main03"></a></div></td>
+						<td width="240" valign="top"><div class="imgs_main03_input"><a href="#" target="_top" onMouseOver="document.main03.src='${ctx}/resources/images/photo/imgs_main03_input-ov.gif'" onMouseOut="document.main03.src='${ctx}/resources/images/photo/imgs_main03_input.gif'"><img src="${ctx}/resources/images/photo/imgs_main03_input.gif" class="photo" name="main03"></a></div></td>
 					</tr>
 				</table>
 				<!-- 대표이미지 - end -->
@@ -119,7 +180,7 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td width="140" valign="top">
-							<div class="imgs_sub_input" style="position:relative"><img src="${ctx}/images/test/imgs_sub01.jpg" class="photo">
+							<div class="imgs_sub_input" style="position:relative"><img src="${ctx}/resources/images/test/imgs_sub01.jpg" class="photo">
 								<!-- del - start -->
 								<div style="position:absolute; left:0px; top:0px;" nowrap><input type="button" class="btni_del02" title="삭제" onclick="" /></div>
 								<!-- del - end -->
@@ -127,13 +188,13 @@
 						</td>
 						<td width="30"></td>
 						<td width="140" valign="top">
-							<div class="imgs_sub_input" style="position:relative"><img src="${ctx}/images/test/imgs_sub02.jpg" class="photo">
+							<div class="imgs_sub_input" style="position:relative"><img src="${ctx}/resources/images/test/imgs_sub02.jpg" class="photo">
 								<!-- del - start -->
 								<div style="position:absolute; left:0px; top:0px;" nowrap><input type="button" class="btni_del02" title="삭제" onclick="" /></div>
 								<!-- del - end -->
 							</div>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"><a href="#" target="_top" onMouseOver="document.sub.src='${ctx}/images/photo/imgs_sub_input-ov.gif'" onMouseOut="document.sub.src='${ctx}/images/photo/imgs_sub_input.gif'"><img src="${ctx}/images/photo/imgs_sub_input.gif" class="photo" name="sub"></a></div></td>
+						<td width="140" valign="top"><div class="imgs_sub_input"><a href="#" target="_top" onMouseOver="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input-ov.gif'" onMouseOut="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input.gif'"><img src="${ctx}/resources/images/photo/imgs_sub_input.gif" class="photo" name="sub"></a></div></td>
 						<td width="30"></td>
 						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
 						<td width="30"></td>
@@ -169,7 +230,7 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td><div class="input_textbox_inact">http://</div></td>
-						<td><div style="position:relative; left:-2px; top:0px;"><input name="" type="text" class="input_inact" style="width:671px;" value=""></div></td>
+						<td><div style="position:relative; left:-2px; top:0px;"><input name="notiUrlA" id="notiUrlA" type="text" class="input_inact" style="width:671px;" disabled></div></td>
 						<td class="gridt_blank" nowrap></td>
 						<td><input type="button" class="btnd" value="미리보기" onclick="" /></td>
 					</tr>
@@ -184,7 +245,7 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td><div class="input_textbox">http://</div></td>
-						<td><div style="position:relative; left:-2px; top:0px;"><input name="" type="text" class="input" style="width:763px;" value=""></div></td>
+						<td><div style="position:relative; left:-2px; top:0px;"><input name="notiUrlB" id="notiUrlB" type="text" class="input" style="width:763px;" value=""></div></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -196,7 +257,7 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0" width="100%">
 					<tr>
-						<td><textarea name="" class="textarea" style="width:820px; height:140px;">게시물에 대한 설명을 입력하세요.</textarea></td>
+						<td><textarea name="notiConts" id="notiConts" class="textarea" style="width:820px; height:140px;">게시물에 대한 설명을 입력하세요.</textarea></td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -208,21 +269,23 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input type="checkbox" name="type" hidefocus="true" class="check" value="A" checked>페이스북 동시 등록</td>
+						<td><input type="checkbox" name="fbRegYn" id=""fbRegYn"" hidefocus="true" class="check" value="Y">페이스북 동시 등록</td>
 						<td width="30" nowrap></td>
-						<td><input type="checkbox" name="type" hidefocus="true" class="check" value="B">관련 외부 글 공개</td>
+						<td><input type="checkbox" name="notiOpnDiv" id="notiOpnDiv" hidefocus="true" class="check" value="Y">관련 외부 글 공개</td>
 					</tr>
 				</table>
 				<!-- end -->
 			</td>
 		</tr>
 	</table>
+	</form>
 	<!-- Grid_Table_Input - end -->
 	
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
 		<div class="sub"><input type="button" class="btns" value="미리보기" onclick="" /><input type="button" class="btns" value="임시저장" onclick="" /></div>
-		<div class="main"><input type="button" class="btnm" value="완료" onclick="window.open('creation_pop.html','win','toolbar=no,directories=no,menubar=no,scrollbars=no,resizable=no,status=no,location=no,copyhistory=no,width=300,height=180,top=200,left=200')" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div>
+		<div class="main"><input type="button" class="btnm" value="완료" id="btnGo" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div>
+<%-- 		<div class="main"><input type="button" class="btnm" value="완료" onclick="window.open('${ctx}/contents/creation_pop','win','toolbar=no,directories=no,menubar=no,scrollbars=no,resizable=no,status=no,location=no,copyhistory=no,width=300,height=180,top=200,left=200')" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div> --%>
 		<div class="cb"></div>
 	</div>
 	<!-- Btn_Form(Sub/Main) - end -->

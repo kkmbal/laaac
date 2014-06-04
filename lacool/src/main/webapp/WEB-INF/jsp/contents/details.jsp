@@ -208,70 +208,70 @@
 	<!-- View_Title - end -->
 	<!-- View_Img_Main - start -->
 	<div class="view_img_box">
-		<div class="view_img_main"><img src="${ctx}/images/test/photo_view_img_main.jpg"></div>
+		<div class="view_img_main"><img src="${ctx}/resources/images/test/photo_view_img_main.jpg"></div>
 	</div>
 	<!-- View_Img_Main - end -->
 	<div class="blank_height10"></div>
 	<!-- View_Img_Sub - start -->
 	<div class="view_img_sub">
 		<ul>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub01);" onMouseOut="CgOut_01img(view_img_sub01);"><img src="${ctx}/images/test/photo_view_img_sub01.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub01);" onMouseOut="CgOut_01img(view_img_sub01);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
 				<!-- view_img_sub01 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:0px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub01" onMouseOver="CgOver_01img(view_img_sub01);OverStay();" onMouseOut="CgOut_01img(view_img_sub01);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:0px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub01" onMouseOver="CgOver_01img(view_img_sub01);OverStay();" onMouseOut="CgOut_01img(view_img_sub01);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
 				<!-- view_img_sub01 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub02);" onMouseOut="CgOut_02img(view_img_sub02);"><img src="${ctx}/images/test/photo_view_img_sub02.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub02);" onMouseOut="CgOut_02img(view_img_sub02);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
 				<!-- view_img_sub02 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub02" onMouseOver="CgOver_02img(view_img_sub02);OverStay();" onMouseOut="CgOut_02img(view_img_sub02);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub02" onMouseOver="CgOver_02img(view_img_sub02);OverStay();" onMouseOut="CgOut_02img(view_img_sub02);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
 				<!-- view_img_sub02 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub03);" onMouseOut="CgOut_01img(view_img_sub03);"><img src="${ctx}/images/test/photo_view_img_sub01.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub03);" onMouseOut="CgOut_01img(view_img_sub03);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
 				<!-- view_img_sub03 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub03" onMouseOver="CgOver_01img(view_img_sub03);OverStay();" onMouseOut="CgOut_01img(view_img_sub03);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub03" onMouseOver="CgOver_01img(view_img_sub03);OverStay();" onMouseOut="CgOut_01img(view_img_sub03);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
 				<!-- view_img_sub03 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub04);" onMouseOut="CgOut_02img(view_img_sub04);"><img src="${ctx}/images/test/photo_view_img_sub02.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub04);" onMouseOut="CgOut_02img(view_img_sub04);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
 				<!-- view_img_sub04 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub04" onMouseOver="CgOver_02img(view_img_sub04);OverStay();" onMouseOut="CgOut_02img(view_img_sub04);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub04" onMouseOver="CgOver_02img(view_img_sub04);OverStay();" onMouseOut="CgOut_02img(view_img_sub04);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
 				<!-- view_img_sub04 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub05);" onMouseOut="CgOut_01img(view_img_sub05);"><img src="${ctx}/images/test/photo_view_img_sub01.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub05);" onMouseOut="CgOut_01img(view_img_sub05);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
 				<!-- view_img_sub05 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub05" onMouseOver="CgOver_01img(view_img_sub05);OverStay();" onMouseOut="CgOut_01img(view_img_sub05);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub05" onMouseOver="CgOver_01img(view_img_sub05);OverStay();" onMouseOut="CgOut_01img(view_img_sub05);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
 				<!-- view_img_sub05 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub06);" onMouseOut="CgOut_02img(view_img_sub06);"><img src="${ctx}/images/test/photo_view_img_sub02.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub06);" onMouseOut="CgOut_02img(view_img_sub06);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
 				<!-- view_img_sub06 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub06" onMouseOver="CgOver_02img(view_img_sub06);OverStay();" onMouseOut="CgOut_02img(view_img_sub06);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub06" onMouseOver="CgOver_02img(view_img_sub06);OverStay();" onMouseOut="CgOut_02img(view_img_sub06);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
 				<!-- view_img_sub06 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub07);" onMouseOut="CgOut_01img(view_img_sub07);"><img src="${ctx}/images/test/photo_view_img_sub01.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub07);" onMouseOut="CgOut_01img(view_img_sub07);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
 				<!-- view_img_sub07 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub07" onMouseOver="CgOver_01img(view_img_sub07);OverStay();" onMouseOut="CgOut_01img(view_img_sub07);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub07" onMouseOver="CgOver_01img(view_img_sub07);OverStay();" onMouseOut="CgOut_01img(view_img_sub07);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
 				<!-- view_img_sub07 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub08);" onMouseOut="CgOut_02img(view_img_sub08);"><img src="${ctx}/images/test/photo_view_img_sub02.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub08);" onMouseOut="CgOut_02img(view_img_sub08);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
 				<!-- view_img_sub08 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub08" onMouseOver="CgOver_02img(view_img_sub08);OverStay();" onMouseOut="CgOut_02img(view_img_sub08);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub08" onMouseOver="CgOver_02img(view_img_sub08);OverStay();" onMouseOut="CgOut_02img(view_img_sub08);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
 				<!-- view_img_sub08 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub09);" onMouseOut="CgOut_01img(view_img_sub09);"><img src="${ctx}/images/test/photo_view_img_sub01.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub09);" onMouseOut="CgOut_01img(view_img_sub09);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
 				<!-- view_img_sub09 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub09" onMouseOver="CgOver_01img(view_img_sub09);OverStay();" onMouseOut="CgOut_01img(view_img_sub09);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub09" onMouseOver="CgOver_01img(view_img_sub09);OverStay();" onMouseOut="CgOut_01img(view_img_sub09);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
 				<!-- view_img_sub09 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub10);" onMouseOut="CgOut_02img(view_img_sub10);"><img src="${ctx}/images/test/photo_view_img_sub02.jpg" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub10);" onMouseOut="CgOut_02img(view_img_sub10);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
 				<!-- view_img_sub10 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-161px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub10" onMouseOver="CgOver_02img(view_img_sub10);OverStay();" onMouseOut="CgOut_02img(view_img_sub10);" nowrap><img src="${ctx}/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:-161px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub10" onMouseOver="CgOver_02img(view_img_sub10);OverStay();" onMouseOut="CgOut_02img(view_img_sub10);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
 				<!-- view_img_sub10 - start -->
 			</li>
 		</ul>
@@ -279,7 +279,7 @@
 	<!-- View_Img_Sub - end -->
 	<div class="blank_height20"></div>
 	<!-- 콘텐트 설명 - start -->
-	<div class="view_detail_url"><img src="${ctx}/images/icon/i_url.gif" align="absmiddle">&nbsp;<a href="#" target="_blank">www.google.com</a></div>
+	<div class="view_detail_url"><img src="${ctx}/resources/images/icon/i_url.gif" align="absmiddle">&nbsp;<a href="#" target="_blank">www.google.com</a></div>
 	<div class="view_detail" style="overflow-x:hidden; overflow-y:auto; line-height: 1.6em;">
 	<strong>FUNFUN한 던킨 이벤트</strong><br>
 	레드벨벳 도넛 100만개 돌파기념~ 2월 매주 수요일 글레이즈드 3+3개(글레이즈드3 + 레드벨벳 글레이즈드3) 3,300원!<br>
@@ -296,7 +296,7 @@
 	<div class="scrap_from_area">
 		<div class="scrap_from fl">
 			<ul>
-				<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_user02.jpg"></a></li>
+				<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_user02.jpg"></a></li>
 				<li class="name"><a href="#">등록자명</a><span class="t_line" style="font-weight:normal;">l</span></li>
 				<li class="btn"><input type="button" class="btnd_scrap" value="스크랩" onclick="" /></li>
 				<li class="num"><a href="#" class="scrap_num"><span>150</span></a>&nbsp;&nbsp;</li>
@@ -310,7 +310,7 @@
 					<!-- chart_gauge02 - start -->
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
-							<td width="315" height="24" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st02.gif" align="absmiddle"></td>
+							<td width="315" height="24" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st02.gif" align="absmiddle"></td>
 						</tr>
 					</table>
 					<!-- chart_gauge02 - end -->
@@ -325,36 +325,36 @@
 	<div class="scrap_by_area">
 		<div class="scrap_me fl">
 			<ul>
-				<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg"></a></li>
+				<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg"></a></li>
 				<li class="name"><a href="#">사용자명</a></li>		
 			</ul>
 		</div>
 		<div class="scrap_by fr">
 			<ul>
 				<li class="prev"><input type="button" class="btni_arr02_prev" title="이전보기" onclick="" /></li>
-				<li class="select" style="position:relative;"><a href="#"><img src="${ctx}/images/test/photo_user03.jpg" class="photo"></a>
+				<li class="select" style="position:relative;"><a href="#"><img src="${ctx}/resources/images/test/photo_user03.jpg" class="photo"></a>
 				<!-- icon sel -->
-				<div style="position:absolute; left:0px; top:40px; width:45px; height:6px; z-index:10000;"><img src="${ctx}/images/icon/i_scrap_sel.gif"></div>
+				<div style="position:absolute; left:0px; top:40px; width:45px; height:6px; z-index:10000;"><img src="${ctx}/resources/images/icon/i_scrap_sel.gif"></div>
 				<!-- icon sel -->
 				</li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user04.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user04.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user05.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user05.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user06.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user06.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user07.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user07.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user08.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user08.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user09.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user09.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user10.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user10.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user11.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user11.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/images/test/photo_user02.jpg" class="photo"></a></li>
+				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user02.jpg" class="photo"></a></li>
 				<li class="next"><input type="button" class="btni_arr02_next" title="다음보기" onclick="" /></li>
 			</ul>
 		</div>
@@ -364,25 +364,25 @@
 	<!-- scrapped_by_view - start -->
 	<div class="scrap_by_view">
 		<ul>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li><a href="#"><img src="${ctx}/images/test/photo_scrap_view.jpg" class="photo"></a></li>
+			<li><a href="#"><img src="${ctx}/resources/images/test/photo_scrap_view.jpg" class="photo"></a></li>
 		</ul>
 	</div>
 	<!-- scrap_by_view - end -->
@@ -398,9 +398,9 @@
 						<table cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td width="71" height="71" align="center" valign="top">
-									<div class="chart_gauge01_good" style="background:url(${ctx}/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
+									<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
 										<div class="txt"><span class="t_graph_num01">88</span><span class="t_graph_unit01">%</span></div>
-										<div class="icon"><img src="${ctx}/images/dashboard/ct_gauge01_good_icon.gif"></div>
+										<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
 									</div>
 								</td>
 							</tr>
@@ -472,9 +472,9 @@
 						<table cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td width="71" height="71" align="center" valign="top">
-									<div class="chart_gauge01_bad" style="background:url(${ctx}/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
+									<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
 										<div class="txt"><span class="t_graph_num01">40</span><span class="t_graph_unit01">%</span><br></div>
-										<div class="icon"><img src="${ctx}/images/dashboard/ct_gauge01_bad_icon.gif"></div>
+										<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
 									</div>
 								</td>
 							</tr>
@@ -545,7 +545,7 @@
 		<div class="col">
 			<div class="con_best_li">
 				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_best.jpg" class="photo"></a></li>
+					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
 					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트세트세트 할인권 0원!</a></span></li>
 				</ul>
 			</div>
@@ -554,7 +554,7 @@
 		<div class="col">
 			<div class="con_best_li">
 				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_best.jpg" class="photo"></a></li>
+					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
 					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
 				</ul>
 			</div>
@@ -563,7 +563,7 @@
 		<div class="col">
 			<div class="con_best_li">
 				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_best.jpg" class="photo"></a></li>
+					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
 					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
 				</ul>
 			</div>
@@ -572,7 +572,7 @@
 		<div class="col">
 			<div class="con_best_li">
 				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_best.jpg" class="photo"></a></li>
+					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
 					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
 				</ul>
 			</div>
@@ -581,7 +581,7 @@
 		<div class="col">
 			<div class="con_best_li">
 				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_best.jpg" class="photo"></a></li>
+					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
 					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
 				</ul>
 			</div>
@@ -593,7 +593,7 @@
 	<!-- Comment_Write - start -->
 	<div class="comment_write">
 		<ul>
-			<li class="photo"><img src="${ctx}/images/test/photo_user01.jpg"></li>
+			<li class="photo"><img src="${ctx}/resources/images/test/photo_user01.jpg"></li>
 			<li class="input"><textarea name="" class="textarea_comment" style="width:858px;"></textarea></li>
 			<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="" /></li>
 		</ul>
@@ -604,7 +604,7 @@
 	<div class="comment_area">
 		<!-- comment_read_set01 - start -->
 		<div class="comment_read">
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user06.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user06.jpg"></div>
 			<div class="content fl" style="width:925px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">덩이의 행복이야기</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
@@ -618,7 +618,7 @@
 		<!-- comment_read_set02 - start -->
 		<div class="comment_read">
 			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user03.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user03.jpg"></div>
 			<div class="content fl" style="width:870px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">추억한페이지</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
@@ -632,7 +632,7 @@
 		<div class="comment_reply">
 			<ul>
 				<li class="reply">&nbsp;</li>
-				<li class="photo"><img src="${ctx}/images/test/photo_user01.jpg"></li>
+				<li class="photo"><img src="${ctx}/resources/images/test/photo_user01.jpg"></li>
 				<li class="input"><textarea name="" class="textarea_comment" style="width:804px;"></textarea></li>
 				<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="" /></li>
 			</ul>
@@ -644,7 +644,7 @@
 	<div class="comment_area">
 		<!-- comment_read_set01 - start -->
 		<div class="comment_read">
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user06.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user06.jpg"></div>
 			<div class="content fl" style="width:925px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">덩이의 행복이야기</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
@@ -658,7 +658,7 @@
 		<!-- comment_read_set02 - start -->
 		<div class="comment_read">
 			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user01.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user01.jpg"></div>
 			<div class="content fl" style="width:870px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">김동준</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a><span class="t_line">l</span><a href="#">삭제</a></li>
@@ -671,7 +671,7 @@
 		<!-- comment_read_set03 - start -->
 		<div class="comment_read">
 			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user02.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user02.jpg"></div>
 			<div class="content fl" style="width:870px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">워터케어</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>

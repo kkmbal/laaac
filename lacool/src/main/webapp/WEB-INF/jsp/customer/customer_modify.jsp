@@ -46,7 +46,7 @@
 	</div>
 	<!-- Contents_Title - end -->
 	<div class="blank_height30"></div>
-	<div class="t_guide01"><img src="${ctx}/images/icon/i_warn.gif" align="texttop"> 게시판 게시기준에 맞지 않는 부적절한 게시물은 사전 안내 없이 관리자가 삭제합니다.</div>
+	<div class="t_guide01"><img src="${ctx}/resources/images/icon/i_warn.gif" align="texttop"> 게시판 게시기준에 맞지 않는 부적절한 게시물은 사전 안내 없이 관리자가 삭제합니다.</div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">

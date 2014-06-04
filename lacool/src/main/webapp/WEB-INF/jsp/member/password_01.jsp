@@ -50,7 +50,7 @@
 	</div>
 	<!-- Contents_Title - end -->
 	<div class="blank_height20"></div>
-	<div class="t_guide01" style="width:500px; text-align:left;"><img src="../images/icon/i_warn.gif" align="texttop"> 아래 내용을 작성해 주시면 메일을 보내드립니다.</div>
+	<div class="t_guide01" style="width:500px; text-align:left;"><img src="${ctx}/resources/images/icon/i_warn.gif" align="texttop"> 아래 내용을 작성해 주시면 메일을 보내드립니다.</div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
 	<table cellpadding="0" cellspacing="0" border="0" width="500" class="gridt_input" style="border-top:0px solid #f0f0f0;">

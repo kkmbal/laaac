@@ -35,10 +35,21 @@
 		<h2 class="blind">회원정보</h2>
 		<ul class="gnb_info">
 			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
-			<li class="login"><a href="#" id="goLogin">로그인</a></li>
-			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
-			<li class="members"><a href="${ctx}/member/regist_01" target="_top">회원가입</a></li>
-			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
+        	<c:choose>
+        		<c:when test="${not empty userVo}">
+        			<li class="login"><a href="#" id="goPerson">${userVo.userNm}</a></li>
+					<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
+        			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
+					<li class="members"><a href="${ctx}/member/doLogout" target="_top">로그아웃</a></li>
+					<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>					
+        		</c:when>
+        		<c:otherwise>
+        			<li class="login"><a href="#" id="goLogin">로그인</a></li>
+        			<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
+					<li class="members"><a href="${ctx}/member/regist_01" target="_top">회원가입</a></li>
+					<li><img src="${ctx}/images/gnb/gnb_info_line.gif" /></li>
+        		</c:otherwise>
+        	</c:choose>			
 		</ul>
 		<!-- 로그인 전 - end -->
 		<!-- 로그인 후 - start 

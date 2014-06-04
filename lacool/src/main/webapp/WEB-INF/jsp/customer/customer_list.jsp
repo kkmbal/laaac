@@ -98,7 +98,7 @@
 		</tr>
 		<tr class="gridt_list_point01">
 			<td class="center">100</td>
-			<td class="left"><img src="${ctx}/images/icon/i-notice.gif" align="absbottom"> <a href="customer_read.html" target="_top"><strong>관리자가 작성한 게시물 / 신규 게시물 / 읽지 않은 게시물</strong></a></td>
+			<td class="left"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> <a href="customer_read.html" target="_top"><strong>관리자가 작성한 게시물 / 신규 게시물 / 읽지 않은 게시물</strong></a></td>
 			<td class="center">관리자</td>
 			<td class="right">234</td>
 			<td class="center end">2014.04.01 12:34:44</td>
@@ -126,7 +126,7 @@
 		</tr>
 		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
 			<td class="center">96</td>
-			<td class="left"><img src="${ctx}/images/icon/i_lock.gif" align="absmiddle">&nbsp;비밀글</td>
+			<td class="left"><img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;비밀글</td>
 			<td class="center">관리자</td>
 			<td class="right">50</td>
 			<td class="center end">2014.04.01</td>
@@ -140,28 +140,28 @@
 		</tr>
 		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
 			<td class="center">94</td>
-			<td class="left"><img src="${ctx}/images/icon/i_reply.gif" align="absmiddle">&nbsp;<a href="#">[답글]관리자가의 답글</a></td>
+			<td class="left"><img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">&nbsp;<a href="#">[답글]관리자가의 답글</a></td>
 			<td class="center">관리자</td>
 			<td class="right">23</td>
 			<td class="center end">2014.04.01</td>
 		</tr>
 		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
 			<td class="center">93</td>
-			<td class="left"><img src="${ctx}/images/icon/i_reply_no.gif" align="absmiddle">&nbsp;<img src="${ctx}/images/icon/i_reply.gif" align="absmiddle">&nbsp;<a href="#">[답글]관리자의 답글에 다시 작성자가 답글을 쓸 경우</a></td>
+			<td class="left"><img src="${ctx}/resources/images/icon/i_reply_no.gif" align="absmiddle">&nbsp;<img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">&nbsp;<a href="#">[답글]관리자의 답글에 다시 작성자가 답글을 쓸 경우</a></td>
 			<td class="center">작성자</td>
 			<td class="right">1560</td>
 			<td class="center end">2014.04.01</td>
 		</tr>
 		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
 			<td class="center">92</td>
-			<td class="left"><img src="${ctx}/images/icon/i_lock.gif" align="absmiddle">&nbsp;<a href="#">비밀글</a></td>
+			<td class="left"><img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;<a href="#">비밀글</a></td>
 			<td class="center">관리자</td>
 			<td class="right">2580</td>
 			<td class="center end">2014.04.01</td>
 		</tr>
 		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
 			<td class="center">91</td>
-			<td class="left"><img src="${ctx}/images/icon/i_reply.gif" align="absmiddle">&nbsp;<img src="${ctx}/images/icon/i_lock.gif" align="absmiddle">&nbsp;<a href="#">[답글]비밀글</a></td>
+			<td class="left"><img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">&nbsp;<img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;<a href="#">[답글]비밀글</a></td>
 			<td class="center">작성자</td>
 			<td class="right">50</td>
 			<td class="center end">2014.04.01</td>

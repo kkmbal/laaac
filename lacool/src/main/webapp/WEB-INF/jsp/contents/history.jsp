@@ -60,10 +60,10 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -72,7 +72,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -87,10 +87,10 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -99,7 +99,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -114,10 +114,10 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -126,7 +126,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -141,10 +141,10 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0104.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -153,7 +153,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -174,10 +174,10 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -186,7 +186,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -201,10 +201,10 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -213,7 +213,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -228,10 +228,10 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -240,7 +240,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -255,10 +255,10 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0104.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
 							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
@@ -267,7 +267,7 @@
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>

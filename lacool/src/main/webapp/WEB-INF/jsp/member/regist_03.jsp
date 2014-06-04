@@ -91,66 +91,8 @@
 		});
 	});
 	
-	  window.onload = function() {
-		    var fileInput = document.getElementById('fileInput');
-		    var fileNm = document.getElementById('fileNm');
-
-		    fileInput.addEventListener('change', function(e) {
-		    	var file = fileInput.files[0];
-		    	var imageType = /image.*/;
-
-		    	if (file.type.match(imageType)) {
-		    	  var reader = new FileReader();
-
-		    	  reader.onload = function(e) {
-
-		    	    var img = new Image();
-		    	    img.src = reader.result;
-
-		    	    //fileDisplayArea.appendChild(img);
-		    	    fileNm.value = file.name;
-		    	    
-				    img.onload = function() {
-				 
-				        var MAX_WIDTH = 100;
-				        var MAX_HEIGHT = 100;
-				        var tempW = img.width;
-				        var tempH = img.height;
-				        if (tempW > tempH) {
-				            if (tempW > MAX_WIDTH) {
-				               tempH *= MAX_WIDTH / tempW;
-				               tempW = MAX_WIDTH;
-				            }
-				        } else {
-				            if (tempH > MAX_HEIGHT) {
-				               tempW *= MAX_HEIGHT / tempH;
-				               tempH = MAX_HEIGHT;
-				            }
-				        }
-
-				        var canvas = document.getElementById('myImg');
-				        canvas.width = tempW;
-				        canvas.height = tempH;
-				        var ctx = canvas.getContext("2d");
-				        ctx.drawImage(this, 0, 0, tempW, tempH);
-				        var dataURL = canvas.toDataURL("image/jpeg");
-
-				        //var xhr = new XMLHttpRequest();
-				        //xhr.onreadystatechange = function(ev){
-				            //document.getElementById('filesInfo').innerHTML = 'Done!';
-				        //};
-				        
-				        document.getElementById('imageFile').value = dataURL;
-				      }	    	    
-		    	    
-		    	  }
-
-		    	  reader.readAsDataURL(file); 
-		    	} else {
-		    	  fileDisplayArea.innerHTML = "File not supported!";
-		    	}
-		    });
-		}  	
+	window.onload = new Function("makeThumbnail('fileInput', 'fileNm', 'canvasImg', 'imageFile');");
+	
 	
 </script>
 </head>
@@ -192,7 +134,7 @@
 	</div>
 	<!-- Contents_Title - end -->
 	<div class="blank_height30"></div>
-	<div class="t_guide01"><img src="${ctx}/images/icon/i_warn.gif" align="texttop"> 컨텐츠를 등록하시려면 아래의 추가정보를 등록해 주십시오.&nbsp;&nbsp;&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"> 표는 필수 입력 항목 입니다.</div>
+	<div class="t_guide01"><img src="${ctx}/resources/images/icon/i_warn.gif" align="texttop"> 컨텐츠를 등록하시려면 아래의 추가정보를 등록해 주십시오.&nbsp;&nbsp;&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"> 표는 필수 입력 항목 입니다.</div>
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
 	
@@ -226,7 +168,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="right">국가&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+			<th class="right">국가&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left"><select name="nationNm" id="nationNm" class="select" style="width:360px;">
 			<option value="">선택</option>
 			<option value="001">대한민국</option>
@@ -237,7 +179,7 @@
 			</select></td>
 		</tr>
 		<tr>
-			<th class="right">생년월일&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+			<th class="right">생년월일&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left">
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
@@ -326,13 +268,13 @@
 			<td class="left"><input type="checkbox" name="mailRecvYn" id="mailRecvYn" hidefocus="true" class="check" value="Y" checked>Lalalacool의 뉴스레터</td>
 		</tr>
 		<tr>
-			<th class="right">사용자 이미지&nbsp;<img src="${ctx}/images/icon/i_check.gif" align="absmiddle"></th>
+			<th class="right">사용자 이미지&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left">
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-<%-- 						<td><div class="imgs_user"><img src="${ctx}/images/photo/imgs_user_input.gif" class="photo" id="myImg"></div></td> --%>
-						<td><div class="imgs_user"><canvas id="myImg" width="100" height="100"></canvas></div></td>
+<%-- 						<td><div class="imgs_user"><img src="${ctx}/resources/images/photo/imgs_user_input.gif" class="photo" id="myImg"></div></td> --%>
+						<td><div class="imgs_user"><canvas id="canvasImg" width="100" height="100"></canvas></div></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>
 							<div style="vertical-align:top; height:100px;">

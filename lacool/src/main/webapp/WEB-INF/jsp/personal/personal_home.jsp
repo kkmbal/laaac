@@ -68,7 +68,7 @@
 				<col width="">
 			</colgroup>
 			<tr>
-				<td rowspan="3" class="photobox"><img src="${ctx}/images/test/photo_profile.jpg" class="photo"></td>
+				<td rowspan="3" class="photobox"><img src="${ctx}/resources/images/test/photo_profile.jpg" class="photo"></td>
 				<td class="txt01">국가</td>
 				<td class="txt02">대한민국</td>
 			</tr>
@@ -108,11 +108,11 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">1</li>
 					</ul>
 				</div>
@@ -121,7 +121,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -132,11 +132,11 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">12</li>
 					</ul>
 				</div>
@@ -145,7 +145,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -156,11 +156,11 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">123</li>
 					</ul>
 				</div>
@@ -169,7 +169,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -180,11 +180,11 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0104.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">1233</li>
 					</ul>
 				</div>
@@ -193,7 +193,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -210,11 +210,11 @@
 		<ul>
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">1</li>
 					</ul>
 				</div>
@@ -223,7 +223,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -234,11 +234,11 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0102 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0102.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">12</li>
 					</ul>
 				</div>
@@ -247,7 +247,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -258,11 +258,11 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0103 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0103.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">123</li>
 					</ul>
 				</div>
@@ -271,7 +271,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -282,11 +282,11 @@
 			<li class="blank">&nbsp;</li>
 			<li class="col">
 				<!-- 0104 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/images/test/imgs_main0104.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
 				<div class="scrap fl">
 					<ul>
-						<li class="scrap_btn"><a href="#"><img src="${ctx}/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
+						<li class="scrap_btn"><a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle" title="스크랩"></a></li>
 						<li class="scrap_num">1233</li>
 					</ul>
 				</div>
@@ -295,7 +295,7 @@
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+							<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
 							<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 						</tr>
 					</table>
@@ -331,15 +331,15 @@
 	<div class="sponsor_site">
 		<ul>
 			<li class="prev"><input type="button" class="btni_arr01_prev" title="이전보기" onclick="" /></li>
-			<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_col05.jpg" class="photo"></a></li>
+			<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_col05.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_col05.jpg" class="photo"></a></li>
+			<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_col05.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_col05.jpg" class="photo"></a></li>
+			<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_col05.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_col05.jpg" class="photo"></a></li>
+			<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_col05.jpg" class="photo"></a></li>
 			<li class="blank">&nbsp;</li>
-			<li class="photo"><a href="#"><img src="${ctx}/images/test/photo_col05.jpg" class="photo"></a></li>
+			<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_col05.jpg" class="photo"></a></li>
 			<li class="next"><input type="button" class="btni_arr01_next" title="다음보기" onclick="" /></li>
 		</ul>
 	</div>
@@ -350,7 +350,7 @@
 	<!-- Comment_Write - start -->
 	<div class="comment_write">
 		<ul>
-			<li class="photo"><img src="${ctx}/images/test/photo_user01.jpg"></li>
+			<li class="photo"><img src="${ctx}/resources/images/test/photo_user01.jpg"></li>
 			<li class="input"><textarea name="" class="textarea_comment" style="width:858px;"></textarea></li>
 			<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="" /></li>
 		</ul>
@@ -361,7 +361,7 @@
 	<div class="comment_area">
 		<!-- comment_read_set01 - start -->
 		<div class="comment_read">
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user06.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user06.jpg"></div>
 			<div class="content fl" style="width:925px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">덩이의 행복이야기</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
@@ -375,7 +375,7 @@
 		<!-- comment_read_set02 - start -->
 		<div class="comment_read">
 			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user03.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user03.jpg"></div>
 			<div class="content fl" style="width:870px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">추억한페이지</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
@@ -389,7 +389,7 @@
 		<div class="comment_reply">
 			<ul>
 				<li class="reply">&nbsp;</li>
-				<li class="photo"><img src="${ctx}/images/test/photo_user01.jpg"></li>
+				<li class="photo"><img src="${ctx}/resources/images/test/photo_user01.jpg"></li>
 				<li class="input"><textarea name="" class="textarea_comment" style="width:804px;"></textarea></li>
 				<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="" /></li>
 			</ul>
@@ -401,7 +401,7 @@
 	<div class="comment_area">
 		<!-- comment_read_set01 - start -->
 		<div class="comment_read">
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user06.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user06.jpg"></div>
 			<div class="content fl" style="width:925px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">덩이의 행복이야기</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
@@ -415,7 +415,7 @@
 		<!-- comment_read_set02 - start -->
 		<div class="comment_read">
 			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user01.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user01.jpg"></div>
 			<div class="content fl" style="width:870px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">김동준</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a><span class="t_line">l</span><a href="#">삭제</a></li>
@@ -428,7 +428,7 @@
 		<!-- comment_read_set03 - start -->
 		<div class="comment_read">
 			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/images/test/photo_user02.jpg"></div>
+			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user02.jpg"></div>
 			<div class="content fl" style="width:870px;">
 				<ul>
 					<li class="txt1"><span class="id"><a href="#">워터케어</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
