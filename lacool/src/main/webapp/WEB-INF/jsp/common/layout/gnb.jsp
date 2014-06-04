@@ -38,7 +38,6 @@
         	<c:choose>
         		<c:when test="${not empty userVo}">
         			<li class="login"><a href="#" id="goPerson">${userVo.userNm}</a></li>
-					<li><img src="${ctx}/resources/images/gnb/gnb_info_line.gif" /></li>
         			<li><img src="${ctx}/resources/images/gnb/gnb_info_line.gif" /></li>
 					<li class="members"><a href="${ctx}/member/doLogout" target="_top">로그아웃</a></li>
 					<li><img src="${ctx}/resources/images/gnb/gnb_info_line.gif" /></li>					

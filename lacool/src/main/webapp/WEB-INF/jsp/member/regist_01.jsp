@@ -9,50 +9,13 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#userNm, #email, #pwd, #pwd2").focus(function(){
-		if($(this).val() == ""){
-			var id = $(this).attr("id");
-			if(id == "userNm"){
-				$("#usernm_div").hide();
-			}else if(id == "email"){
-				$("#email_div").hide();
-			}else if(id == "pwd"){
-				$("#pwd_div").hide();
-			}else if(id == "pwd2"){
-				$("#pwd2_div").hide();
-			}
+	$("#userNm, #email, #pwd, #pwd2").click(function(){
+		$(this).val("");
+		if($(this).attr("id")=="pwd" || $(this).attr("id")=="pwd2"){
+			$(this).attr("type", "password");
 		}
 	});
-	$("#userNm, #email, #pwd, #pwd2").focusout(function(){
-		var id = $(this).attr("id");
-		if($(this).val() == ""){
-			if(id == "userNm"){
-				$("#usernm_div").show();
-			}else if(id == "email"){
-				$("#email_div").show();
-			}else if(id == "pwd"){
-				$("#pwd_div").show();
-			}else if(id == "pwd2"){
-				$("#pwd2_div").show();
-			}
-		}
-	});
-	$("#usernm_div").click(function(){
-		$(this).hide();
-		$("#userNm").focus();
-	});
-	$("#email_div").click(function(){
-		$(this).hide();
-		$("#email").focus();
-	});
-	$("#pwd_div").click(function(){
-		$(this).hide();
-		$("#pwd").focus();
-	});
-	$("#pwd2_div").click(function(){
-		$(this).hide();
-		$("#pwd2").focus();
-	});
+	
 	$("#dup").click(function(){
 		var data = {email:""};
 		data.email = $("#email").val();
@@ -67,11 +30,11 @@ $(document).ready(function(){
 		});
 	});
 	$("#go").click(function(){
-		if($("#userNm").val() == ""){
+		if($("#userNm").val() == "" || $("#userNm").val() == "사용자 이름"){
 			alert("사용자 이름을 입력하세요.");
 			return;
 		}
-		if($("#email").val() == ""){
+		if($("#email").val() == "" || $("#email").val() == "이메일"){
 			alert("이메일을 입력하세요.");
 			return;
 		}
@@ -79,7 +42,7 @@ $(document).ready(function(){
 			alert("이메일 중복확인을 하세요.");
 			return;
 		}
-		if($("#pwd").val() == "" || $("#pwd2").val() == ""){
+		if($("#pwd").val() == "" || $("#pwd2").val() == "" || $("#pwd").val() == "비밀번호 (6자 이상 영문/숫자 혼합)" || $("#pwd2").val() == "비밀번호 확인"){
 			alert("비밀번호를 입력하세요.");
 			return;
 		}
@@ -152,14 +115,14 @@ $(document).ready(function(){
 	<!-- Grid_Table_Input - start -->
 	<table cellpadding="0" cellspacing="0" border="0" width="500" class="gridt_input" style="border-top:0px solid #f0f0f0;">
 		<tr>
-			<td class="left_st01"><input name="userNm" id="userNm" type="text" class="input" style="width:480px;" value="" maxlength="16"></td>
+			<td class="left_st01"><input name="userNm" id="userNm" type="text" class="input" style="width:480px;" value="사용자 이름" maxlength="16"></td>
 		</tr>
 		<tr>
 			<td class="left_st01">
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input name="email" id="email" type="text" class="input" style="width:390px;" value="" maxlength="80"></td>
+						<td><input name="email" id="email" type="text" class="input" style="width:390px;" value="이메일" maxlength="80"></td>
 						<td class="gridt_blank" nowrap></td>
 						<td><input type="button" class="btnd" value="중복확인" id="dup" /></td>
 					</tr>
@@ -168,10 +131,10 @@ $(document).ready(function(){
 			</td>
 		</tr>
 		<tr>
-			<td class="left_st01"><input name="pwd" id="pwd" type="password" class="input" style="width:480px;" value="" maxlength="30"></td>
+			<td class="left_st01"><input name="pwd" id="pwd" type="text" class="input" style="width:480px;" value="비밀번호 (6자 이상 영문/숫자 혼합)" maxlength="30"></td>
 		</tr>
 		<tr>
-			<td class="left_st01"><input name="pwd2" id="pwd2" type="password" class="input" style="width:480px;" value="" maxlength="30"></td>
+			<td class="left_st01"><input name="pwd2" id="pwd2" type="text" class="input" style="width:480px;" value="비밀번호 확인" maxlength="30"></td>
 		</tr>
 		<tr>
 			<td class="left_st01">
@@ -211,18 +174,7 @@ $(document).ready(function(){
 <form name="frm" id="frm">
 <input type="hidden" name="chkEmail" id="chkEmail">
 </form>
-<div id="usernm_div" style="position:absolute; left:445px; top:335px; width:200; height:10px; z-index:1; font-size:14px;">
-사용자 이름
-</div>
-<div id="email_div" style="position:absolute; left:445px; top:395px; width:200; height:10px; z-index:1; font-size:14px;">
-이메일
-</div>
-<div id="pwd_div" style="position:absolute; left:445px; top:453px; width:200; height:10px; z-index:1; font-size:14px;">
-비밀번호 (6자 이상 영문/숫자 혼합)
-</div>
-<div id="pwd2_div" style="position:absolute; left:445px; top:513px; width:200; height:10px; z-index:1; font-size:14px;">
-비밀번호 확인
-</div>
+
 
 <!-- // FOOTER - start // -->
 <%@ include file="/WEB-INF/jsp/common/layout/footer.jsp"%>

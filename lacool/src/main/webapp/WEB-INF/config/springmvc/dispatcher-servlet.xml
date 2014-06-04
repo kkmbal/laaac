@@ -46,8 +46,11 @@
 				<property name="exceptLogin">
 					<list>
 						<value>/member/regist_01</value>
+						<value>/member/regist_02</value>
+						<value>/member/userExist</value>
 						<value>/member/doLogin</value>
 						<value>/member/doLogout</value>
+						<value>/member/userReg</value>
 					</list>
 				</property>				
 			</bean>

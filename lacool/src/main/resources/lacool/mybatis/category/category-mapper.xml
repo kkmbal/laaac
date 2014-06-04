@@ -25,6 +25,7 @@
 	<insert id="insertCategory" parameterType="lacool.category.vo.CategoryVo">
 		<selectKey keyProperty="cateId" resultType="String" order="BEFORE" >
 	     SELECT CONCAT(#{prefix} , LPAD(CAST(REPLACE(IFNULL(MAX(CATE_ID),0), #{prefix},'') AS UNSIGNED) + 1, 6, '0')) AS cateId FROM CATE_INFO
+	     WHERE CATE_ID LIKE CONCAT(#{prefix},'%')
 	    </selectKey>		
 	    
 	<![CDATA[

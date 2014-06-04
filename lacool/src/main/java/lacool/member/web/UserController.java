@@ -100,7 +100,7 @@ public class UserController {
 			
 			UserVo user = userService.getUser(userVo);
 			if(user != null){
-				FileVo fileVo = FileUtil.saveFile(request, userVo.getImageFile());
+				FileVo fileVo = FileUtil.saveFile(request, userVo.getImageFile(), "resources/images/photo/");
 				
 				userVo.setUserFileNm(fileVo.getName());
 				userVo.setUserFilePath(fileVo.getPath());

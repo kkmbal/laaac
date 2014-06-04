@@ -45,7 +45,7 @@
 					alert(data.result);
 					return;
 				}
-				window.open("${ctx}/category/ask_category_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
+				window.open("${ctx}/category/ask_category_pop", "pop", "height=200,width=340,resizable=no,scrollbars=no");
 			});
 		});
 		
