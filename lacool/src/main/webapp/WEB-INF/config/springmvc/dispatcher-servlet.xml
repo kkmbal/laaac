@@ -25,7 +25,8 @@
 			<bean class="lacool.common.web.AuthInterceptor">
 				<property name="exceptLogin">
 					<list>
-						<value>/login</value>
+						<value>/category/listMainCategory</value>
+						<value>/category/listSubCategory</value>
 					</list>
 				</property>		
 			</bean>

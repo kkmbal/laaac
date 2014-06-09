@@ -86,6 +86,7 @@ em.search { font-weight:bold; text-decoration:none; font-style:normal;}
 /* ########## COMMON ########## */
 /* COMMON TEXT ALIGN */
 .tl {text-align:left;}
+.tl10 {text-align:left; padding-left:10px;}
 .tr {text-align:right;}
 .tc {text-align:center;}
 .t_ellipsis {
@@ -778,7 +779,8 @@ border-color: #e6e6e6 #ffffff #111111 #ffffff;
 /* Sub-menu */
 #category_menu ul	{
     list-style: none;
-    margin: 0;
+    /* margin: 0; */
+    margin-left:10px;
     padding: 6px 0px 0px 0px;
     position: absolute;
     top: 41px;

@@ -3,23 +3,52 @@
 
  
 	<script type="text/javascript"> <!-- //GNB 메뉴 -->
-	jQuery(function($) {
+	$(document).ready(function($) {
 			// GNB 메뉴 처리
-					$("#categoryBtn").toggle(function(){
-						
-						$(this).find('img').attr("src","${ctx}/resources/images/gnb/menu6-sel.gif").attr("alt","category Close");
-						$("#totalCategory1").show();			
-						
-					},function(){				
-						
-						$(this).find('img').attr("src","${ctx}/resources/images/gnb/menu6.gif").attr("alt","category Open");
-						$("#totalCategory1").hide();
-						
-					});	
-			
+			$("#categoryBtn").click(function(){
+				$("#totalCategory").toggle();
+				if($("#totalCategory").css("display") == 'none'){
+					$(this).find('img').attr("src","${ctx}/resources/images/gnb/menu6.gif").attr("alt","category Open");
+				}else{
+					$(this).find('img').attr("src","${ctx}/resources/images/gnb/menu6-sel.gif").attr("alt","category Close");
+				}
+				return false;
+			});
+
 			$("#goLogin").click(function(){
 				window.open("${ctx}/login", "win", "height=475, width=575, scrollbars=no, resizable=no");
 			}); 
+			
+			$("#btnClose").click(function(){
+				$("#categoryBtn").trigger("click");
+			}); 
+			
+			//대분류
+			$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
+				if(data.result){
+					alert(data.result);
+					return;
+				}
+				if(data.listCategoryVo){
+					var json = $.parseJSON(JSON.stringify(data.listCategoryVo));
+					for(var i=0;i<json.length;i++){
+						$("#category_menu").append('<li id="main_'+json[i].cateId+'"><a href="#"><div class="tl10">'+json[i].cateNm+'</div></a><ul></ul></li>');
+						var data = {upCateId:json[i].cateId};
+						$.post("${ctx}/category/listSubCategory?format=json", {data:JSON.stringify(data)}, function(data){
+							if(data.result){
+								alert(data.result);
+								return;
+							}
+							if(data.listCategoryVo){
+								var json2 = $.parseJSON(JSON.stringify(data.listCategoryVo));
+								for(var j=0;j<json2.length;j++){
+									$("#category_menu li[id=main_"+json2[j].upCateId+"]").find("ul").append('<li><a href="#">'+json2[j].cateNm+'</a></li>');
+								}
+							}
+						});						
+					}
+				}
+			});			
 	});
 	</script>
  
@@ -89,9 +118,9 @@
 	<div class="gnb_menu">
 		<h2 class="blind">로고/메뉴</h2>
 		<ul>
-			<li class="logo" style="width:432px;"><a href="${ctx}" target="_top"><img src="${ctx}/resources/images/gnb/lalalacool_logo.gif" /></a></li>
+			<li class="logo" style="width:432px;"><a href="${ctx}/" target="_top"><img src="${ctx}/resources/images/gnb/lalalacool_logo.gif" /></a></li>
 			<li><img src="${ctx}/resources/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="${ctx}" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0101','','${ctx}/resources/images/gnb/menu1-ov.gif',1)">
+			<li><a href="${ctx}/" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0101','','${ctx}/resources/images/gnb/menu1-ov.gif',1)">
 <img src="${ctx}/resources/images/gnb/menu1.gif" width="69" height="63" border="0" name="gnbmenu0101" id="gnbmenu0101" title="홈"></a></li>
 			<li><img src="${ctx}/resources/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
 			<li><a href="${ctx}/personal/personal_home" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0102','','${ctx}/resources/images/gnb/menu2-ov.gif',1)">
@@ -116,7 +145,7 @@
 
 <!-- Category_Area - start -->
 <div style="position:absolute; left:0px; top:193px; width:100%; height:125px; z-index:100000;">
-	<div id="totalCategory1" style="display:none;" class="category_area">
+	<div id="totalCategory" style="display:none;" class="category_area">
 	<!-- category_menu - start  -->
 		<ul id="category_menu" style="position:relative">
 			<!-- category_select - start  -->
@@ -126,9 +155,10 @@
 			<!-- category_select - end  -->
 			<!-- btni_close - start  -->
 			<div style="position:absolute; left:999px; top:0px; width:42px; height:40px; z-index:100002;">
-			<input type="button" class="btni_close01" title="메뉴 닫기" onclick="" />
+			<input type="button" class="btni_close01" title="메뉴 닫기" id="btnClose" />
 			</div>
 			<!-- btni_close - end  -->
+			<!-- 
 			<li><a href="#"><div class="tl" style="width:90px;">맛있는 음식</div></a></li>
 			<li><a href="#"><div class="tl" style="width:105px;">근사한 이벤트</div></a></li>
 			<li><a href="#"><div class="tl" style="width:80px;">좋은 물건</div></a></li>
@@ -164,6 +194,7 @@
 				</ul>
 			</li>
 			<li><a href="#"><div class="tl" style="width:80px;">나쁜 사기</div></a></li>
+			 -->
 		</ul>
 	<!-- category_menu - end  -->
 	</div>
