@@ -58,12 +58,51 @@
 			}
 		});
 
+		$("#apndImg1").change(function(e) {
+			
+			//if(!PortalCommon.imgUploadFileCheck(bbsImgform.bbsUpImg.value)){
+			//	alert("추가할 수 없는 파일입니다.");
+			//	return;
+			//}
+		
+			/*
+	 		$("#bbsImgform").ajaxSubmit({
+				url : "${WEB_HOME}/person300/bbsFileUpload.do",
+				type : 'POST',
+				data : $("#bbsImgform").serialize(),
+				action: $("#dummy"),
+				success : function(data){			
+					loadImageList($.parseJSON(data));
+				},error : function(){
+					alert("전송 실패 했습니다.");
+				},
+				clearForm: true,
+				resetForm: true
+			});	
+			*/
+			$(this).hide();
+			$(this).parent().parent().css('background','');
+			$("#delImg1").show();
+		});		
 		
 		//등록
 		$("#btnGo").click(function(){
 			
 		});
+		
+		
 	});
+	
+	function fnImgReset(id){
+		$("#imageFile"+id).val("");
+		$("#apndImg"+id).show();
+		$("#apndImg"+id).parent().parent().css('background','#fff url(${ctx}/resources/images/photo/imgs_sub_input.gif) no-repeat center center');
+		$("#canvasImg"+id).hide();
+		$("#delImg"+id).hide();
+	}
+	
+	window.onload = new Function("makeThumbnail('apndImg1', 'fileNm1', 'canvasImg1', 'imageFile1', 138, 138);");
+	
 </script>
 </head>
 
@@ -111,6 +150,9 @@
 	<form name="frm" id="frm">
 	<input type="hidden" name="cateId" id="cateId">
 	<input type="hidden" name="notiUrl" id="notiUrl">
+	<input type="hidden" name="imageFile1" id="imageFile1">
+	<input type="hidden" name="fileNm1" id="fileNm1">
+	
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
 		<colgroup>
 			<col width="160">
@@ -180,7 +222,8 @@
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td width="140" valign="top">
-							<div class="imgs_sub_input" style="position:relative"><img src="${ctx}/resources/images/test/imgs_sub01.jpg" class="photo">
+							<div class="imgs_sub_input" style="position:relative">
+								<img src="${ctx}/resources/images/test/imgs_sub01.jpg" class="photo">
 								<!-- del - start -->
 								<div style="position:absolute; left:0px; top:0px;" nowrap><input type="button" class="btni_del02" title="삭제" onclick="" /></div>
 								<!-- del - end -->
@@ -194,7 +237,23 @@
 								<!-- del - end -->
 							</div>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"><a href="#" target="_top" onMouseOver="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input-ov.gif'" onMouseOut="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input.gif'"><img src="${ctx}/resources/images/photo/imgs_sub_input.gif" class="photo" name="sub"></a></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+<%-- 							<a href="#" target="_top" onMouseOver="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input-ov.gif'" onMouseOut="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input.gif'"> --%>
+<%-- 							<img src="${ctx}/resources/images/photo/imgs_sub_input.gif" class="photo" name="sub"> --%>
+							<div  style="width:138px;height:138px;border:0;float:left;margin:1px 1px 1px 1px;background: #fff url(${ctx}/resources/images/photo/imgs_sub_input.gif) no-repeat center center;">
+								<!-- del - start -->
+<!-- 								<div style="position:absolute; left:0px; top:0px;z-index:10;float:left;"> -->
+								<input type="button" class="btni_del02" title="삭제" onclick="fnImgReset('1')" style="position:absolute; left:0px; top:0px;z-index:10;float:left;display:none;" id="delImg1" />
+<!-- 								</div> -->
+								<!-- del - end -->								
+							<canvas id="canvasImg1" width="138" height="138" style="display:none"></canvas>
+							<a href="#">
+							<input type="file" size="1" id="apndImg1" name="apndImg1" style="position:relative;left:0;top:0;height:140px;width:140px;opacity:0;filter:alpha(opacity:0);cursor:pointer;">
+							</a>
+							</div>
+							</div>
+						</td>
 						<td width="30"></td>
 						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
 						<td width="30"></td>
