@@ -74,7 +74,7 @@ $(document).ready(function(){
 		<!-- Contents_Title - start -->
 		<div class="contents_title">
 			<ul>
-				<li class="title_pop" style="width:500px; text-align:left;"><img src="${ctx}/images/common/logo001.gif" align="bottom">에 오신 것을 환영합니다.</li>
+				<li class="title_pop" style="width:500px; text-align:left;"><img src="${ctx}/resources/images/common/logo001.gif" align="bottom">에 오신 것을 환영합니다.</li>
 			</ul>
 		</div>
 		<!-- Contents_Title - end -->
