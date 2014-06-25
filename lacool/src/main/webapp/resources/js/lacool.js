@@ -17,8 +17,7 @@ function makeThumbnail(fileInput, fileNm, canvasImg, imageFile, width, height) {
 
 		    	    var img = new Image();
 		    	    img.src = reader.result;
-
-		    	    //fileDisplayArea.appendChild(img);
+		    	    
 		    	    fileNm.value = file.name;
 		    	    
 				    img.onload = function() {
@@ -59,7 +58,7 @@ function makeThumbnail(fileInput, fileNm, canvasImg, imageFile, width, height) {
 				        //};
 				        
 				        document.getElementById(imageFile).value = dataURL;
-				      }	;    	    
+				      }	;    
 		    	    
 		    	  };
 
@@ -70,3 +69,37 @@ function makeThumbnail(fileInput, fileNm, canvasImg, imageFile, width, height) {
 		    	}
 		    });
 		} 
+
+//function makeThumbnail2(fileInput, fileNm, imageDiv, width, height) {
+function makeThumbnail2(data) {
+	var fileInput = document.getElementById(data.fileInput);
+	var fileNm = document.getElementById(data.fileNm);
+	var imageDiv = document.getElementById(data.imageDiv);
+	
+	fileInput.addEventListener('change', function(e) {
+		var file = fileInput.files[0];
+		var imageType = /image.*/;
+		
+		if (file.type.match(imageType)) {
+			var reader = new FileReader();
+			
+			reader.onload = function(e) {
+				var img = new Image();
+				img.src = reader.result;
+				
+				img.width = data.width;
+				img.height = data.height;
+				console.log(reader.result);
+				imageDiv.appendChild(img);
+				document.getElementById("imageFile").value = reader.result;
+				
+				fileNm.value = file.name;
+				
+			};
+			
+			reader.readAsDataURL(file); 
+		} else {
+			fileNm.value = "File not supported!";
+		}
+	});
+} 

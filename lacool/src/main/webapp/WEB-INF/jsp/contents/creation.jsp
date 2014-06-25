@@ -64,7 +64,7 @@
 			//	alert("추가할 수 없는 파일입니다.");
 			//	return;
 			//}
-		
+			
 			/*
 	 		$("#bbsImgform").ajaxSubmit({
 				url : "${WEB_HOME}/person300/bbsFileUpload.do",
@@ -80,28 +80,29 @@
 				resetForm: true
 			});	
 			*/
-			$(this).hide();
-			$(this).parent().parent().css('background','');
+			//$(this).hide();
+			//$(this).parent().parent().css('background','');
 			$("#delImg1").show();
 		});		
 		
 		//등록
 		$("#btnGo").click(function(){
-			
+			console.log($("#frm").serialize())
 		});
 		
 		
 	});
 	
 	function fnImgReset(id){
-		$("#imageFile"+id).val("");
+		$("#imageFile").val("");
+		$("#fileNm").val("");
 		$("#apndImg"+id).show();
 		$("#apndImg"+id).parent().parent().css('background','#fff url(${ctx}/resources/images/photo/imgs_sub_input.gif) no-repeat center center');
-		$("#canvasImg"+id).hide();
+		$("#imageDiv"+id).empty();
 		$("#delImg"+id).hide();
 	}
 	
-	window.onload = new Function("makeThumbnail('apndImg1', 'fileNm1', 'canvasImg1', 'imageFile1', 138, 138);");
+	window.onload = new Function("makeThumbnail2({fileInput:'apndImg1', fileNm:'fileNm', imageDiv:'imageDiv1', width:138, height:138});");
 	
 </script>
 </head>
@@ -150,8 +151,8 @@
 	<form name="frm" id="frm">
 	<input type="hidden" name="cateId" id="cateId">
 	<input type="hidden" name="notiUrl" id="notiUrl">
-	<input type="hidden" name="imageFile1" id="imageFile1">
-	<input type="hidden" name="fileNm1" id="fileNm1">
+	<input type="hidden" name="imageFile" id="imageFile">
+	<input type="hidden" name="fileNm" id="fileNm">
 	
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
 		<colgroup>
@@ -248,6 +249,7 @@
 <!-- 								</div> -->
 								<!-- del - end -->								
 							<canvas id="canvasImg1" width="138" height="138" style="display:none"></canvas>
+							<div id="imageDiv1"></div>
 							<a href="#">
 							<input type="file" size="1" id="apndImg1" name="apndImg1" style="position:relative;left:0;top:0;height:140px;width:140px;opacity:0;filter:alpha(opacity:0);cursor:pointer;">
 							</a>
