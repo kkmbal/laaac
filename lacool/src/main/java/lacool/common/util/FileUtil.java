@@ -206,7 +206,7 @@ public class FileUtil {
 		}
 	}
 	
-	private static String randomString(String fileName){
+	public static String randomString(String fileName){
 		StringBuilder saveFileName = new StringBuilder();
 		for (int i=0; i < 10; i++) { //10자리수
 		    int rnd = 1 + (int)(Math.random() * 52);

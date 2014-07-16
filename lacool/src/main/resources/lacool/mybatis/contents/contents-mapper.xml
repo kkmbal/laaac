@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lacool.contents.mapper.ContentsMapper">
+
+	<insert id="insertBoardInfo" parameterType="lacool.contents.vo.BoardInfoVo">
+		<selectKey keyProperty="boardId" resultType="String" order="BEFORE" >
+		 SELECT CONCAT('BBS' , LPAD(CAST(REPLACE(IFNULL(MAX(BOARD_ID),0), 'BBS','') AS UNSIGNED) + 1, 6, '0')) AS boardId FROM BOARD_INFO
+	     WHERE BOARD_ID LIKE 'BBS%'	     
+	    </selectKey>
+	  
+		<![CDATA[
+		INSERT INTO BOARD_INFO(
+					 BOARD_ID
+					, BOARD_FORM
+					, DEL_YN
+					, REG_ID
+					, REG_DTTM
+					, UPD_ID
+					, UPD_DTTM
+					) VALUES (
+					 #{boardId}
+					, #{boardForm}
+					, #{delYn}
+					, #{regId}
+					, NOW()
+					, #{updId}
+					, NOW()
+					)
+		]]>
+	</insert>
+
+	<insert id="insertNotiInfo" parameterType="lacool.contents.vo.NotiInfoVo">
+		<selectKey keyProperty="notiId" resultType="String" order="BEFORE" >
+		 SELECT CONCAT('S' , LPAD(CAST(REPLACE(IFNULL(MAX(NOTI_ID),0), 'S','') AS UNSIGNED) + 1, 8, '0')) AS notiId FROM NOTI_INFO
+	     WHERE NOTI_ID LIKE 'S%'	    
+	    </selectKey>
+	  
+		<![CDATA[
+		INSERT INTO NOTI_INFO(
+		  NOTI_ID
+		, BOARD_ID
+		, CATE_ID
+		, UP_NOTI_ID
+		, NOTI_KIND
+		, NOTI_TITLE
+		, NOTI_CONTS
+		, NOTI_URL
+		, NOTI_OPN_DIV
+		, FB_REG_YN
+		, DEL_YN
+		, STAT_CD
+		, USER_ID
+		, USER_NM
+		, NOTI_READ_CNT
+		, NOTI_OK_CNT
+		, NOTI_NG_CNT
+		, WRITE_IP
+		, NOTI_BGN_DTTM
+		, NOTI_END_DTTM
+		, SCRAP_CNT
+		, NOTI_OPN_CNT
+		, REG_ID
+		, REG_DTTM
+		, UPD_ID
+		, UPD_DTTM
+		, REF
+		, RESTEP
+		, RELEVEL
+		)VALUES (
+		  #{notiId}
+		, #{boardId}
+		, #{cateId}
+		, #{upNotiId}
+		, #{notiKind}
+		, #{notiTitle}
+		, #{notiConts}
+		, #{notiUrl}
+		, #{notiOpnDiv}
+		, #{fbRegYn}
+		, #{delYn}
+		, #{statCd}
+		, #{userId}
+		, #{userNm}
+		, #{notiReadCnt}
+		, #{notiOkCnt}
+		, #{notiNgCnt}
+		, #{writeIp}
+		, NOW()
+		, CAST( '9999-12-31 23:59:59' AS DATETIME )
+		, #{scrapCnt}
+		, #{notiOpnCnt}
+		, #{regId}
+		, NOW()
+		, #{updId}
+		, NOW()
+		, #{ref}
+		, #{restep}
+		, #{relevel}	
+		)
+		]]>
+	</insert>
+	
+	<insert id="insertNotiApndFile" parameterType="lacool.contents.vo.NotiApndFileVo">
+		<selectKey keyProperty="apndFileSeq" resultType="String" order="BEFORE" >
+		  SELECT IFNULL(MAX(APND_FILE_SEQ),0)+1 AS apndFileSeq FROM NOTI_APND_FILE	     	    
+	    </selectKey>
+	    <![CDATA[
+			INSERT INTO NOTI_APND_FILE(
+			 NOTI_ID
+			, APND_FILE_SEQ
+			, APND_FILE_TP
+			, APND_FILE_SZ
+			, APND_FILE_ORGN
+			, APND_FILE_NM
+			, APND_FILE_PATH
+			, APND_FILE_PRE_PATH
+			, APND_FILE_PRE_NM
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{notiId}
+			, #{apndFileSeq}
+			, #{apndFileTp}
+			, #{apndFileSz}
+			, #{apndFileOrgn}
+			, #{apndFileNm}
+			, #{apndFilePath}
+			, #{apndFilePrePath}
+			, #{apndFilePreNm}
+			, #{delYn}
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	
+	</insert>
+			
+</mapper>

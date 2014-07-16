@@ -2749,3 +2749,28 @@ text-align:right;
 	width:1000px;
 	margin: 0 auto;/*margin:auto;시 가운데 정렬*/
 }
+
+/* ########## Creation Image ########## */
+.plus_image {
+	width: 138px;
+	height: 138px;
+	border: 0;
+	float: left;
+	margin: 1px 1px 1px 1px;
+	background: #fff url(../images/photo/imgs_sub_input.gif) no-repeat center center;
+}
+
+.plus_image_del {
+	position:absolute; left:0px; top:0px;z-index:10;float:left;display:none;
+}
+
+.plus_image_apnd {
+	position:relative;
+	left:0;
+	top:0;
+	height:140px;
+	width:140px;
+	opacity:0;
+	filter:alpha(opacity:0);
+	cursor:pointer;
+}

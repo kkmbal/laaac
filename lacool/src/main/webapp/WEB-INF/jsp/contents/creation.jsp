@@ -8,6 +8,9 @@
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
 
 <script type="text/javascript">
+
+var apndFileList = [];
+
 	$(document).ready(function(){
 		//대분류
 		$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
@@ -58,36 +61,112 @@
 			}
 		});
 
-		$("#apndImg1").change(function(e) {
-			
-			//if(!PortalCommon.imgUploadFileCheck(bbsImgform.bbsUpImg.value)){
-			//	alert("추가할 수 없는 파일입니다.");
-			//	return;
-			//}
-			
-			/*
-	 		$("#bbsImgform").ajaxSubmit({
-				url : "${WEB_HOME}/person300/bbsFileUpload.do",
-				type : 'POST',
-				data : $("#bbsImgform").serialize(),
-				action: $("#dummy"),
-				success : function(data){			
-					loadImageList($.parseJSON(data));
-				},error : function(){
-					alert("전송 실패 했습니다.");
-				},
-				clearForm: true,
-				resetForm: true
-			});	
-			*/
-			//$(this).hide();
-			//$(this).parent().parent().css('background','');
-			$("#delImg1").show();
+		$("input[id^='apndImg']").change(function(e) {
+			var id = $(this).attr("id");
+			var delid = id.replace('apndImg','');
+			$("#"+"delImg"+delid).show();
 		});		
 		
 		//등록
 		$("#btnGo").click(function(){
-			console.log($("#frm").serialize())
+			
+			var notiObject = {
+					"boardId":"BBS000001",
+					"notiId":"",
+					"cateId":"",
+					"upNotiId":"",
+					"notiKind":"",
+					"notiTitle":"",
+					"notiConts":"",
+					"notiUrl":"",
+					"notiOpnDiv":"",
+					"fbRegYn":"",
+					"delYn":"N",
+					"statCd":"",
+					"userId":"",
+					"userNm":"",
+					"notiReadCnt":0,
+					"notiOkCnt":0,
+					"notiNgCnt":0,
+					"writeIp":"",
+					"notiBgnDttm":"",
+					"notiEndDttm":"",
+					"scrapCnt":0,
+					"notiOpnCnt":0,
+					"ref":0,
+					"restep":0,
+					"relevel":0,
+					"notiApndFileList":[]
+				};
+			
+			notiObject.cateId = $("#subCateId").val();
+			notiObject.notiKind = $('input:radio[name="notiKind"]:checked').val();
+			notiObject.notiTitle = $("#notiTitle").val();
+			if(notiObject.notiKind == "001"){ //이미지
+				notiObject.notiUrl = $("#notiUrlB").val();
+			}else if(notiObject.notiKind == "002"){ //동영상
+				notiObject.notiUrl = $("#notiUrlA").val();
+			}
+			notiObject.notiConts = $("#notiConts").val();
+			notiObject.fbRegYn = "N";
+			notiObject.notiOpnDiv = "N";
+			if ($("#fbRegYn").is(":checked")){
+				notiObject.fbRegYn = 'Y';
+			}
+			if ($("#notiOpnDiv").is(":checked")){
+				notiObject.notiOpnDiv = 'Y';
+			}
+			
+			notiObject.notiApndFileList = apndFileList;
+			
+			console.log(JSON.stringify(notiObject))
+			
+			if(!confirm("등록하시겠습니까?")){
+				return;
+			}
+			
+			if(apndFileList.length > 0){
+		 		$("#frm").ajaxSubmit({
+					url : "${ctx}/contents/bbsFileUpload.do",
+					type : 'POST',
+					data : $("#frm").serialize(),
+					action: $("#dummy"),
+					success : function(data){			
+						var json = $.parseJSON(data);
+						console.log("==================================================")
+						console.log(JSON.stringify(json));
+						
+						var fileList = notiObject.notiApndFileList;
+						for(var i=0;i<fileList.length;i++){
+							var obj = fileList[i];
+							for(var j=0;j<json.length;j++){
+								if(obj.apndFileOrgn == json[j].apndFileOrgn){
+									obj.apndFileNm = json[j].apndFileNm;
+								}
+							}
+						}
+						
+						console.log(JSON.stringify(notiObject))
+						
+						$.post("${ctx}/contents/contentsReg?format=json", {"data":JSON.stringify(notiObject)}, function(data){
+							if(data.result){
+								alert(data.result);
+								return;
+							}
+							alert('등록하였습니다.');
+							
+						});						
+					},error : function(){
+						alert("전송 실패 했습니다.");
+					},
+					clearForm: true,
+					resetForm: true
+				});				
+			}
+			
+//			console.log($("#frm").serialize())
+			
+			
 		});
 		
 		
@@ -98,11 +177,19 @@
 		$("#fileNm").val("");
 		$("#apndImg"+id).show();
 		$("#apndImg"+id).parent().parent().css('background','#fff url(${ctx}/resources/images/photo/imgs_sub_input.gif) no-repeat center center');
-		$("#imageDiv"+id).empty();
+		//$("#apndImg"+id+"_div").empty();
+		$("#apndImg"+id+"_div").children().remove();
 		$("#delImg"+id).hide();
+		
+		for(var i=0; i < apndFileList.length; i++){
+			var json = apndFileList[i];
+			if (json.apndId == ('apndImg'+id)){
+				alert(json.apndId)
+				apndFileList.splice(i,1);
+				break;
+			}
+		}		
 	}
-	
-	window.onload = new Function("makeThumbnail2({fileInput:'apndImg1', fileNm:'fileNm', imageDiv:'imageDiv1', width:138, height:138});");
 	
 </script>
 </head>
@@ -148,11 +235,9 @@
 	<div class="blank_height5"></div>
 	<!-- Grid_Table_Input - start -->
 	
-	<form name="frm" id="frm">
+	
 	<input type="hidden" name="cateId" id="cateId">
 	<input type="hidden" name="notiUrl" id="notiUrl">
-	<input type="hidden" name="imageFile" id="imageFile">
-	<input type="hidden" name="fileNm" id="fileNm">
 	
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="gridt_input">
 		<colgroup>
@@ -198,12 +283,14 @@
 		<tr>
 			<th class="right">이미지</th>
 			<td class="left">
-				<!-- 대표이미지 - start -->
+				<!-- 대표이미지 - start 
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"> <strong>대표 이미지 등록 (필수)</strong></td>
 					</tr>
 				</table>
+				-->
+				<!-- 
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td width="200" valign="top"><div class="imgs_main01_input"><a href="#" target="_top" onMouseOver="document.main01.src='${ctx}/resources/images/photo/imgs_main01_input-ov.gif'" onMouseOut="document.main01.src='${ctx}/resources/images/photo/imgs_main01_input.gif'"><img src="${ctx}/resources/images/photo/imgs_main01_input.gif" class="photo" name="main01"></a></div></td>
@@ -213,6 +300,7 @@
 						<td width="240" valign="top"><div class="imgs_main03_input"><a href="#" target="_top" onMouseOver="document.main03.src='${ctx}/resources/images/photo/imgs_main03_input-ov.gif'" onMouseOut="document.main03.src='${ctx}/resources/images/photo/imgs_main03_input.gif'"><img src="${ctx}/resources/images/photo/imgs_main03_input.gif" class="photo" name="main03"></a></div></td>
 					</tr>
 				</table>
+				-->
 				<!-- 대표이미지 - end -->
 				<!-- 서브이미지 - start -->
 				<table cellpadding="0" cellspacing="0" border="0">
@@ -220,59 +308,141 @@
 						<td>서브 이미지 등록 (10개까지 등록 가능합니다.)</td>
 					</tr>
 				</table>
+				<form name="frm" id="frm" enctype="multipart/form-data" method="post">
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td width="140" valign="top">
 							<div class="imgs_sub_input" style="position:relative">
-								<img src="${ctx}/resources/images/test/imgs_sub01.jpg" class="photo">
-								<!-- del - start -->
-								<div style="position:absolute; left:0px; top:0px;" nowrap><input type="button" class="btni_del02" title="삭제" onclick="" /></div>
-								<!-- del - end -->
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('1')" id="delImg1" />
+									<!-- del - end -->								
+									<canvas id="canvasImg1" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg1_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg1" name="apndImg1" class="plus_image_apnd"></a>
+								</div>
 							</div>
 						</td>
 						<td width="30"></td>
 						<td width="140" valign="top">
-							<div class="imgs_sub_input" style="position:relative"><img src="${ctx}/resources/images/test/imgs_sub02.jpg" class="photo">
-								<!-- del - start -->
-								<div style="position:absolute; left:0px; top:0px;" nowrap><input type="button" class="btni_del02" title="삭제" onclick="" /></div>
-								<!-- del - end -->
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('2')" id="delImg2" />
+									<!-- del - end -->								
+									<canvas id="canvasImg2" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg2_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg2" name="apndImg2" class="plus_image_apnd"></a>
+								</div>
 							</div>
 						<td width="30"></td>
 						<td width="140" valign="top">
 							<div class="imgs_sub_input" style="position:relative">
-<%-- 							<a href="#" target="_top" onMouseOver="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input-ov.gif'" onMouseOut="document.sub.src='${ctx}/resources/images/photo/imgs_sub_input.gif'"> --%>
-<%-- 							<img src="${ctx}/resources/images/photo/imgs_sub_input.gif" class="photo" name="sub"> --%>
-							<div  style="width:138px;height:138px;border:0;float:left;margin:1px 1px 1px 1px;background: #fff url(${ctx}/resources/images/photo/imgs_sub_input.gif) no-repeat center center;">
-								<!-- del - start -->
-<!-- 								<div style="position:absolute; left:0px; top:0px;z-index:10;float:left;"> -->
-								<input type="button" class="btni_del02" title="삭제" onclick="fnImgReset('1')" style="position:absolute; left:0px; top:0px;z-index:10;float:left;display:none;" id="delImg1" />
-<!-- 								</div> -->
-								<!-- del - end -->								
-							<canvas id="canvasImg1" width="138" height="138" style="display:none"></canvas>
-							<div id="imageDiv1"></div>
-							<a href="#">
-							<input type="file" size="1" id="apndImg1" name="apndImg1" style="position:relative;left:0;top:0;height:140px;width:140px;opacity:0;filter:alpha(opacity:0);cursor:pointer;">
-							</a>
-							</div>
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('3')" id="delImg3" />
+									<!-- del - end -->								
+									<canvas id="canvasImg3" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg3_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg3" name="apndImg3" class="plus_image_apnd"></a>
+								</div>
 							</div>
 						</td>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('4')" id="delImg4" />
+									<!-- del - end -->								
+									<canvas id="canvasImg4" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg4_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg4" name="apndImg4" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('5')" id="delImg5" />
+									<!-- del - end -->								
+									<canvas id="canvasImg5" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg5_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg5" name="apndImg5" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 					</tr>
 					<tr>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('6')" id="delImg6" />
+									<!-- del - end -->								
+									<canvas id="canvasImg6" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg6_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg6" name="apndImg6" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('7')" id="delImg7" />
+									<!-- del - end -->								
+									<canvas id="canvasImg7" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg7_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg7" name="apndImg7" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('8')" id="delImg8" />
+									<!-- del - end -->								
+									<canvas id="canvasImg8" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg8_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg8" name="apndImg8" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('9')" id="delImg9" />
+									<!-- del - end -->								
+									<canvas id="canvasImg9" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg9_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg9" name="apndImg9" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 						<td width="30"></td>
-						<td width="140" valign="top"><div class="imgs_sub_input"></div></td>
+						<td width="140" valign="top">
+							<div class="imgs_sub_input" style="position:relative">
+								<div class="plus_image">
+									<!-- del - start -->
+									<input type="button" class="btni_del02 plus_image_del" title="삭제" onclick="fnImgReset('10')" id="delImg10" />
+									<!-- del - end -->								
+									<canvas id="canvasImg10" width="138" height="138" style="display:none"></canvas>
+									<div id="apndImg10_div"></div>
+									<a href="#"><input type="file" size="1" id="apndImg10" name="apndImg10" class="plus_image_apnd"></a>
+								</div>
+							</div>
+						</td>
 					</tr>
 				</table>
+				</form>
 				<!-- 서브이미지 - end -->
 				<!-- 설명 - start -->
 				<div class="imgs_txt">
@@ -330,7 +500,7 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input type="checkbox" name="fbRegYn" id=""fbRegYn"" hidefocus="true" class="check" value="Y">페이스북 동시 등록</td>
+						<td><input type="checkbox" name="fbRegYn" id="fbRegYn" hidefocus="true" class="check" value="Y">페이스북 동시 등록</td>
 						<td width="30" nowrap></td>
 						<td><input type="checkbox" name="notiOpnDiv" id="notiOpnDiv" hidefocus="true" class="check" value="Y">관련 외부 글 공개</td>
 					</tr>
@@ -339,7 +509,7 @@
 			</td>
 		</tr>
 	</table>
-	</form>
+	
 	<!-- Grid_Table_Input - end -->
 	
 	<!-- Btn_Form(Sub/Main) - start -->
@@ -369,5 +539,51 @@
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->
+
+<script>
+window.onload = function(){
+	    var fileInputs = ['apndImg1','apndImg2','apndImg3','apndImg4','apndImg5','apndImg6','apndImg7','apndImg8','apndImg9','apndImg10'];
+	    
+	    for(var i=0;i<fileInputs.length;i++){
+			var fileInput = document.getElementById(fileInputs[i]);
+			fileInput.addEventListener('change', function(e) {
+				var file = this.files[0];
+				var id = this.id;
+				var imageType = /image.*/;
+				if (file.type.match(imageType)) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var img = new Image();
+						img.src = reader.result;
+						img.width = 138;
+						img.height = 138;
+						var imageDiv = document.getElementById(id+"_div");
+						imageDiv.appendChild(img);
+						
+						var jsonObject = {
+								"notiId":"",
+								"apndFileSeq":"",
+								"apndFileTp":"",
+								"apndFileSz":0,
+								"apndFileOrgn":file.name,
+								"apndFileNm":"",
+								"apndFilePath":"",
+								"delYn":"N",
+								"apndFilePreNm":"",
+								"apndFilePrePath":"",
+								"apndId":id
+							};
+						apndFileList.push(jsonObject);
+					};
+					reader.readAsDataURL(file); 
+				} else {
+					fileNm.value = "File not supported!";
+				}
+			});	
+	    }
+}
+</script>
+
+<iframe id="dummy" name="dummy" width=0 height=0></iframe>
 </body>
 </html>

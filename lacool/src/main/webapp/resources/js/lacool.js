@@ -79,10 +79,10 @@ function makeThumbnail2(data) {
 	fileInput.addEventListener('change', function(e) {
 		var file = fileInput.files[0];
 		var imageType = /image.*/;
-		
+		console.log(file)
 		if (file.type.match(imageType)) {
 			var reader = new FileReader();
-			
+			console.log(reader)
 			reader.onload = function(e) {
 				var img = new Image();
 				img.src = reader.result;
