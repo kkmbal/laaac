@@ -204,23 +204,26 @@
 	</div>
 	<!-- Local_Navi - end -->
 	<!-- View_Title - start -->
-	<div class="view_title">[DUNKIN' EVENT] 2월 매주 수요일 글레이즈드 3+3개 3,300원!</div>
+	<div class="view_title">${contents.notiTitle}</div>
 	<!-- View_Title - end -->
 	<!-- View_Img_Main - start -->
 	<div class="view_img_box">
-		<div class="view_img_main"><img src="${ctx}/resources/images/test/photo_view_img_main.jpg"></div>
+		<div class="view_img_main"><img src="${ctx}/resources/images/upload/${firstFileVo.apndFileNm}" width="980" height="430"></div>
 	</div>
 	<!-- View_Img_Main - end -->
 	<div class="blank_height10"></div>
 	<!-- View_Img_Sub - start -->
 	<div class="view_img_sub">
 		<ul>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub01);" onMouseOut="CgOut_01img(view_img_sub01);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
+		    <c:forEach var="result" items="${fileVo}" varStatus="status">
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub${status.count});" onMouseOut="CgOut_01img(view_img_sub${status.count});"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a>
 				<!-- view_img_sub01 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:0px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub01" onMouseOver="CgOver_01img(view_img_sub01);OverStay();" onMouseOut="CgOut_01img(view_img_sub01);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:0px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub${status.count}" onMouseOver="CgOver_01img(view_img_sub${status.count});OverStay();" onMouseOut="CgOut_01img(view_img_sub01);" nowrap><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></div>
 				<!-- view_img_sub01 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			<%--
 			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub02);" onMouseOut="CgOut_02img(view_img_sub02);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
 				<!-- view_img_sub02 - start -->
 				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub02" onMouseOver="CgOver_02img(view_img_sub02);OverStay();" onMouseOut="CgOut_02img(view_img_sub02);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
@@ -274,20 +277,15 @@
 				<div class="view_img_sub_sel" style="position:absolute; left:-161px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub10" onMouseOver="CgOver_02img(view_img_sub10);OverStay();" onMouseOut="CgOut_02img(view_img_sub10);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
 				<!-- view_img_sub10 - start -->
 			</li>
+			 --%>
 		</ul>
 	</div>
 	<!-- View_Img_Sub - end -->
 	<div class="blank_height20"></div>
 	<!-- 콘텐트 설명 - start -->
-	<div class="view_detail_url"><img src="${ctx}/resources/images/icon/i_url.gif" align="absmiddle">&nbsp;<a href="#" target="_blank">www.google.com</a></div>
+	<div class="view_detail_url"><img src="${ctx}/resources/images/icon/i_url.gif" align="absmiddle">&nbsp;<a href="#" target="_blank">${contents.notiUrl}</a></div>
 	<div class="view_detail" style="overflow-x:hidden; overflow-y:auto; line-height: 1.6em;">
-	<strong>FUNFUN한 던킨 이벤트</strong><br>
-	레드벨벳 도넛 100만개 돌파기념~ 2월 매주 수요일 글레이즈드 3+3개(글레이즈드3 + 레드벨벳 글레이즈드3) 3,300원!<br>
-	- 기간 : 14.01.28~14.02.26<br>
-	- 당일 한정수량 판매 / 1인 4팩 한정판매<br>
-	- 매장 찾기<br>
-	- 행사 제외매장 보기<br>
-	※ 해피포인트 적립불가  l  일부매장제외  l  해당제품에 한하며 타 제품으로 교환불가  l  모바일쿠폰 사용가능  l  타 행사/타 쿠폰 중복 사용 불가
+	${contents.notiConts}
 	</div>
 	<!-- 콘텐트 설명 - end -->
 	<div class="fr"><input type="button" class="btns_st05" value="삭제" onclick="" /></div>

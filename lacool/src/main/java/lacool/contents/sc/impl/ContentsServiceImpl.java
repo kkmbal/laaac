@@ -1,5 +1,7 @@
 package lacool.contents.sc.impl;
 
+import java.util.List;
+
 import lacool.contents.mapper.ContentsMapper;
 import lacool.contents.sc.ContentsService;
 import lacool.contents.vo.NotiApndFileVo;
@@ -74,6 +76,16 @@ public class ContentsServiceImpl implements ContentsService {
 		}
 		
 		return notiInfoVo;
+	}
+
+	@Override
+	public NotiInfoVo getContensDetail(NotiInfoVo vo) {
+		return contentsMapper.getContensDetail(vo);
+	}
+
+	@Override
+	public List<NotiApndFileVo> getContentsFile(NotiInfoVo vo) {
+		return contentsMapper.getContentsFile(vo);
 	}
 
 }

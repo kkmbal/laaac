@@ -140,5 +140,64 @@
 		]]>
 	
 	</insert>
+
+	<select id="getContensDetail" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiInfoVo">
+		<![CDATA[	
+			SELECT  NOTI_ID
+				, BOARD_ID
+				, CATE_ID
+				, UP_NOTI_ID
+				, NOTI_KIND
+				, NOTI_TITLE
+				, NOTI_CONTS
+				, NOTI_URL
+				, NOTI_OPN_DIV
+				, FB_REG_YN
+				, DEL_YN
+				, STAT_CD
+				, USER_ID
+				, USER_NM
+				, NOTI_READ_CNT
+				, NOTI_OK_CNT
+				, NOTI_NG_CNT
+				, WRITE_IP
+				, NOTI_BGN_DTTM
+				, NOTI_END_DTTM
+				, SCRAP_CNT
+				, NOTI_OPN_CNT
+				, REG_ID
+				, REG_DTTM
+				, UPD_ID
+				, UPD_DTTM
+				, REF
+				, RESTEP
+				, RELEVEL
+			FROM NOTI_INFO
+			WHERE NOTI_ID = #{notiId}
+		]]>
+	</select>
+	
+	<select id="getContentsFile" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiApndFileVo">
+		<![CDATA[	
+			SELECT  NOTI_ID
+					, APND_FILE_SEQ
+					, APND_FILE_TP
+					, APND_FILE_SZ
+					, APND_FILE_ORGN
+					, APND_FILE_NM
+					, APND_FILE_PATH
+					, APND_FILE_PRE_PATH
+					, APND_FILE_PRE_NM
+					, DEL_YN
+					, REG_ID
+					, REG_DTTM
+					, UPD_ID
+					, UPD_DTTM
+			FROM NOTI_APND_FILE
+			WHERE NOTI_ID = #{notiId}
+			ORDER BY APND_FILE_SEQ
+		]]>
+	</select>
+		
 			
 </mapper>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import lacool.common.util.FileUtil;
 import lacool.contents.sc.ContentsService;
+import lacool.contents.vo.NotiApndFileVo;
 import lacool.contents.vo.NotiInfoVo;
 import lacool.member.sc.UserService;
 import lacool.member.vo.UserVo;
@@ -83,11 +84,26 @@ public class ContentsController {
 //			}else{
 //				throw new LaCoolException("Not User");
 //			}
+			modelMap.put("notiId", notiInVo.getNotiId());
 		}catch(Exception e){
 			modelMap.put("result", "error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;
+	}	
+	
+	@RequestMapping(value="/getContentsDetail")
+	public String getContentsDetail(HttpServletRequest request, HttpSession session, ModelMap modelMap, @RequestParam(value="notiId", required=true) String notiId){
+		NotiInfoVo vo = new NotiInfoVo();
+		vo.setNotiId(notiId);
+		NotiInfoVo resultVo = contentsService.getContensDetail(vo);
+		List<NotiApndFileVo> fileVo = contentsService.getContentsFile(vo);
+		if(fileVo.size() > 0){
+			modelMap.put("firstFileVo", fileVo.get(0));
+		}
+		modelMap.put("contents", resultVo);
+		modelMap.put("fileVo", fileVo);
+		return "contents/details";
 	}	
 	
     @RequestMapping("/bbsFileUpload") 

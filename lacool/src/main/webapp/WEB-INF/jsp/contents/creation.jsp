@@ -9,6 +9,7 @@
 
 <script type="text/javascript">
 
+var notiId = "";
 var apndFileList = [];
 
 	$(document).ready(function(){
@@ -133,8 +134,6 @@ var apndFileList = [];
 					action: $("#dummy"),
 					success : function(data){			
 						var json = $.parseJSON(data);
-						console.log("==================================================")
-						console.log(JSON.stringify(json));
 						
 						var fileList = notiObject.notiApndFileList;
 						for(var i=0;i<fileList.length;i++){
@@ -153,7 +152,22 @@ var apndFileList = [];
 								alert(data.result);
 								return;
 							}
-							alert('등록하였습니다.');
+							
+							notiId = data.notiId;
+							
+							$("#pop_confirm").show();
+							
+							$("#mainCateId").val("");
+							$("#subCateId").val("");
+							$("#cateId").val("");
+							$("#notiUrl").val("");
+							$("#notiUrlA").val("");
+							$("#notiUrlB").val("");
+							$("#notiTitle").val("");
+							$("#notiConts").val("");
+							for(var i=1;i<=10;i++){
+								fnImgReset(i+"");
+							}
 							
 						});						
 					},error : function(){
@@ -169,6 +183,13 @@ var apndFileList = [];
 			
 		});
 		
+		$("#pop_continue, #pop_close").click(function(){
+			$("#pop_confirm").hide();
+		});
+		
+		$("#pop_detail").click(function(){
+			location.href = "${ctx}/contents/getContentsDetail?notiId="+notiId;
+		});
 		
 	});
 	
@@ -184,7 +205,6 @@ var apndFileList = [];
 		for(var i=0; i < apndFileList.length; i++){
 			var json = apndFileList[i];
 			if (json.apndId == ('apndImg'+id)){
-				alert(json.apndId)
 				apndFileList.splice(i,1);
 				break;
 			}
@@ -527,6 +547,35 @@ var apndFileList = [];
 </div>
 <!-- //  CONTAINER(sidebar+contents) - end // -->
 
+<div id="pop_confirm" class="popup_st01" style="position:absolute;width:296px; height:176px;margin-left:400px;z-index:10;display:none;">
+	<!-- Title/Btn_close - start -->
+	<div class="popup_st01_title">
+		<ul>
+			<li class="btn fr"><input type="button" class="btni_close02" title="닫기"  id="pop_close" /></li>
+		</ul>
+	</div>
+	<!-- Title/Btn_close - end -->
+
+	<!-- 내용 들어가는 곳 - start -->
+	<div class="popup_st01_contents">
+
+		<!-- start -->
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		  <tr>
+		    <td class="popup_st01_contents_txt">컨텐츠 등록이 완료되었습니다.</td>
+		  </tr>
+		</table>
+		<!-- end -->
+
+	</div>
+	<!-- 내용 들어가는 곳 - end -->
+
+	<!-- Popup_Style01_Btn - start -->
+	<div class="popup_st01_btn">
+		<input type="button" class="btnm" value="계속 등록" id="pop_continue" /><input type="button" class="btnm_cancel" value="컨텐츠 보기" id="pop_detail" />
+	</div>
+	<!-- Popup_Style01_Btn - end -->
+</div>
 
 <!-- // FOOTER - start // -->
 <%@ include file="/WEB-INF/jsp/common/layout/footer.jsp"%>
@@ -539,6 +588,8 @@ var apndFileList = [];
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->
+
+
 
 <script>
 window.onload = function(){
