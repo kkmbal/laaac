@@ -5,7 +5,9 @@ import java.util.List;
 import lacool.contents.mapper.ContentsMapper;
 import lacool.contents.sc.ContentsService;
 import lacool.contents.vo.NotiApndFileVo;
+import lacool.contents.vo.NotiEvalInfoVo;
 import lacool.contents.vo.NotiInfoVo;
+import lacool.contents.vo.UserScrapInfoVo;
 import lacool.member.vo.UserVo;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -36,8 +38,8 @@ public class ContentsServiceImpl implements ContentsService {
 		notiInfoVo.setFbRegYn(notiObject.getString("fbRegYn"));
 		notiInfoVo.setDelYn(notiObject.getString("delYn"));
 		notiInfoVo.setStatCd(notiObject.getString("statCd"));
-		notiInfoVo.setUserId(notiObject.getString("userId"));
-		notiInfoVo.setUserNm(notiObject.getString("userNm"));
+		notiInfoVo.setUserId(userVo.getUserId());
+		notiInfoVo.setUserNm(userVo.getUserNm());
 		notiInfoVo.setNotiReadCnt(notiObject.getString("notiReadCnt"));
 		notiInfoVo.setNotiOkCnt(notiObject.getString("notiOkCnt"));
 		notiInfoVo.setNotiNgCnt(notiObject.getString("notiNgCnt"));
@@ -88,4 +90,44 @@ public class ContentsServiceImpl implements ContentsService {
 		return contentsMapper.getContentsFile(vo);
 	}
 
+	@Override
+	public UserScrapInfoVo insertScrap(String data, UserVo userVo) {
+		JSONObject notiObject = JSONObject.fromObject(data);
+		
+		UserScrapInfoVo scrapInfoVo = new UserScrapInfoVo();
+		scrapInfoVo.setNotiId(notiObject.getString("notiId"));
+		scrapInfoVo.setUserId(userVo.getUserId());
+		scrapInfoVo.setRegId(userVo.getUserId());
+		scrapInfoVo.setUpdId(userVo.getUserId());
+		
+		contentsMapper.insertScrap(scrapInfoVo);
+		
+		return scrapInfoVo;
+	}
+	
+	@Override
+	public List<UserScrapInfoVo> getScrapInfo(UserScrapInfoVo scrapInfoVo) {
+		return contentsMapper.getScrapInfo(scrapInfoVo);
+	}
+	
+	@Override
+	public int getScrapCnt(UserScrapInfoVo scrapInfoVo) {
+		return contentsMapper.getScrapCnt(scrapInfoVo);
+	}
+	
+	@Override
+	public List<NotiEvalInfoVo> getNotiEvalInfo(NotiEvalInfoVo notiEvalInfoVo) {
+		return contentsMapper.getNotiEvalInfo(notiEvalInfoVo);
+	}
+	
+	@Override
+	public void insertNotiEval(NotiEvalInfoVo notiEvalInfoVo) {
+		contentsMapper.insertNotiEval(notiEvalInfoVo);
+	}
+	
+
+	@Override
+	public List<NotiApndFileVo> getNotiEvalOfCate(NotiInfoVo vo) {
+		return contentsMapper.getNotiEvalOfCate(vo);
+	}
 }

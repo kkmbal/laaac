@@ -16,6 +16,15 @@ public class NotiApndFileVo {
 	private String updId;
 	private String updDttm;
 	
+	private String notiTitle;
+	
+	
+	public String getNotiTitle() {
+		return notiTitle;
+	}
+	public void setNotiTitle(String notiTitle) {
+		this.notiTitle = notiTitle;
+	}
 	public String getApndFileSeq() {
 		return apndFileSeq;
 	}

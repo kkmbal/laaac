@@ -170,6 +170,41 @@
 		MenuNum.style.visibility = "hidden";
 	}
 	</script>
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		//scrap등록
+		$("#regScrap").click(function(){
+			var json = {"notiId":"${contents.notiId}"};
+			$.post("${ctx}/contents/insertScrap?format=json", {data:JSON.stringify(json)}, function(data){
+				if(data.result){
+					alert(data.result);
+					return;
+				}
+				if(data.scrapCnt){
+					$("#scrapCnt").html(data.scrapCnt);
+				}
+			});				
+		});
+		
+		//찬성/반대등록
+		$("#evalOk, #evalNg").click(function(){
+			var json = {"notiId":"${contents.notiId}", "notiEvalDiv" : "", "delYn":"N"};
+			var id = $(this).attr("id");
+			if(id == 'evalOk'){
+				json.notiEvalDiv = "001";
+			}else{
+				json.notiEvalDiv = "002";
+			}
+			$.post("${ctx}/contents/insertEval?format=json", {data:JSON.stringify(json)}, function(data){
+				if(data.result){
+					alert(data.result);
+					return;
+				}
+			});				
+		});
+	});
+</script>
 </head>
 
 <body>
@@ -296,14 +331,14 @@
 			<ul>
 				<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_user02.jpg"></a></li>
 				<li class="name"><a href="#">등록자명</a><span class="t_line" style="font-weight:normal;">l</span></li>
-				<li class="btn"><input type="button" class="btnd_scrap" value="스크랩" onclick="" /></li>
-				<li class="num"><a href="#" class="scrap_num"><span>150</span></a>&nbsp;&nbsp;</li>
+				<li class="btn"><input type="button" class="btnd_scrap" value="스크랩" id="regScrap" /></li>
+				<li class="num"><a href="#" class="scrap_num"><span id="scrapCnt">${scrapCnt}</span></a>&nbsp;&nbsp;</li>
 				<li class="btn"><input type="button" class="btni_sns" title="SNS" onclick="" /></li>
 			</ul>
 		</div>
 		<div class="scrap_gauge fr">
 			<ul>
-				<li class="btn"><input type="button" class="btni_bad" title="비공감" onclick="" /></li>
+				<li class="btn"><input type="button" class="btni_bad" title="비공감" id="evalNg" /></li>
 				<li class="gauge">
 					<!-- chart_gauge02 - start -->
 					<table cellspacing="0" cellpadding="0" border="0">
@@ -313,7 +348,7 @@
 					</table>
 					<!-- chart_gauge02 - end -->
 				</li>
-				<li class="btn"><input type="button" class="btni_good" title="공감" onclick="" /></li>
+				<li class="btn"><input type="button" class="btni_good" title="공감" id="evalOk" /></li>
 			</ul>
 		</div>
 	</div>
@@ -330,6 +365,11 @@
 		<div class="scrap_by fr">
 			<ul>
 				<li class="prev"><input type="button" class="btni_arr02_prev" title="이전보기" onclick="" /></li>
+				<c:forEach var="result" items="${scrapList}" varStatus="status">
+					<li class="blank">&nbsp;</li>
+					<li><a href="#"><img src="${ctx}/resources/${result.userFilePath}${result.userFilePath}" class="photo"></a></li>
+				</c:forEach>
+				<%--
 				<li class="select" style="position:relative;"><a href="#"><img src="${ctx}/resources/images/test/photo_user03.jpg" class="photo"></a>
 				<!-- icon sel -->
 				<div style="position:absolute; left:0px; top:40px; width:45px; height:6px; z-index:10000;"><img src="${ctx}/resources/images/icon/i_scrap_sel.gif"></div>
@@ -353,6 +393,7 @@
 				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user11.jpg" class="photo"></a></li>
 				<li class="blank">&nbsp;</li>
 				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user02.jpg" class="photo"></a></li>
+				--%>
 				<li class="next"><input type="button" class="btni_arr02_next" title="다음보기" onclick="" /></li>
 			</ul>
 		</div>
@@ -540,24 +581,18 @@
 	<!-- Best - start -->
 	<div class="con_best">
 		<div class="prev"><input type="button" class="btni_arr01_prev" title="이전보기" onclick="" /></div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트세트세트 할인권 0원!</a></span></li>
-				</ul>
+		<c:forEach var="result" items="${notiEvalOfCate}" varStatus="status">
+			<div class="col">
+				<div class="con_best_li">
+					<ul>
+						<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></li>
+						<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">${result.notiTitle}</a></span></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
+			<div class="blank">&nbsp;</div>
+		</c:forEach>
+		<%--
 		<div class="col">
 			<div class="con_best_li">
 				<ul>
@@ -584,6 +619,16 @@
 				</ul>
 			</div>
 		</div>
+		<div class="blank">&nbsp;</div>
+		<div class="col">
+			<div class="con_best_li">
+				<ul>
+					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
+					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
+				</ul>
+			</div>
+		</div>
+		--%>
 		<div class="next"><input type="button" class="btni_arr01_next" title="다음보기" onclick="" /></div>
 	</div>
 	<!-- Best - end -->

@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 
+import lacool.category.vo.CategoryVo;
+import lacool.common.util.BeanUtil;
 import lacool.common.util.FileUtil;
 import lacool.contents.sc.ContentsService;
 import lacool.contents.vo.NotiApndFileVo;
+import lacool.contents.vo.NotiEvalInfoVo;
 import lacool.contents.vo.NotiInfoVo;
+import lacool.contents.vo.UserScrapInfoVo;
 import lacool.member.sc.UserService;
 import lacool.member.vo.UserVo;
 import net.sf.json.JSONArray;
@@ -67,23 +71,10 @@ public class ContentsController {
 	@RequestMapping("/contentsReg")
 	public ModelMap userRegDetail(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
 		try{
-			ObjectMapper mapper = new ObjectMapper();
-//			NotiInfoVo notiInfoVo = mapper.readValue(data, NotiInfoVo.class);
 			UserVo sessionUserVo = (UserVo)session.getAttribute("userVo");
-//			notiInfoVo.setUserId(sessionUserVo.getUserId());
 			
 			NotiInfoVo notiInVo = contentsService.insertNotiInfo(data, sessionUserVo);
-//			if(user != null){
-//				FileVo fileVo = FileUtil.saveFile(request, userVo.getImageFile(), "resources/images/photo/");
-//				
-//				userVo.setUserFileNm(fileVo.getName());
-//				userVo.setUserFilePath(fileVo.getPath());
-//				userService.updateUser(userVo);
-//				modelMap.put("user", userVo);
-//				
-//			}else{
-//				throw new LaCoolException("Not User");
-//			}
+
 			modelMap.put("notiId", notiInVo.getNotiId());
 		}catch(Exception e){
 			modelMap.put("result", "error");
@@ -94,50 +85,88 @@ public class ContentsController {
 	
 	@RequestMapping(value="/getContentsDetail")
 	public String getContentsDetail(HttpServletRequest request, HttpSession session, ModelMap modelMap, @RequestParam(value="notiId", required=true) String notiId){
+		UserVo sessionUserVo = (UserVo)session.getAttribute("userVo");
+		
 		NotiInfoVo vo = new NotiInfoVo();
 		vo.setNotiId(notiId);
-		NotiInfoVo resultVo = contentsService.getContensDetail(vo);
-		List<NotiApndFileVo> fileVo = contentsService.getContentsFile(vo);
+		NotiInfoVo resultVo = contentsService.getContensDetail(vo); //상세
+		List<NotiApndFileVo> fileVo = contentsService.getContentsFile(vo); //첨부파일
 		if(fileVo.size() > 0){
-			modelMap.put("firstFileVo", fileVo.get(0));
+			modelMap.put("firstFileVo", fileVo.get(0)); //첫번째첨부파일
 		}
+		UserScrapInfoVo userScrapInfoVo = new UserScrapInfoVo();
+		userScrapInfoVo.setUserId(sessionUserVo.getUserId());
+		int scrapCnt = contentsService.getScrapCnt(userScrapInfoVo); //My스크랩건수
+		List<UserScrapInfoVo> scrapList = contentsService.getScrapInfo(userScrapInfoVo); //My스크랩목록
+		List<NotiApndFileVo> notiEvalOfCate = contentsService.getNotiEvalOfCate(resultVo); //이건어때요목록
+
+		modelMap.put("scrapCnt", scrapCnt);
 		modelMap.put("contents", resultVo);
 		modelMap.put("fileVo", fileVo);
+		modelMap.put("scrapList", scrapList);
+		modelMap.put("notiEvalOfCate", notiEvalOfCate);
+		
 		return "contents/details";
 	}	
+	
+	
+	@RequestMapping("/insertScrap")
+	public ModelMap insertScrap(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
+		try{
+			UserVo sessionUserVo = (UserVo)session.getAttribute("userVo");
+			UserScrapInfoVo userScrapInfoVo = new UserScrapInfoVo();
+			userScrapInfoVo.setUserId(sessionUserVo.getUserId());
+			List<UserScrapInfoVo> scrapList = contentsService.getScrapInfo(userScrapInfoVo);
+			if(scrapList.size() == 0){
+				contentsService.insertScrap(data, sessionUserVo);
+			}
+			int scrapCnt = contentsService.getScrapCnt(userScrapInfoVo);
+
+			modelMap.put("scrapCnt", scrapCnt);
+		}catch(Exception e){
+			modelMap.put("result", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
+	
+	@RequestMapping("/insertEval")
+	public ModelMap insertEval(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
+		try{
+			UserVo sessionUserVo = (UserVo)session.getAttribute("userVo");
+			NotiEvalInfoVo notiEvalInfoVo = BeanUtil.getData(data, NotiEvalInfoVo.class);
+			notiEvalInfoVo.setUserId(sessionUserVo.getUserId());
+			notiEvalInfoVo.setUserNm(sessionUserVo.getUserNm());
+			notiEvalInfoVo.setRegId(sessionUserVo.getUserId());
+			notiEvalInfoVo.setUpdId(sessionUserVo.getUserId());
+			
+			List<NotiEvalInfoVo> notiEvalList = contentsService.getNotiEvalInfo(notiEvalInfoVo);
+			if(notiEvalList.size() == 0){
+				contentsService.insertNotiEval(notiEvalInfoVo);
+			}
+		}catch(Exception e){
+			modelMap.put("result", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
 	
     @RequestMapping("/bbsFileUpload") 
     @ResponseBody 
     public void bbsFileUpload(HttpServletRequest request, HttpServletResponse response, ModelMap model, HttpSession session) throws Exception{
- 	  /*
-		String SAVE_DIR = "C:/Work/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/lacool/resources/images/temp/";
-		String WEB_DIR = "C:/Work/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/lacool/resources/images/upload/";
-		String CONTEXT_PATH = request.getContextPath(); // /lacool
-		int maxFileSize = 3;
-		   
-		JSONArray jsonArr = FileUtil.upload(request, SAVE_DIR, WEB_DIR, CONTEXT_PATH, maxFileSize);
-			
-		HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(response);
-    	//wrapper.setContentType("text/plain");
-		response.getWriter().print(jsonArr.toString());
-		response.getWriter().flush();
-		response.getWriter().close();
-	  */
     	JSONArray jsonArr = new JSONArray();
     	
     	String path = "C:/Work/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/lacool/resources/images/upload/";
     	
-        if (ServletFileUpload.isMultipartContent(request))
-        {
+        if (ServletFileUpload.isMultipartContent(request)){
         	FileItemFactory factory = new DiskFileItemFactory();
         	ServletFileUpload fileUpload = new ServletFileUpload(factory);
-            fileUpload.setSizeMax(1024*1024*500);
+            fileUpload.setSizeMax(1000*1024*1024);
             List fileItemList = fileUpload.parseRequest(request);
             
             System.out.println("file cnt:"+fileItemList.size());
             for (int i = 0; i < fileItemList.size(); i++){
             	FileItem fileItem = (FileItem)fileItemList.get(i);
-            	//File tmpFile = new File(path + System.currentTimeMillis()+ "_" + fileItem.getName());
             	if(fileItem.getName() == null) continue;
             	String dir = path + FileUtil.randomString(fileItem.getName());
             	System.out.println("dir=="+dir);
@@ -150,22 +179,11 @@ public class ContentsController {
             	jsonArr.add(jsonObject);
             	
             }
-        }else{
-        	/*
-        	//IE10+, FF3.6+, Chrome6.0+, Safari6.0+, Opera11.1+ 
-        	String image = request.getParameter("image");
-        	image = image.replace("data:image/jpeg;base64,", "").replaceAll(" ", "+");
-        	//System.out.println(image);
-        	byte[] imageByte = org.apache.commons.net.util.Base64.decodeBase64(image.getBytes());
-        	FileOutputStream fs = new FileOutputStream(new File(path + System.currentTimeMillis() + "_test.jpg"));
-        	fs.write(imageByte);
-        	fs.close();
-        	fs.flush();
-        	*/
         }    	
         HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(response);
         response.getWriter().print(jsonArr.toString());
         response.getWriter().flush();
         response.getWriter().close();
  	}	
+    
 }

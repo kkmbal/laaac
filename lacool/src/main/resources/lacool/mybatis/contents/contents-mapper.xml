@@ -199,5 +199,107 @@
 		]]>
 	</select>
 		
-			
+
+	<insert id="insertScrap" parameterType="lacool.contents.vo.UserScrapInfoVo">
+	    <![CDATA[
+			INSERT INTO USER_SCRAP_INFO(
+			 USER_ID
+			, NOTI_ID
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{userId}
+			, #{notiId}
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	</insert>
+	
+	<select id="getScrapInfo" parameterType="lacool.contents.vo.UserScrapInfoVo" resultType="lacool.contents.vo.UserScrapInfoVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+			      , B.USER_FILE_NM
+			      , B.USER_FILE_PATH
+			FROM USER_SCRAP_INFO A
+			    ,PSN_USER B
+			WHERE A.USER_ID = #{userId}
+			AND A.USER_ID = B.USER_ID
+		]]>
+	</select>	
+	
+	<select id="getScrapCnt" parameterType="lacool.contents.vo.UserScrapInfoVo" resultType="int">
+		<![CDATA[	
+			SELECT  COUNT(NOTI_ID)
+			FROM USER_SCRAP_INFO
+			WHERE USER_ID = #{userId}
+		]]>
+	</select>	
+	
+	<select id="getNotiEvalInfo" parameterType="lacool.contents.vo.NotiEvalInfoVo" resultType="lacool.contents.vo.NotiEvalInfoVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+			FROM NOTI_EVAL_INFO A
+			WHERE A.USER_ID = #{userId}
+			AND A.NOTI_ID = #{notiId}
+			AND A.NOTI_EVAL_DIV = #{notiEvalDiv}
+		]]>
+	</select>
+	
+	<insert id="insertNotiEval" parameterType="lacool.contents.vo.NotiEvalInfoVo">
+	    <![CDATA[
+			INSERT INTO NOTI_EVAL_INFO(
+			  NOTI_ID
+			, NOTI_EVAL_DIV
+			, USER_ID
+			, USER_NM
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{notiId}
+			, #{notiEvalDiv}
+			, #{userId}
+			, #{userNm}
+			, #{delYn}
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	</insert>
+	
+	
+	<select id="getNotiEvalOfCate" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiApndFileVo">
+		<![CDATA[	
+		SELECT A.NOTI_ID
+		      ,A.APND_FILE_SEQ
+		      ,A.APND_FILE_ORGN
+		      ,A.APND_FILE_NM
+		      ,A.APND_FILE_PATH
+		      ,C.NOTI_TITLE
+		FROM NOTI_APND_FILE A,
+			  (SELECT A.NOTI_ID, COUNT(B.EVAL_SEQ) CNT
+				FROM NOTI_INFO A
+				    ,NOTI_EVAL_INFO B
+				WHERE A.NOTI_ID = B.NOTI_ID
+				AND A.CATE_ID = #{cateId}
+				AND B.NOTI_EVAL_DIV = '001'
+				GROUP BY A.NOTI_ID
+				ORDER BY CNT
+				LIMIT 0, 6
+				) B, NOTI_INFO C
+		WHERE A.NOTI_ID = B.NOTI_ID
+		AND A.NOTI_ID = C.NOTI_ID
+		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		]]>
+	</select>	
+				
 </mapper>

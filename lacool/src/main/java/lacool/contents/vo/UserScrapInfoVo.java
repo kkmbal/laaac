@@ -1,7 +1,6 @@
 package lacool.contents.vo;
 
 public class UserScrapInfoVo {
-	private String userScrapSeq;
 	private String userId;
 	private String notiId;
 	private String regId;
@@ -9,11 +8,21 @@ public class UserScrapInfoVo {
 	private String updId;
 	private String updDttm;
 	
-	public String getUserScrapSeq() {
-		return userScrapSeq;
+	private String userFileNm;
+	private String userFilePath;
+	
+	
+	public String getUserFileNm() {
+		return userFileNm;
 	}
-	public void setUserScrapSeq(String userScrapSeq) {
-		this.userScrapSeq = userScrapSeq;
+	public void setUserFileNm(String userFileNm) {
+		this.userFileNm = userFileNm;
+	}
+	public String getUserFilePath() {
+		return userFilePath;
+	}
+	public void setUserFilePath(String userFilePath) {
+		this.userFilePath = userFilePath;
 	}
 	public String getUserId() {
 		return userId;
