@@ -143,38 +143,46 @@
 
 	<select id="getContensDetail" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiInfoVo">
 		<![CDATA[	
-			SELECT  NOTI_ID
-				, BOARD_ID
-				, CATE_ID
-				, UP_NOTI_ID
-				, NOTI_KIND
-				, NOTI_TITLE
-				, NOTI_CONTS
-				, NOTI_URL
-				, NOTI_OPN_DIV
-				, FB_REG_YN
-				, DEL_YN
-				, STAT_CD
-				, USER_ID
-				, USER_NM
-				, NOTI_READ_CNT
-				, NOTI_OK_CNT
-				, NOTI_NG_CNT
-				, WRITE_IP
-				, NOTI_BGN_DTTM
-				, NOTI_END_DTTM
-				, SCRAP_CNT
-				, NOTI_OPN_CNT
-				, REG_ID
-				, REG_DTTM
-				, UPD_ID
-				, UPD_DTTM
-				, REF
-				, RESTEP
-				, RELEVEL
-			FROM NOTI_INFO
-			WHERE NOTI_ID = #{notiId}
+			SELECT  A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, B.USER_ID
+				, B.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, A.REG_DTTM
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, B.USER_FILE_NM
+				, B.USER_FILE_PATH
+			FROM NOTI_INFO A,
+			     PSN_USER B
+			WHERE A.NOTI_ID = #{notiId}
+			AND   A.REG_ID = B.USER_ID
+			AND   A.DEL_YN = 'N'
 		]]>
+			<if test="userId != null and userId != ''"> 
+				AND USER_ID = #{userId}
+			</if>			
 	</select>
 	
 	<select id="getContentsFile" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiApndFileVo">
@@ -291,7 +299,7 @@
 				    ,NOTI_EVAL_INFO B
 				WHERE A.NOTI_ID = B.NOTI_ID
 				AND A.CATE_ID = #{cateId}
-				AND B.NOTI_EVAL_DIV = '001'
+				AND B.NOTI_EVAL_DIV = '001' /* 찬성 */
 				GROUP BY A.NOTI_ID
 				ORDER BY CNT
 				LIMIT 0, 6
@@ -301,5 +309,149 @@
 		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 		]]>
 	</select>	
+	
+	<insert id="insertOpn" parameterType="lacool.contents.vo.NotiOpnVo">
+		<selectKey keyProperty="notiOpnSeq" resultType="String" order="BEFORE" >
+		  SELECT IFNULL(MAX(NOTI_OPN_SEQ),0)+1 AS notiOpnSeq FROM NOTI_OPN	     	    
+	    </selectKey>
+	    	
+	    <![CDATA[
+			INSERT INTO NOTI_OPN(
+			  NOTI_OPN_SEQ
+			, NOTI_ID
+			, UP_NOTI_OPN_SEQ
+			, OPN_CONTS
+			, USER_ID
+			, USER_NM
+			, WRITE_IP
+			, REF
+			, RELEVEL
+			, RESTEP
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{notiOpnSeq}
+			, #{notiId}
+			, #{upNotiOpnSeq}
+			, #{opnConts}
+			, #{userId}
+			, #{userNm}
+			, #{writeIp}
+			, #{notiOpnSeq} /* no ref */
+			, #{relevel}
+			, #{restep}
+			, 'N'
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	</insert>	
+	
+	<select id="getNotiOpn" parameterType="lacool.contents.vo.NotiOpnVo" resultType="lacool.contents.vo.NotiOpnVo">
+		<![CDATA[	
+		SELECT  NOTI_OPN_SEQ
+			, NOTI_ID
+			, UP_NOTI_OPN_SEQ
+			, OPN_CONTS
+			, USER_ID
+			, USER_NM
+			, WRITE_IP
+			, REF
+			, RELEVEL
+			, RESTEP
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+		FROM NOTI_OPN 
+		WHERE NOTI_ID = #{notiId}
+		AND NOTI_OPN_SEQ = #{notiOpnSeq}
+		AND DEL_YN = 'N'
+		]]>
+	</select>
+	
+	<select id="listNotiOpn" parameterType="lacool.contents.vo.NotiOpnVo" resultType="lacool.contents.vo.NotiOpnVo">
+		<![CDATA[	
+		SELECT A.NOTI_ID
+			   ,A.NOTI_OPN_SEQ
+			   ,A.UP_NOTI_OPN_SEQ
+			   ,A.OPN_CONTS
+			   ,A.USER_ID
+			   ,A.USER_NM
+			   ,A.REF
+			   ,A.RELEVEL
+			   ,A.RESTEP
+			   ,CAST( DATE_FORMAT( A.UPD_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) UPD_DTTM
+			   ,B.USER_FILE_NM
+			   ,B.USER_FILE_PATH 
+		FROM NOTI_OPN A
+		    ,PSN_USER B
+		WHERE A.NOTI_ID = #{notiId}
+		AND A.DEL_YN = 'N'
+		AND A.USER_ID = B.USER_ID
+		ORDER BY A.REF DESC, A.RESTEP ASC
+		LIMIT #{toLimit}
+		]]>
+	</select>	
+	
+	<update id="updateForReplyNotiOpn" parameterType="lacool.contents.vo.NotiOpnVo">
+	    <![CDATA[
+			UPDATE NOTI_OPN
+			SET RESTEP = RESTEP + 1
+			WHERE NOTI_ID = #{notiId}
+			AND   NOTI_OPN_SEQ = #{notiOpnSeq}
+			AND   DEL_YN = 'N'
+			AND   REF = #{ref}
+			AND   RESTEP > #{restep}
+		]]>
+	</update>	
+	
+	<insert id="insertOpnForReply" parameterType="lacool.contents.vo.NotiOpnVo">
+		<selectKey keyProperty="notiOpnSeq" resultType="String" order="BEFORE" >
+		  SELECT IFNULL(MAX(NOTI_OPN_SEQ),0)+1 AS notiOpnSeq FROM NOTI_OPN	     	    
+	    </selectKey>
+	    	
+	    <![CDATA[
+			INSERT INTO NOTI_OPN(
+			  NOTI_OPN_SEQ
+			, NOTI_ID
+			, UP_NOTI_OPN_SEQ
+			, OPN_CONTS
+			, USER_ID
+			, USER_NM
+			, WRITE_IP
+			, REF
+			, RELEVEL
+			, RESTEP
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{notiOpnSeq}
+			, #{notiId}
+			, #{upNotiOpnSeq}
+			, #{opnConts}
+			, #{userId}
+			, #{userNm}
+			, #{writeIp}
+			, #{ref}
+			, #{relevel}
+			, #{restep}
+			, 'N'
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	</insert>				
 				
 </mapper>

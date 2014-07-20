@@ -172,13 +172,97 @@
 	</script>
 	
 <script type="text/javascript">
+var fromLimit = ${fromLimit};
+
+function fnMakeReplyOpn(seq){
+	$("#comment_reply_"+seq).remove();
+	$("#comment_read_"+seq).append(
+			'<div class="comment_reply" id="comment_reply_'+seq+'">'
+			+'<ul>'
+			+'<li class="reply">&nbsp;</li>'
+			+'<li class="photo"><img src="${ctx}/${userVo.userFilePath}${userVo.userFileNm}"></li>'
+			+'<li class="input"><textarea name="textarea_comment_'+seq+'" id="textarea_comment_'+seq+'" class="textarea_comment" style="width:804px;"></textarea></li>'
+			+'<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="fnCancelReplyOpn(\''+seq+'\')" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="fnReplyOpn(\''+seq+'\')" /></li>'
+			+'</ul>'
+			+'</div>'			
+	);
+	event.stopPropagation();
+	event.preventDefault();
+}
+
+function fnCancelReplyOpn(seq){
+	$("#comment_reply_"+seq).remove();
+}
+
+function fnReplyOpn(seq){
+	var json = {
+			"notiId":"${contents.notiId}", 
+			"notiOpnSeq" : seq, 
+			"upNotiOpnSeq" : 0,
+			"opnConts" : $("#textarea_comment_"+seq).val().replace(/\n/g,"<br/>"),
+			"restep" : 0,
+			"relevel" : 0
+		};
+
+		$.post("${ctx}/contents/insertReplyOpn?format=json", {data:JSON.stringify(json)}, function(data){
+			if(data.error){
+				alert(data.error);
+				return;
+			}
+			
+			listNotiOpn();
+			$("#comment_reply_"+seq).remove();
+		});		
+}
+
+function listNotiOpn(){
+	var json = {
+			"notiId":"${contents.notiId}", 
+			"fromLimit" : fromLimit
+		};		
+	
+	$.post("${ctx}/contents/listNotiOpn?format=json", {data:JSON.stringify(json)}, function(data){
+		if(data.error){
+			alert(data.error);
+			return;
+		}
+		$("#opnDiv div").remove();
+		if(data.listNotiOpn){
+			var json = $.parseJSON(JSON.stringify(data.listNotiOpn));
+			for(var i=0;i<json.length;i++){
+				$("#opnDiv").append(
+						'<div class="comment_area">'
+						+'<div class="comment_read" id="comment_read_'+json[i].notiOpnSeq+'">'
+						+ (json[i].relevel > 0 ?'<div class="reply">&nbsp;</div>':'')
+						+'	<div class="photo fl"><img src="${ctx}/'+json[i].userFilePath + json[i].userFileNm+'"></div>'
+						+ (json[i].relevel == 0?'<div class="content fl" style="width:925px;">':'')
+						+ (json[i].relevel > 0?'<div class="content fl" style="width:870px;">':'')
+						+'		<ul>'
+						+'			<li class="txt1"><span class="id"><a href="#">'+json[i].userNm+'</a></span><span class="t_line">l</span>'+json[i].updDttm
+						+                 (json[i].relevel == 0?'<span class="t_line">l</span><a href="#" onclick="fnMakeReplyOpn(\''+json[i].notiOpnSeq+'\')">답글</a>':'')
+						+'          </li>'
+						+'			<li>'+json[i].opnConts+'</li>'
+						+'		</ul>'
+						+'	</div>'
+						+'	<div class="cb"></div>'
+						+'</div>'
+						+'</div>'					
+				);						
+			}
+		}	
+		fromLimit = data.fromLimit;
+	});	
+	event.stopPropagation();
+	event.preventDefault();
+}
+
 	$(document).ready(function(){
 		//scrap등록
 		$("#regScrap").click(function(){
 			var json = {"notiId":"${contents.notiId}"};
 			$.post("${ctx}/contents/insertScrap?format=json", {data:JSON.stringify(json)}, function(data){
-				if(data.result){
-					alert(data.result);
+				if(data.error){
+					alert(data.error);
 					return;
 				}
 				if(data.scrapCnt){
@@ -197,12 +281,41 @@
 				json.notiEvalDiv = "002";
 			}
 			$.post("${ctx}/contents/insertEval?format=json", {data:JSON.stringify(json)}, function(data){
-				if(data.result){
-					alert(data.result);
+				if(data.error){
+					alert(data.error);
 					return;
 				}
 			});				
 		});
+		
+		//의견등록
+		$("#regOpn").click(function(){
+			var json = {
+				"notiId":"${contents.notiId}", 
+				"notiOpnSeq" : 0, 
+				"upNotiOpnSeq" : 0,
+				"opnConts" : $("#opnConts").val().replace(/\n/g,"<br/>"),
+				"restep" : 0,
+				"relevel" : 0
+			};
+
+			$.post("${ctx}/contents/insertOpn?format=json", {data:JSON.stringify(json)}, function(data){
+				if(data.error){
+					alert(data.error);
+					return;
+				}
+				
+				listNotiOpn();
+				$("#opnConts").val("");
+			});				
+		});
+		
+		//의견취소
+		$("#cancelOpn").click(function(){
+			$("#opnConts").val("");
+		});
+		
+		
 	});
 </script>
 </head>
@@ -329,8 +442,8 @@
 	<div class="scrap_from_area">
 		<div class="scrap_from fl">
 			<ul>
-				<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_user02.jpg"></a></li>
-				<li class="name"><a href="#">등록자명</a><span class="t_line" style="font-weight:normal;">l</span></li>
+				<li class="photo"><a href="#"><img src="${ctx}/${contents.userFilePath}${contents.userFileNm}"></a></li>
+				<li class="name"><a href="#">${contents.userNm}</a><span class="t_line" style="font-weight:normal;">l</span></li>
 				<li class="btn"><input type="button" class="btnd_scrap" value="스크랩" id="regScrap" /></li>
 				<li class="num"><a href="#" class="scrap_num"><span id="scrapCnt">${scrapCnt}</span></a>&nbsp;&nbsp;</li>
 				<li class="btn"><input type="button" class="btni_sns" title="SNS" onclick="" /></li>
@@ -358,8 +471,8 @@
 	<div class="scrap_by_area">
 		<div class="scrap_me fl">
 			<ul>
-				<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg"></a></li>
-				<li class="name"><a href="#">사용자명</a></li>		
+				<li class="photo"><a href="#"><img src="${ctx}/${userVo.userFilePath}${userVo.userFileNm}" class="photo"></a></li>
+				<li class="name"><a href="#">${userVo.userNm}</a></li>		
 			</ul>
 		</div>
 		<div class="scrap_by fr">
@@ -636,13 +749,36 @@
 	<!-- Comment_Write - start -->
 	<div class="comment_write">
 		<ul>
-			<li class="photo"><img src="${ctx}/resources/images/test/photo_user01.jpg"></li>
-			<li class="input"><textarea name="" class="textarea_comment" style="width:858px;"></textarea></li>
-			<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="" /></li>
+			<li class="photo"><img src="${ctx}/${userVo.userFilePath}${userVo.userFileNm}"></li>
+			<li class="input"><textarea name="opnConts" id="opnConts" class="textarea_comment" style="width:858px;"></textarea></li>
+			<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" id="cancelOpn" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" id="regOpn" /></li>
 		</ul>
 	</div>
 	<!-- Comment_Write - end -->
 	<div class="blank_height5"></div>
+	
+	<div id="opnDiv">
+		<c:forEach var="result" items="${listNotiOpn}" varStatus="status">
+		<div class="comment_area">
+			<div class="comment_read" id="comment_read_${result.notiOpnSeq}">
+				<c:if test="${result.relevel > 0}"><div class="reply">&nbsp;</div></c:if>
+				<div class="photo fl"><img src="${ctx}/${result.userFilePath}${result.userFileNm}"></div>
+				<c:if test="${result.relevel == 0}"><div class="content fl" style="width:925px;"></c:if>
+				<c:if test="${result.relevel > 0}"><div class="content fl" style="width:870px;"></c:if>
+					<ul>
+						<li class="txt1"><span class="id"><a href="#">${result.userNm}</a></span><span class="t_line">l</span>${result.updDttm}
+						<c:if test="${result.relevel == 0}"><span class="t_line">l</span><a href="#" onclick="fnMakeReplyOpn('${result.notiOpnSeq}')">답글</a></c:if>
+						</li>
+						<li>${result.opnConts}</li>
+					</ul>
+				</div>
+				<div class="cb"></div>
+			</div>		
+		</div>
+		</c:forEach>
+	</div>
+	
+	<%--
 	<!-- Comment01 - start -->
 	<div class="comment_area">
 		<!-- comment_read_set01 - start -->
@@ -735,7 +871,18 @@
 		<div class="cb"></div>
 	</div>
 	<!-- Paging - end -->
-
+	--%>
+	
+	<div class="blank_height10"></div>
+	<!-- Paging - start -->
+	<div class="paging">
+<!-- 		<div class="btn fl"><input type="button" class="btni_first_inact" title="처음" onclick="" /><input type="button" class="btni_prev_inact" title="이전" onclick="" /></div> -->
+		<div class="pagenum fl"><a href="#" onclick="listNotiOpn();" style="padding-left:120px;">더보기</a></div>
+<!-- 		<div class="btn fr"><input type="button" class="btni_next" title="다음" onclick="" /><input type="button" class="btni_last" title="끝" onclick="" /></div> -->
+		<div class="cb"></div>
+	</div>
+	<!-- Paging - end -->	
+	
 
 </div>
 <!-- contents-end -->

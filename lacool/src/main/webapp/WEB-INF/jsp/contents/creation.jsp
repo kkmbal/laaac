@@ -15,8 +15,8 @@ var apndFileList = [];
 	$(document).ready(function(){
 		//대분류
 		$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
-			if(data.result){
-				alert(data.result);
+			if(data.error){
+				alert(data.error);
 				return;
 			}
 			if(data.listCategoryVo){
@@ -33,8 +33,8 @@ var apndFileList = [];
 			if($(this).val() != ""){
 				var data = {upCateId:$(this).val()};
 				$.post("${ctx}/category/listSubCategory?format=json", {data:JSON.stringify(data)}, function(data){
-					if(data.result){
-						alert(data.result);
+					if(data.error){
+						alert(data.error);
 						return;
 					}
 					if(data.listCategoryVo){
@@ -148,8 +148,8 @@ var apndFileList = [];
 						console.log(JSON.stringify(notiObject))
 						
 						$.post("${ctx}/contents/contentsReg?format=json", {"data":JSON.stringify(notiObject)}, function(data){
-							if(data.result){
-								alert(data.result);
+							if(data.error){
+								alert(data.error);
 								return;
 							}
 							

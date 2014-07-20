@@ -41,8 +41,8 @@
 			}
 			
 			$.post(url, {data:JSON.stringify(data)}, function(data){
-				if(data.result){
-					alert(data.result);
+				if(data.error){
+					alert(data.error);
 					return;
 				}
 				window.open("${ctx}/category/ask_category_pop", "pop", "height=200,width=340,resizable=no,scrollbars=no");
@@ -52,8 +52,8 @@
 		
 		//대분류
 		$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
-			if(data.result){
-				alert(data.result);
+			if(data.error){
+				alert(data.error);
 				return;
 			}
 			if(data.listCategoryVo){
@@ -71,8 +71,8 @@
 			var obj = $(thi).find("ul");
 			if(obj.length > 0 ) return false;
 			$.post("${ctx}/category/listSubCategory?format=json", {data:JSON.stringify(data)}, function(data){
-				if(data.result){
-					alert(data.result);
+				if(data.error){
+					alert(data.error);
 					return;
 				}
 				if(data.listCategoryVo){

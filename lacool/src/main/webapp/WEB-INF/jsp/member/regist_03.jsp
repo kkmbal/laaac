@@ -14,8 +14,8 @@
 		data.email = $("#email").val();
 		data.pwd = $("#pwd").val();
 		$.post("${ctx}/member/doLogin?format=json", {data:JSON.stringify(data)}, function(data){
-			if(data.result){
-				alert(data.result);
+			if(data.error){
+				alert(data.error);
 				return;
 			}
 			location.href = "${ctx}/index.jsp";
@@ -78,8 +78,8 @@
 			data.mailRecvYn = $("#mailRecvYn").val();
 			
 			$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(data)}, function(data){
-				if(data.result){
-					alert(data.result);
+				if(data.error){
+					alert(data.error);
 					return;
 				}
 				window.open("${ctx}/member/regist_03_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");

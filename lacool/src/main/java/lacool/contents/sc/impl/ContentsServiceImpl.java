@@ -7,6 +7,7 @@ import lacool.contents.sc.ContentsService;
 import lacool.contents.vo.NotiApndFileVo;
 import lacool.contents.vo.NotiEvalInfoVo;
 import lacool.contents.vo.NotiInfoVo;
+import lacool.contents.vo.NotiOpnVo;
 import lacool.contents.vo.UserScrapInfoVo;
 import lacool.member.vo.UserVo;
 import net.sf.json.JSONArray;
@@ -129,5 +130,31 @@ public class ContentsServiceImpl implements ContentsService {
 	@Override
 	public List<NotiApndFileVo> getNotiEvalOfCate(NotiInfoVo vo) {
 		return contentsMapper.getNotiEvalOfCate(vo);
+	}
+	
+	@Override
+	public void insertOpn(NotiOpnVo notiOpnVo) {
+		contentsMapper.insertOpn(notiOpnVo);
+	}
+	
+	@Override
+	public NotiOpnVo getNotiOpn(NotiOpnVo notiOpnVo) {
+		return contentsMapper.getNotiOpn(notiOpnVo);
+	}
+	
+	@Override
+	public List<NotiOpnVo> listNotiOpn(NotiOpnVo notiOpnVo) {
+		return contentsMapper.listNotiOpn(notiOpnVo);
+	}
+	
+	@Override
+	public void insertReplyOpn(NotiOpnVo notiOpnVo) {
+		NotiOpnVo resultNotiOpnVo = contentsMapper.getNotiOpn(notiOpnVo);
+		contentsMapper.updateForReplyNotiOpn(resultNotiOpnVo);
+		
+		notiOpnVo.setRef(resultNotiOpnVo.getRef());
+		notiOpnVo.setRestep(resultNotiOpnVo.getRestep()+1);
+		notiOpnVo.setRelevel(resultNotiOpnVo.getRelevel()+1);
+		contentsMapper.insertOpnForReply(notiOpnVo);
 	}
 }

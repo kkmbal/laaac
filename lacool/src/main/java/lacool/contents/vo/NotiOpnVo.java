@@ -11,11 +11,50 @@ public class NotiOpnVo {
 	private String restep;
 	private String relevel;
 	private String writeIp;
+	private String delYn;
 	private String regId;
 	private String regDttm;
 	private String updId;
 	private String updDttm;
 	
+	private int fromLimit;
+	private int toLimit;
+	private String userFileNm;
+	private String userFilePath;
+	
+	
+	
+	
+	public String getUserFileNm() {
+		return userFileNm;
+	}
+	public void setUserFileNm(String userFileNm) {
+		this.userFileNm = userFileNm;
+	}
+	public String getUserFilePath() {
+		return userFilePath;
+	}
+	public void setUserFilePath(String userFilePath) {
+		this.userFilePath = userFilePath;
+	}
+	public int getFromLimit() {
+		return fromLimit;
+	}
+	public void setFromLimit(int fromLimit) {
+		this.fromLimit = fromLimit;
+	}
+	public int getToLimit() {
+		return toLimit;
+	}
+	public void setToLimit(int toLimit) {
+		this.toLimit = toLimit;
+	}
+	public String getDelYn() {
+		return delYn;
+	}
+	public void setDelYn(String delYn) {
+		this.delYn = delYn;
+	}
 	public String getNotiOpnSeq() {
 		return notiOpnSeq;
 	}

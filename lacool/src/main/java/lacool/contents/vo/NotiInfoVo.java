@@ -31,6 +31,22 @@ public class NotiInfoVo {
 	private String updId;
 	private String updDttm;
 	
+	private String userFileNm;
+	private String userFilePath;
+	
+	
+	public String getUserFileNm() {
+		return userFileNm;
+	}
+	public void setUserFileNm(String userFileNm) {
+		this.userFileNm = userFileNm;
+	}
+	public String getUserFilePath() {
+		return userFilePath;
+	}
+	public void setUserFilePath(String userFilePath) {
+		this.userFilePath = userFilePath;
+	}
 	public String getNotiId() {
 		return notiId;
 	}

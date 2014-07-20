@@ -59,8 +59,8 @@ $(document).ready(function(){
 		data.email = $("#email").val();
 		data.pwd = $("#pwd").val();
 		$.post("${ctx}/member/userReg?format=json", {data:JSON.stringify(data)}, function(data){
-			if(data.result){
-				alert(data.result);
+			if(data.error){
+				alert(data.error);
 				return;
 			}
 			location.href = "${ctx}/member/regist_02";

@@ -5,6 +5,7 @@ import java.util.List;
 import lacool.contents.vo.NotiApndFileVo;
 import lacool.contents.vo.NotiEvalInfoVo;
 import lacool.contents.vo.NotiInfoVo;
+import lacool.contents.vo.NotiOpnVo;
 import lacool.contents.vo.UserScrapInfoVo;
 
 import org.springframework.stereotype.Repository;
@@ -31,4 +32,14 @@ public interface ContentsMapper {
 	public void insertNotiEval(NotiEvalInfoVo notiEvalInfoVo);
 	
 	public List<NotiApndFileVo> getNotiEvalOfCate(NotiInfoVo vo);
+
+	public void insertOpn(NotiOpnVo notiOpnVo);
+
+	public NotiOpnVo getNotiOpn(NotiOpnVo notiOpnVo);
+	
+	public List<NotiOpnVo> listNotiOpn(NotiOpnVo notiOpnVo);
+
+	public void updateForReplyNotiOpn(NotiOpnVo notiOpnVo);
+
+	public void insertOpnForReply(NotiOpnVo resultNotiOpnVo);
 }

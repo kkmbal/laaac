@@ -51,7 +51,7 @@ public class CategoryController {
 			List<CategoryVo> listCategory = categoryService.listCategory(vo);
 			modelMap.put("listCategoryVo", listCategory);
 		}catch(Exception e){
-			modelMap.put("result", "category create error");
+			modelMap.put("error", "category create error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;
@@ -69,7 +69,7 @@ public class CategoryController {
 			List<CategoryVo> listCategory = categoryService.listCategory(vo);
 			modelMap.put("listCategoryVo", listCategory);
 		}catch(Exception e){
-			modelMap.put("result", "category create error");
+			modelMap.put("error", "category create error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;
@@ -91,7 +91,7 @@ public class CategoryController {
 			categoryService.insertMainCategory(categoryVo);
 
 		}catch(Exception e){
-			modelMap.put("result", "category create error");
+			modelMap.put("error", "category create error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;
@@ -110,7 +110,7 @@ public class CategoryController {
 			categoryService.insertSubCategory(categoryVo);
 			
 		}catch(Exception e){
-			modelMap.put("result", "category create error");
+			modelMap.put("error", "category create error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;

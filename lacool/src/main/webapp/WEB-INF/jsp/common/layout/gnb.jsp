@@ -25,8 +25,8 @@
 			
 			//대분류
 			$.post("${ctx}/category/listMainCategory?format=json", {data:""}, function(data){
-				if(data.result){
-					alert(data.result);
+				if(data.error){
+					alert(data.error);
 					return;
 				}
 				if(data.listCategoryVo){
@@ -35,8 +35,8 @@
 						$("#category_menu").append('<li id="main_'+json[i].cateId+'"><a href="#"><div class="tl10">'+json[i].cateNm+'</div></a><ul></ul></li>');
 						var data = {upCateId:json[i].cateId};
 						$.post("${ctx}/category/listSubCategory?format=json", {data:JSON.stringify(data)}, function(data){
-							if(data.result){
-								alert(data.result);
+							if(data.error){
+								alert(data.error);
 								return;
 							}
 							if(data.listCategoryVo){

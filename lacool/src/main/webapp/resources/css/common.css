@@ -1236,6 +1236,11 @@ width:43px;/*45px*/
 height:43px;/*45px*/
 border:1px solid #dedede;
 }
+.scrap_me li.photo img,.comment_write li.photo img,.comment_read img,.scrap_from_area .photo img {
+width:43px;/*45px*/
+height:43px;/*45px*/
+/* border:1px solid #dedede; */
+}
 .scrap_me li.name {
 padding:0px 0px 0px 5px;
 font-size:12px;

@@ -54,7 +54,7 @@ public class UserController {
 				throw new LaCoolException("Email Dup");
 			}
 		}catch(Exception e){
-			modelMap.put("result", "error");
+			modelMap.put("error", "error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;
@@ -73,7 +73,7 @@ public class UserController {
 				throw new LaCoolException("not user");
 			}
 		}catch(Exception e){
-			modelMap.put("result", e.toString());
+			modelMap.put("error", e.toString());
 			log.error(e.toString(), e);
 		}
 		return modelMap;
@@ -111,7 +111,7 @@ public class UserController {
 				throw new LaCoolException("Not User");
 			}
 		}catch(Exception e){
-			modelMap.put("result", "error");
+			modelMap.put("error", "error");
 			log.error(e.toString(), e);
 		}
 		return modelMap;
