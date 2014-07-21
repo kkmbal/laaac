@@ -284,29 +284,54 @@
 		]]>
 	</insert>
 	
+	<update id="updateNotiEvalOk" parameterType="lacool.contents.vo.NotiEvalInfoVo">
+	    <![CDATA[
+			UPDATE NOTI_INFO
+			SET NOTI_OK_CNT = NOTI_OK_CNT + 1
+			WHERE NOTI_ID = #{notiId}
+		]]>
+	</update>	
+	
+	<update id="updateNotiEvalNg" parameterType="lacool.contents.vo.NotiEvalInfoVo">
+	    <![CDATA[
+			UPDATE NOTI_INFO
+			SET NOTI_NG_CNT = NOTI_NG_CNT + 1
+			WHERE NOTI_ID = #{notiId}
+		]]>
+	</update>	
+	
+	<update id="updateScrapCnt" parameterType="lacool.contents.vo.UserScrapInfoVo">
+	    <![CDATA[
+			UPDATE NOTI_INFO
+			SET SCRAP_CNT = SCRAP_CNT + 1
+			WHERE NOTI_ID = #{notiId}
+		]]>
+	</update>	
+	
+	<update id="updateReadCnt" parameterType="lacool.contents.vo.NotiInfoVo">
+	    <![CDATA[
+			UPDATE NOTI_INFO
+			SET NOTI_READ_CNT = NOTI_READ_CNT + 1
+			WHERE NOTI_ID = #{notiId}
+			AND REG_ID != #{userId}
+		]]>
+	</update>	
 	
 	<select id="getNotiEvalOfCate" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiApndFileVo">
 		<![CDATA[	
-		SELECT A.NOTI_ID
+		SELECT C.NOTI_ID
 		      ,A.APND_FILE_SEQ
 		      ,A.APND_FILE_ORGN
 		      ,A.APND_FILE_NM
 		      ,A.APND_FILE_PATH
 		      ,C.NOTI_TITLE
 		FROM NOTI_APND_FILE A,
-			  (SELECT A.NOTI_ID, COUNT(B.EVAL_SEQ) CNT
-				FROM NOTI_INFO A
-				    ,NOTI_EVAL_INFO B
-				WHERE A.NOTI_ID = B.NOTI_ID
-				AND A.CATE_ID = #{cateId}
-				AND B.NOTI_EVAL_DIV = '001' /* 찬성 */
-				GROUP BY A.NOTI_ID
-				ORDER BY CNT
-				LIMIT 0, 6
-				) B, NOTI_INFO C
-		WHERE A.NOTI_ID = B.NOTI_ID
-		AND A.NOTI_ID = C.NOTI_ID
+			 NOTI_INFO C
+		WHERE A.NOTI_ID = C.NOTI_ID
+		AND C.CATE_ID = #{cateId}
 		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		ORDER BY NOTI_OK_CNT DESC
+		LIMIT 6
 		]]>
 	</select>	
 	

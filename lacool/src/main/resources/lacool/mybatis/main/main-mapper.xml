@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lacool.main.mapper.MainMapper">
+	
+	<select id="getRecentNotiInfo" parameterType="lacool.main.vo.MainVo" resultType="lacool.main.vo.MainVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, B.USER_ID
+				, B.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, B.USER_FILE_NM
+				, B.USER_FILE_PATH
+		        , C.APND_FILE_SEQ
+		        , C.APND_FILE_ORGN
+		        , C.APND_FILE_NM
+		        , C.APND_FILE_PATH				
+			FROM NOTI_INFO A,
+			     PSN_USER B,
+			     NOTI_APND_FILE C
+			WHERE A.REG_ID = B.USER_ID
+			AND   A.DEL_YN = 'N'
+			AND   A.NOTI_ID = C.NOTI_ID
+			AND   C.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+			ORDER BY REG_DTTM DESC
+			LIMIT 1
+		]]>
+	</select>
+	
+	<select id="listHotIssueNotiInfo" parameterType="lacool.main.vo.MainVo" resultType="lacool.main.vo.MainVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, B.USER_ID
+				, B.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, A.REG_DTTM
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, B.USER_FILE_NM
+				, B.USER_FILE_PATH
+		        , C.APND_FILE_SEQ
+		        , C.APND_FILE_ORGN
+		        , C.APND_FILE_NM
+		        , C.APND_FILE_PATH					
+			FROM NOTI_INFO A,
+			     PSN_USER B,
+			     NOTI_APND_FILE C
+			WHERE A.REG_ID = B.USER_ID
+			AND   A.DEL_YN = 'N'
+			AND   A.NOTI_ID = C.NOTI_ID
+			AND   C.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+			ORDER BY A.NOTI_READ_CNT DESC
+			LIMIT 6
+		]]>
+	</select>
+	
+	
+	<select id="listNotiEvalOkInfo" parameterType="lacool.main.vo.MainVo" resultType="lacool.main.vo.MainVo">
+		<![CDATA[	
+		SELECT C.NOTI_ID
+		      ,A.APND_FILE_SEQ
+		      ,A.APND_FILE_ORGN
+		      ,A.APND_FILE_NM
+		      ,A.APND_FILE_PATH
+		      ,C.NOTI_TITLE
+		FROM NOTI_APND_FILE A,
+			 NOTI_INFO C
+		WHERE A.NOTI_ID = C.NOTI_ID
+		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		ORDER BY NOTI_OK_CNT DESC
+		LIMIT 5
+		]]>
+	</select>
+	
+	<select id="listNotiEvalOkOfCate" parameterType="lacool.main.vo.MainVo" resultType="lacool.main.vo.MainVo">
+		<![CDATA[	
+		SELECT C.NOTI_ID
+		      ,C.NOTI_OK_CNT
+		      ,A.APND_FILE_SEQ
+		      ,A.APND_FILE_ORGN
+		      ,A.APND_FILE_NM
+		      ,A.APND_FILE_PATH
+		      ,C.NOTI_TITLE
+		FROM NOTI_APND_FILE A,
+			 NOTI_INFO C
+		WHERE A.NOTI_ID = C.NOTI_ID
+		AND C.CATE_ID IN (SELECT CATE_ID FROM CATE_INFO WHERE UP_CATE_ID = #{cateId} AND DEL_YN = 'N')
+		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		ORDER BY NOTI_OK_CNT DESC
+		LIMIT 4
+		]]>
+	</select>	
+	
+	<select id="listNotiEvalNgOfCate" parameterType="lacool.main.vo.MainVo" resultType="lacool.main.vo.MainVo">
+		<![CDATA[	
+		SELECT C.NOTI_ID
+		      ,C.NOTI_NG_CNT
+		      ,A.APND_FILE_SEQ
+		      ,A.APND_FILE_ORGN
+		      ,A.APND_FILE_NM
+		      ,A.APND_FILE_PATH
+		      ,C.NOTI_TITLE
+		FROM NOTI_APND_FILE A,
+			 NOTI_INFO C
+		WHERE A.NOTI_ID = C.NOTI_ID
+		AND C.CATE_ID IN (SELECT CATE_ID FROM CATE_INFO WHERE UP_CATE_ID = #{cateId} AND DEL_YN = 'N')
+		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		ORDER BY NOTI_NG_CNT DESC
+		LIMIT 4
+		]]>
+	</select>	
+		
+</mapper>

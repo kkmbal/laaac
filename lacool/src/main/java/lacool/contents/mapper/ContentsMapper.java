@@ -42,4 +42,12 @@ public interface ContentsMapper {
 	public void updateForReplyNotiOpn(NotiOpnVo notiOpnVo);
 
 	public void insertOpnForReply(NotiOpnVo resultNotiOpnVo);
+
+	public void updateNotiEvalOk(NotiEvalInfoVo notiEvalInfoVo);
+
+	public void updateNotiEvalNg(NotiEvalInfoVo notiEvalInfoVo);
+	
+	public void updateScrapCnt(UserScrapInfoVo scrapInfoVo);
+	
+	public void updateReadCnt(NotiInfoVo vo);
 }

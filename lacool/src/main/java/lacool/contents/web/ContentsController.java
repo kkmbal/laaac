@@ -53,7 +53,7 @@ public class ContentsController {
 			HttpSession session
 			)throws Exception {
 		
-		return "/contents/history";
+		return "contents/history";
 	}
 	
 	@RequestMapping(value="/creation")
@@ -90,6 +90,7 @@ public class ContentsController {
 		
 		NotiInfoVo vo = new NotiInfoVo();
 		vo.setNotiId(notiId);
+		vo.setRegId(sessionUserVo.getUserId());
 		NotiInfoVo resultVo = contentsService.getContensDetail(vo); //상세
 		List<NotiApndFileVo> fileVo = contentsService.getContentsFile(vo); //첨부파일
 		if(fileVo.size() > 0){

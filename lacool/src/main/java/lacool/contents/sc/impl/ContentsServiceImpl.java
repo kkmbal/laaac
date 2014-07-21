@@ -83,6 +83,7 @@ public class ContentsServiceImpl implements ContentsService {
 
 	@Override
 	public NotiInfoVo getContensDetail(NotiInfoVo vo) {
+		contentsMapper.updateReadCnt(vo);
 		return contentsMapper.getContensDetail(vo);
 	}
 
@@ -102,6 +103,7 @@ public class ContentsServiceImpl implements ContentsService {
 		scrapInfoVo.setUpdId(userVo.getUserId());
 		
 		contentsMapper.insertScrap(scrapInfoVo);
+		contentsMapper.updateScrapCnt(scrapInfoVo);
 		
 		return scrapInfoVo;
 	}
@@ -124,6 +126,13 @@ public class ContentsServiceImpl implements ContentsService {
 	@Override
 	public void insertNotiEval(NotiEvalInfoVo notiEvalInfoVo) {
 		contentsMapper.insertNotiEval(notiEvalInfoVo);
+		if("001".equals(notiEvalInfoVo.getNotiEvalDiv())){
+			//찬성
+			contentsMapper.updateNotiEvalOk(notiEvalInfoVo);
+		}else if("002".equals(notiEvalInfoVo.getNotiEvalDiv())){
+			//반대
+			contentsMapper.updateNotiEvalNg(notiEvalInfoVo);
+		}
 	}
 	
 

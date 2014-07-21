@@ -30,8 +30,12 @@ $(document).ready(function(){
 				alert(data.error);
 				return;
 			}
-			opener.location.href = "${ctx}/index.jsp";
-			self.close();
+			if(opener){
+				opener.location.href = "${ctx}/index.jsp";
+				self.close();
+			}else{
+				location.href = "${ctx}/index.jsp";
+			}
 		});	
 	});
 	
