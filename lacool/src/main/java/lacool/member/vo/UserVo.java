@@ -29,8 +29,21 @@ public class UserVo implements Serializable{
 	private String emailDttm;
 	private String imageFile;
 	
+	private String nationNmDesc;
 	
 	
+	public String getNationNmDesc() {
+		String nm = "";
+		if("001".equals(nationNm)){
+			nm = "대한민국";
+		}else{
+			nm = nationNm;
+		}
+		return nm;
+	}
+	public void setNationNmDesc(String nationNmDesc) {
+		this.nationNmDesc = nationNmDesc;
+	}
 	public String getImageFile() {
 		return imageFile;
 	}

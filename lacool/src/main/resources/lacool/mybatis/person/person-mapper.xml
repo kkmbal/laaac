@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lacool.personal.mapper.PersonMapper">
+	
+	<select id="listUserContents" parameterType="lacool.personal.vo.PersonVo" resultType="lacool.personal.vo.PersonVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+			     , B.APND_FILE_SEQ
+			     , B.APND_FILE_ORGN
+			     , B.APND_FILE_NM
+			     , B.APND_FILE_PATH	
+			FROM NOTI_INFO A
+			    ,NOTI_APND_FILE B
+			WHERE A.REG_ID= #{userId}
+			AND   A.NOTI_ID = B.NOTI_ID
+			AND   A.DEL_YN = 'N'
+			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+			ORDER BY A.${order} DESC
+			LIMIT #{fromLimit}, #{toLimit}
+		]]>
+	</select>
+	
+	<select id="listUserContentsCnt" parameterType="lacool.personal.vo.PersonVo" resultType="int">
+		<![CDATA[	
+			SELECT  COUNT(A.NOTI_ID) CNT
+			FROM NOTI_INFO A
+			    ,NOTI_APND_FILE B
+			WHERE A.REG_ID= #{userId}
+			AND   A.NOTI_ID = B.NOTI_ID
+			AND   A.DEL_YN = 'N'
+			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		]]>
+	</select>
+	
+
+	<insert id="insertOpn" parameterType="lacool.personal.vo.PsnOpnVo">
+		<selectKey keyProperty="psnOpnSeq" resultType="String" order="BEFORE" >
+		  SELECT IFNULL(MAX(PSN_OPN_SEQ),0)+1 AS psnOpnSeq FROM PSN_OPN	     	    
+	    </selectKey>
+	    	
+	    <![CDATA[
+			INSERT INTO PSN_OPN(
+			  PSN_OPN_SEQ
+			, USER_ID
+			, UP_PSN_OPN_SEQ
+			, OPN_CONTS
+			, WRITE_IP
+			, REF
+			, RELEVEL
+			, RESTEP
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{psnOpnSeq}
+			, #{userId}
+			, #{upPsnOpnSeq}
+			, #{opnConts}
+			, #{writeIp}
+			, #{psnOpnSeq} /* no ref */
+			, #{relevel}
+			, #{restep}
+			, 'N'
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	</insert>	
+	
+	<select id="getPsnOpn" parameterType="lacool.personal.vo.PsnOpnVo" resultType="lacool.personal.vo.PsnOpnVo">
+		<![CDATA[	
+		SELECT  PSN_OPN_SEQ
+			, USER_ID
+			, UP_PSN_OPN_SEQ
+			, OPN_CONTS
+			, WRITE_IP
+			, REF
+			, RELEVEL
+			, RESTEP
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+		FROM PSN_OPN 
+		WHERE USER_ID = #{userId}
+		AND PSN_OPN_SEQ = #{psnOpnSeq}
+		AND DEL_YN = 'N'
+		]]>
+	</select>
+	
+	<select id="listPsnOpn" parameterType="lacool.personal.vo.PsnOpnVo" resultType="lacool.personal.vo.PsnOpnVo">
+		<![CDATA[	
+		SELECT A.USER_ID
+		       ,B.USER_NM
+			   ,A.PSN_OPN_SEQ
+			   ,A.UP_PSN_OPN_SEQ
+			   ,A.OPN_CONTS
+			   ,A.REF
+			   ,A.RELEVEL
+			   ,A.RESTEP
+			   ,CAST( DATE_FORMAT( A.UPD_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) UPD_DTTM
+			   ,B.USER_FILE_NM
+			   ,B.USER_FILE_PATH 
+		FROM PSN_OPN A
+		    ,PSN_USER B
+		WHERE A.USER_ID = #{userId}
+		AND A.DEL_YN = 'N'
+		AND A.USER_ID = B.USER_ID
+		ORDER BY A.REF DESC, A.RESTEP ASC
+		LIMIT #{toLimit}
+		]]>
+	</select>	
+	
+	<update id="updateForReplyPsnOpn" parameterType="lacool.personal.vo.PsnOpnVo">
+	    <![CDATA[
+			UPDATE PSN_OPN
+			SET RESTEP = RESTEP + 1
+			WHERE USER_ID = #{userId}
+			AND   PSN_OPN_SEQ = #{psnOpnSeq}
+			AND   DEL_YN = 'N'
+			AND   REF = #{ref}
+			AND   RESTEP > #{restep}
+		]]>
+	</update>	
+	
+	<insert id="insertOpnForReply" parameterType="lacool.personal.vo.PsnOpnVo">
+		<selectKey keyProperty="psnOpnSeq" resultType="String" order="BEFORE" >
+		  SELECT IFNULL(MAX(PSN_OPN_SEQ),0)+1 AS psnOpnSeq FROM PSN_OPN	     	    
+	    </selectKey>
+	    	
+	    <![CDATA[
+			INSERT INTO PSN_OPN(
+			  PSN_OPN_SEQ
+			, USER_ID
+			, UP_PSN_OPN_SEQ
+			, OPN_CONTS
+			, WRITE_IP
+			, REF
+			, RELEVEL
+			, RESTEP
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{psnOpnSeq}
+			, #{userId}
+			, #{upPsnOpnSeq}
+			, #{opnConts}
+			, #{writeIp}
+			, #{ref}
+			, #{relevel}
+			, #{restep}
+			, 'N'
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	</insert>	
+		
+</mapper>

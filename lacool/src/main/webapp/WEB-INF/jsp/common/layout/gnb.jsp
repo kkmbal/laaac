@@ -123,7 +123,7 @@
 			<li><a href="${ctx}/" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0101','','${ctx}/resources/images/gnb/menu1-ov.gif',1)">
 <img src="${ctx}/resources/images/gnb/menu1.gif" width="69" height="63" border="0" name="gnbmenu0101" id="gnbmenu0101" title="홈"></a></li>
 			<li><img src="${ctx}/resources/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="${ctx}/personal/personal_home" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0102','','${ctx}/resources/images/gnb/menu2-ov.gif',1)">
+			<li><a href="${ctx}/personal/home" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0102','','${ctx}/resources/images/gnb/menu2-ov.gif',1)">
 <img src="${ctx}/resources/images/gnb/menu2.gif" width="94" height="63" border="0" name="gnbmenu0102" id="gnbmenu0102" title="개인 홈"></a></li>
 			<li><img src="${ctx}/resources/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
 			<li><a href="${ctx}/contents/history" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0103','','${ctx}/resources/images/gnb/menu3-ov.gif',1)">

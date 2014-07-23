@@ -36,6 +36,9 @@
 			<if test="email != null and email != ''"> 
 				AND EMAIL = #{email}
 			</if>	  	
+			<if test="(email == null or email == '') and (userId == null or userId == '')"> 
+				AND 1 = 2
+			</if>	  	
 			LIMIT 1   
 	</select>
 	
