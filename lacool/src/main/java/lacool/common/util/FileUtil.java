@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -23,6 +24,11 @@ import lacool.member.vo.UserVo;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.util.WebUtils;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -143,6 +149,37 @@ public class FileUtil {
 		return jsonArr;
 	}	
 	
+	
+	public static JSONArray uploadFile(HttpServletRequest request, String savePath)	throws FileUploadException, Exception {
+		JSONArray jsonArr = new JSONArray();
+    	
+    	//String path = "C:/Work/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/lacool/resources/images/upload/";
+    	String path = WebUtils.getRealPath(request.getServletContext(), "/") + savePath;
+    	
+        if (ServletFileUpload.isMultipartContent(request)){
+        	FileItemFactory factory = new DiskFileItemFactory();
+        	ServletFileUpload fileUpload = new ServletFileUpload(factory);
+            fileUpload.setSizeMax(1000*1024*1024);
+            List fileItemList = fileUpload.parseRequest(request);
+            
+            System.out.println("file cnt:"+fileItemList.size());
+            for (int i = 0; i < fileItemList.size(); i++){
+            	FileItem fileItem = (FileItem)fileItemList.get(i);
+            	if(fileItem.getName() == null) continue;
+            	String dir = path + FileUtil.randomString(fileItem.getName());
+            	//System.out.println("dir=="+dir);
+            	File tmpFile = new File(dir);
+            	fileItem.write(tmpFile);
+            	
+            	JSONObject jsonObject = new JSONObject();
+            	jsonObject.put("apndFileNm", tmpFile.getName());
+            	jsonObject.put("apndFileOrgn", fileItem.getName());
+            	jsonArr.add(jsonObject);
+            	
+            }
+        }
+		return jsonArr;
+	}		
 	
 	
 	public void changeImageQuality(){

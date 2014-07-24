@@ -147,4 +147,14 @@ public class PersonController {
 	}
 	
 	
+	@RequestMapping(value="/info")
+	public String info(HttpServletRequest request, ModelMap modelMap){
+		
+		UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
+		UserVo user = userService.getUser(userVo);
+		modelMap.put("userVo", user);
+
+		return "personal/personal_informaion";
+	}
+	
 }

@@ -21,6 +21,7 @@
 			location.href = "${ctx}/index.jsp";
 		});
 		*/
+		$("#nationNm").val('${userVo.nationNm}');
 		
 		$("#userUrl").click(function(){
 			$("#userUrl").val("");
@@ -159,7 +160,7 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input name="phone" id="phone" type="text" class="input" style="width:340px;" value=""></td>
+						<td><input name="phone" id="phone" type="text" class="input" style="width:340px;" value="${userVo.mobile}"></td>
 						<td class="gridt_blank" nowrap></td>
 						<td><span class="gridt_txt01">- 없이 입력</span></td>
 					</tr>
@@ -229,9 +230,9 @@
 						<td class="gridt_blank" nowrap></td>
 						<td>일</td>
 						<td width="60"></td>
-						<td><input type="radio" name="male" id="female" hidefocus="true" class="radio" value="F" checked>여성</td>
+						<td><input type="radio" name="mailfemale" id="female" hidefocus="true" class="radio" value="F" checked>여성</td>
 						<td width="30" nowrap></td>
-						<td><input type="radio" name="female" id="male" hidefocus="true" class="radio" value="M">남성</td>
+						<td><input type="radio" name="mailfemale" id="male" hidefocus="true" class="radio" value="M">남성</td>
 					</tr>
 				</table>
 				<!-- end -->

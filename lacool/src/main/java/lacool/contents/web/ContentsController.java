@@ -1,6 +1,5 @@
 package lacool.contents.web;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +20,6 @@ import lacool.member.vo.UserVo;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -232,36 +227,14 @@ public class ContentsController {
     @RequestMapping("/bbsFileUpload") 
     @ResponseBody 
     public void bbsFileUpload(HttpServletRequest request, HttpServletResponse response, ModelMap model, HttpSession session) throws Exception{
-    	JSONArray jsonArr = new JSONArray();
+    	JSONArray jsonArr = FileUtil.uploadFile(request, "/resources/images/upload/");   
     	
-    	String path = "C:/Work/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/lacool/resources/images/upload/";
-    	
-        if (ServletFileUpload.isMultipartContent(request)){
-        	FileItemFactory factory = new DiskFileItemFactory();
-        	ServletFileUpload fileUpload = new ServletFileUpload(factory);
-            fileUpload.setSizeMax(1000*1024*1024);
-            List fileItemList = fileUpload.parseRequest(request);
-            
-            System.out.println("file cnt:"+fileItemList.size());
-            for (int i = 0; i < fileItemList.size(); i++){
-            	FileItem fileItem = (FileItem)fileItemList.get(i);
-            	if(fileItem.getName() == null) continue;
-            	String dir = path + FileUtil.randomString(fileItem.getName());
-            	System.out.println("dir=="+dir);
-            	File tmpFile = new File(dir);
-            	fileItem.write(tmpFile);
-            	
-            	JSONObject jsonObject = new JSONObject();
-            	jsonObject.put("apndFileNm", tmpFile.getName());
-            	jsonObject.put("apndFileOrgn", fileItem.getName());
-            	jsonArr.add(jsonObject);
-            	
-            }
-        }    	
         HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(response);
         response.getWriter().print(jsonArr.toString());
         response.getWriter().flush();
         response.getWriter().close();
- 	}	
+ 	}
+
+
     
 }
