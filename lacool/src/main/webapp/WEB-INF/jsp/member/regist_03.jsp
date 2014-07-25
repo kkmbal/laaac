@@ -8,20 +8,35 @@
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
 
 <script type="text/javascript">
+var apndFileList = [];
+
+
 	$(document).ready(function(){
-		/*
-		var data = {email:"", pwd:""};
-		data.email = $("#email").val();
-		data.pwd = $("#pwd").val();
-		$.post("${ctx}/member/doLogin?format=json", {data:JSON.stringify(data)}, function(data){
-			if(data.error){
-				alert(data.error);
-				return;
-			}
-			location.href = "${ctx}/index.jsp";
-		});
-		*/
+
 		$("#nationNm").val('${userVo.nationNm}');
+		var birthYmd = '${userVo.birthYmd}';
+		$("#year").val(birthYmd.substring(0, 4));
+		$("#month").val(birthYmd.substring(4, 6));
+		$("#day").val(birthYmd.substring(6));
+		var sex = '${userVo.sex}';
+		if(sex == 'F'){
+			$("#femail").attr("checked", true);
+		}else if(sex == 'M'){
+			$("#mail").attr("checked", true);
+		}
+		var mailRecvYn = '${userVo.mailRecvYn}';
+		if(mailRecvYn == 'Y'){
+			$("#mailRecvYn").attr("checked", true);
+		}
+		$("#apndImg_div").html('<img src="${ctx}/${userVo.userFilePath}${userVo.userFileNm}" width="100" height=100>');
+		
+		$("#userUrl").click(function(){
+			$("#userUrl").val("");
+		});
+		
+		$("#apndImg").bind("change",function(e) {
+			$("#fileNm").val($(this).val());
+		});
 		
 		$("#userUrl").click(function(){
 			$("#userUrl").val("");
@@ -36,7 +51,7 @@
 				alert("생년월일을 선택하세요.");
 				return;
 			}
-			if($("#imageFile").val() == ""){
+			if(apndFileList.length == 0){
 				alert("파일을 선택하세요.");
 				return;
 			}
@@ -68,23 +83,70 @@
 				resetForm: true
 			});	
 			*/
-			var data = {mobile:"", email:"", pwd:""};
-			data.mobile = $("#mobile").val();
-			data.birthYmd = $("#birthYmd").val();
-			data.sex = $("#sex").val();
-			data.imageFile = $("#imageFile").val();
-			data.nationNm = $("#nationNm").val();
-			data.userUrl = $("#userUrl").val();
-			data.fbId = $("#fbId").val();
-			data.mailRecvYn = $("#mailRecvYn").val();
+			var usrObject = {mobile:"", email:"", pwd:"", userFileNm:"", userFilePath:""};
+			usrObject.mobile = $("#mobile").val();
+			usrObject.birthYmd = $("#birthYmd").val();
+			usrObject.sex = $("#sex").val();
+			usrObject.imageFile = $("#imageFile").val();
+			usrObject.nationNm = $("#nationNm").val();
+			usrObject.userUrl = $("#userUrl").val();
+			usrObject.fbId = $("#fbId").val();
+			usrObject.mailRecvYn = $("#mailRecvYn").val();
 			
-			$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(data)}, function(data){
-				if(data.error){
-					alert(data.error);
-					return;
-				}
-				window.open("${ctx}/member/regist_03_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
-			});
+			//$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(data)}, function(data){
+			//	if(data.error){
+			//		alert(data.error);
+			//		return;
+			//	}
+			//	window.open("${ctx}/member/regist_03_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
+			//});
+			
+			
+			if(!confirm("수정하시겠습니까?")){
+				return;
+			}		
+			
+			if(apndFileList.length > 0){
+		 		$("#frm").ajaxSubmit({
+					url : "${ctx}/member/bbsFileUpload.do",
+					type : 'POST',
+					data : $("#frm").serialize(),
+					action: $("#dummy"),
+					success : function(data){			
+						var json = $.parseJSON(data);
+							
+						if(json.length > 0){
+							usrObject.userFileNm = json[0].apndFileNm;
+							usrObject.userFilePath = json[0].apndFilePath;
+						}
+						
+						console.log(JSON.stringify(usrObject))
+						
+						$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(usrObject)}, function(data){
+							if(data.error){
+								alert(data.error);
+								return;
+							}
+							window.open("${ctx}/member/regist_03_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
+						});
+						
+					},error : function(){
+						alert("전송 실패 했습니다.");
+					},
+					clearForm: true,
+					resetForm: true
+				});				
+			}else{
+				$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(usrObject)}, function(data){
+					if(data.error){
+						alert(data.error);
+						return;
+					}
+					window.open("${ctx}/member/regist_03_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
+				});
+			}			
+			
+			
 		});
 		
 		$("#btnCancel").click(function(){
@@ -92,7 +154,7 @@
 		});
 	});
 	
-	window.onload = new Function("makeThumbnail('fileInput', 'fileNm', 'canvasImg', 'imageFile');");
+	//window.onload = new Function("makeThumbnail('fileInput', 'fileNm', 'canvasImg', 'imageFile');");
 	
 	
 </script>
@@ -272,22 +334,31 @@
 			<th class="right">사용자 이미지&nbsp;<img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle"></th>
 			<td class="left">
 				<!-- start -->
+			    <form name="frm" id="frm" enctype="multipart/form-data" method="post">
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
 <%-- 						<td><div class="imgs_user"><img src="${ctx}/resources/images/photo/imgs_user_input.gif" class="photo" id="myImg"></div></td> --%>
-						<td><div class="imgs_user"><canvas id="canvasImg" width="100" height="100"></canvas></div></td>
+						<td><div class="imgs_user"><div id="apndImg_div"></div></div></td>
 						<td class="gridt_blank" nowrap></td>
 						<td>
 							<div style="vertical-align:top; height:100px;">
 								<input name="fileNm" id="fileNm" type="text" class="input" readonly style="width:230px;" value=""><br>
 								<div class="blank_height5"></div>
-								<span class="t_num_txt">400KB이하</span>&nbsp;<span class="t_num_txt">/</span>&nbsp;<span class="t_num" id="mySize">315KB</span>
+								<span class="t_num_txt">400KB이하</span>&nbsp;<span class="t_num_txt">/</span>&nbsp;<span class="t_num">315KB</span>
 							</div>
 						</td>
 						<td class="gridt_blank" nowrap></td>
-						<td><div style="vertical-align:top; height:100px;"><input type="file" class="btnd" value="파일찾기" name="fileInput" id="fileInput" /></div></td>
+						<td style="vertical-align:top;">
+<!-- 							<div style="vertical-align:top; height:100px;"> -->
+							<div class="btnd" style="width:50px;position:relative;">
+<!-- 								<input type="file" size="1" id="apndImg" name="apndImg" class="file2">  -->
+								파일찾기
+								<input type="file" size="1" id="apndImg" name="apndImg" value="파일찾기" style="position:absolute;left:0px;top:0px;width:80px;height:40px;display:inline-block;opacity: 0;filter: alpha(opacity:0);" />
+							</div>
+						</td>
 					</tr>
 				</table>
+				</form>
 				<!-- end -->
 			</td>
 		</tr>
@@ -318,9 +389,56 @@
 </div>
 <!-- ***** WRAPPER - end ***** -->
 
-<iframe id="dummy" name="dummy" width=0 height=0></iframe>
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->
+
+<script>
+window.onload = function(){
+	    var fileInputs = ['apndImg'];
+	    
+	    for(var i=0;i<fileInputs.length;i++){
+			var fileInput = document.getElementById(fileInputs[i]);
+			fileInput.addEventListener('change', function(e) {
+				var file = this.files[0];
+				var id = this.id;
+				var imageType = /image.*/;
+				if (file.type.match(imageType)) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var img = new Image();
+						img.src = reader.result;
+						img.width = 100;
+						img.height = 100;
+						var imageDiv = document.getElementById(id+"_div");
+						$("#"+id+"_div").empty();
+						imageDiv.appendChild(img);
+						
+						var jsonObject = {
+								"notiId":"",
+								"apndFileSeq":"",
+								"apndFileTp":"",
+								"apndFileSz":0,
+								"apndFileOrgn":file.name,
+								"apndFileNm":"",
+								"apndFilePath":"",
+								"delYn":"N",
+								"apndFilePreNm":"",
+								"apndFilePrePath":"",
+								"apndId":id
+							};
+						apndFileList = [];
+						apndFileList.push(jsonObject);
+					};
+					reader.readAsDataURL(file); 
+				} else {
+					fileNm.value = "File not supported!";
+				}
+			});	
+	    }
+}
+</script>
+
+<iframe id="dummy" name="dummy" width=0 height=0></iframe>
 </body>
 </html>

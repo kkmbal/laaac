@@ -160,17 +160,17 @@ $(document).ready(function(){
 	<!-- Contents_Title - start -->
 	<div class="contents_title">
 		<ul>
-			<li class="title fl">김동준 <span class="sub">님의 개인홈</span></li>
+			<li class="title fl">${userVo.userNm} <span class="sub">님의 개인홈</span></li>
 			<li class="tab_area fr">
 				<!-- tab_style01 - start -->
 				<div class="tab_st01">
 					<ul>
-						<li class="sel"><a href="personal_home.html" target="_top">개인홈</a></li>
-						<li><a href="personal_informaion.html" target="_top">개인정보 관리</a></li>
-						<li><a href="scrap.html" target="_top">스크랩</a></li>
-						<li><a href="temporary.html" target="_top">임시저장</a></li>
-						<li><a href="chat.html" target="_top">대화기록</a></li>
-						<li><a href="member_cancel.html" target="_top">회원탈퇴</a></li>
+						<li class="sel"><a target="_top">개인홈</a></li>
+						<li><a href="${ctx}/personal/info" target="_top">개인정보 관리</a></li>
+						<li><a href="${ctx}/personal/scrap" target="_top">스크랩</a></li>
+						<li><a href="${ctx}/personal/temporary" target="_top">임시저장</a></li>
+						<li><a href="${ctx}/personal/chat" target="_top">대화기록</a></li>
+						<li><a href="${ctx}/personal/member_cancel" target="_top">회원탈퇴</a></li>
 					</ul>
 				</div>
 				<!-- tab_style01 - end -->

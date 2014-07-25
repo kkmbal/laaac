@@ -3,26 +3,34 @@ package lacool.personal.web;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 
+import lacool.common.exception.LaCoolException;
 import lacool.common.tags.page.PageInfo;
 import lacool.common.util.BeanUtil;
+import lacool.common.util.FileUtil;
+import lacool.common.vo.FileVo;
 import lacool.contents.vo.NotiOpnVo;
 import lacool.member.sc.UserService;
 import lacool.member.vo.UserVo;
 import lacool.personal.sc.PersonService;
 import lacool.personal.vo.PersonVo;
 import lacool.personal.vo.PsnOpnVo;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 @Controller
@@ -156,5 +164,45 @@ public class PersonController {
 
 		return "personal/personal_informaion";
 	}
+	
+	
+	@RequestMapping("/userRegDetail")
+	public ModelMap userRegDetail(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
+		try{
+			ObjectMapper mapper = new ObjectMapper();
+			UserVo userVo = mapper.readValue(data, UserVo.class);
+			UserVo sessionUserVo = (UserVo)session.getAttribute("userVo");
+			userVo.setUserId(sessionUserVo.getUserId());
+			
+			UserVo user = userService.getUser(userVo);
+			if(user != null){
+				//FileVo fileVo = FileUtil.saveFile(request, userVo.getImageFile(), "resources/images/photo/");
+				
+				//userVo.setUserFileNm(fileVo.getName());
+				//userVo.setUserFilePath(fileVo.getPath());
+				userService.updateUser(userVo);
+				modelMap.put("user", userVo);
+				
+			}else{
+				throw new LaCoolException("Not User");
+			}
+		}catch(Exception e){
+			modelMap.put("error", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
+	
+	
+    @RequestMapping("/bbsFileUpload") 
+    @ResponseBody 
+    public void bbsFileUpload(HttpServletRequest request, HttpServletResponse response, ModelMap model, HttpSession session) throws Exception{
+    	JSONArray jsonArr = FileUtil.uploadFile(request, "resources/images/photo/");   
+    	
+        HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(response);
+        response.getWriter().print(jsonArr.toString());
+        response.getWriter().flush();
+        response.getWriter().close();
+ 	}
 	
 }

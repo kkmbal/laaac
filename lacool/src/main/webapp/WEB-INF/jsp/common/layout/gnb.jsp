@@ -144,8 +144,8 @@
 </div>
 
 <!-- Category_Area - start -->
-<div style="position:absolute; left:0px; top:193px; width:100%; height:125px; z-index:100000;">
-	<div id="totalCategory" style="display:none;" class="category_area">
+<div id="totalCategory" style="position:absolute; left:0px; top:193px; width:100%; height:125px; z-index:100000; display:none;">
+	<div  class="category_area">
 	<!-- category_menu - start  -->
 		<ul id="category_menu" style="position:relative">
 			<!-- category_select - start  -->

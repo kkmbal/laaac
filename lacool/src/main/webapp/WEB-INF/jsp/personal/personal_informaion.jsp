@@ -47,10 +47,10 @@ $(document).ready(function(){
 			alert("생년월일을 선택하세요.");
 			return;
 		}
-		if($("#imageFile").val() == ""){
-			alert("파일을 선택하세요.");
-			return;
-		}
+		//if(apndFileList.length == 0){
+		//	alert("파일을 선택하세요.");
+		//	return;
+		//}
 		
 		var mobile = $("#phone").val().replace(/-/g,'');
 		$("#mobile").val(mobile);
@@ -79,23 +79,60 @@ $(document).ready(function(){
 			resetForm: true
 		});	
 		*/
-		var data = {mobile:"", email:"", pwd:""};
-		data.mobile = $("#mobile").val();
-		data.birthYmd = $("#birthYmd").val();
-		data.sex = $("#sex").val();
-		data.imageFile = $("#imageFile").val();
-		data.nationNm = $("#nationNm").val();
-		data.userUrl = $("#userUrl").val();
-		data.fbId = $("#fbId").val();
-		data.mailRecvYn = $("#mailRecvYn").val();
+		var usrObject = {mobile:"", email:"", pwd:"", userFileNm:"", userFilePath:""};
+		usrObject.mobile = $("#mobile").val();
+		usrObject.birthYmd = $("#birthYmd").val();
+		usrObject.sex = $("#sex").val();
+		usrObject.imageFile = $("#imageFile").val();
+		usrObject.nationNm = $("#nationNm").val();
+		usrObject.userUrl = $("#userUrl").val();
+		usrObject.fbId = $("#fbId").val();
+		usrObject.mailRecvYn = $("#mailRecvYn").val();
 		
-		$.post("${ctx}/member/userRegDetail?format=json", {data:JSON.stringify(data)}, function(data){
-			if(data.error){
-				alert(data.error);
-				return;
-			}
-			window.open("${ctx}/member/regist_03_pop", "pop", "height=200,width=200,resizable=no,scrollbars=no");
-		});
+		if(!confirm("수정하시겠습니까?")){
+			return;
+		}		
+		
+		if(apndFileList.length > 0){
+	 		$("#frm").ajaxSubmit({
+				url : "${ctx}/personal/bbsFileUpload.do",
+				type : 'POST',
+				data : $("#frm").serialize(),
+				action: $("#dummy"),
+				success : function(data){			
+					var json = $.parseJSON(data);
+						
+					if(json.length > 0){
+						usrObject.userFileNm = json[0].apndFileNm;
+						usrObject.userFilePath = json[0].apndFilePath;
+					}
+					
+					console.log(JSON.stringify(usrObject))
+					
+					$.post("${ctx}/personal/userRegDetail?format=json", {data:JSON.stringify(usrObject)}, function(data){
+						if(data.error){
+							alert(data.error);
+							return;
+						}
+						alert("수정되었습니다.");
+					});
+					
+				},error : function(){
+					alert("전송 실패 했습니다.");
+				},
+				clearForm: true,
+				resetForm: true
+			});				
+		}else{
+			$.post("${ctx}/personal/userRegDetail?format=json", {data:JSON.stringify(usrObject)}, function(data){
+				if(data.error){
+					alert(data.error);
+					return;
+				}
+				alert("수정되었습니다.");
+			});
+		}		
+
 	});
 	
 	$("#btnCancel").click(function(){
@@ -142,12 +179,12 @@ $(document).ready(function(){
 				<!-- tab_style01 - start -->
 				<div class="tab_st01">
 					<ul>
-						<li><a href="personal_home.html" target="_top">개인홈</a></li>
-						<li class="sel"><a href="personal_informaion.html" target="_top">개인정보 관리</a></li>
-						<li><a href="scrap.html" target="_top">스크랩</a></li>
-						<li><a href="temporary.html" target="_top">임시저장</a></li>
-						<li><a href="chat.html" target="_top">대화기록</a></li>
-						<li><a href="member_cancel.html" target="_top">회원탈퇴</a></li>
+						<li><a href="${ctx}/personal/home" target="_top">개인홈</a></li>
+						<li class="sel"><a target="_top">개인정보 관리</a></li>
+						<li><a href="${ctx}/personal/scrap" target="_top">스크랩</a></li>
+						<li><a href="${ctx}/personal/temporary" target="_top">임시저장</a></li>
+						<li><a href="${ctx}/personal/chat" target="_top">대화기록</a></li>
+						<li><a href="${ctx}/personal/member_cancel" target="_top">회원탈퇴</a></li>
 					</ul>
 				</div>
 				<!-- tab_style01 - end -->
