@@ -2,6 +2,7 @@ package lacool.personal.mapper;
 
 import java.util.List;
 
+import lacool.member.vo.UserVo;
 import lacool.personal.vo.PersonVo;
 import lacool.personal.vo.PsnOpnVo;
 
@@ -23,4 +24,10 @@ public interface PersonMapper {
 	public void updateForReplyPsnOpn(PsnOpnVo psnOpnVo);
 
 	public void insertOpnForReply(PsnOpnVo psnOpnVo);
+
+	public List<PersonVo> listScrap(PersonVo personVo);
+
+	public int listScrapCnt(PersonVo personVo);
+	
+	public void deleteScrap(PersonVo personVo);
 }

@@ -181,7 +181,7 @@
 			AND   A.DEL_YN = 'N'
 		]]>
 			<if test="userId != null and userId != ''"> 
-				AND USER_ID = #{userId}
+				AND B.USER_ID = #{userId}
 			</if>			
 	</select>
 	

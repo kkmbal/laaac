@@ -71,8 +71,8 @@ public class PersonController {
 		pageInfo.setCurrPage(Integer.parseInt(currPage));
 		pageInfo.setPageSize(10);
 		pageInfo.setListSize(8);
-		pageInfo.setFromLimit((pageInfo.getCurrPage()-1)*pageInfo.getListSize());
-		pageInfo.setToLimit(pageInfo.getListSize());
+		//pageInfo.setFromLimit((pageInfo.getCurrPage()-1)*pageInfo.getListSize());
+		//pageInfo.setToLimit(pageInfo.getListSize());
 
 		List<PersonVo> listUserContents = personService.listUserContents(personVo);
 		int totalCnt = personService.listUserContentsCnt(personVo);
@@ -193,6 +193,42 @@ public class PersonController {
 		return modelMap;
 	}
 	
+	
+	@RequestMapping(value="/scrap")
+	public String scrap(HttpServletRequest request, ModelMap modelMap
+			, @RequestParam(value="currPage", required=false, defaultValue="1") String currPage
+			, @RequestParam(value="fromLimit", required=false, defaultValue="0") String fromLimit){
+		
+		UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
+
+		PersonVo personVo = new PersonVo();
+		personVo.setUserId(userVo.getUserId());
+
+		// 페이징 정보
+		PageInfo pageInfo = (PageInfo)personVo;
+		pageInfo.setCurrPage(Integer.parseInt(currPage));
+		pageInfo.setPageSize(10);
+		pageInfo.setListSize(8);
+
+		List<PersonVo> listScrap = personService.listScrap(personVo);
+		int totalCnt = personService.listScrapCnt(personVo);
+		pageInfo.setRowCount(totalCnt);
+		
+		modelMap.put("listScrap", listScrap);
+		modelMap.put("pageInfo", pageInfo);
+		modelMap.put("totalCnt", totalCnt);
+
+		return "personal/scrap";
+	}
+	
+	@RequestMapping(value="/deleteScrap")
+	public ModelMap scrap(HttpServletRequest request, ModelMap modelMap, String data){
+		
+		UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
+		personService.deleteScrap(data, userVo);
+		
+		return modelMap;
+	}
 	
     @RequestMapping("/bbsFileUpload") 
     @ResponseBody 

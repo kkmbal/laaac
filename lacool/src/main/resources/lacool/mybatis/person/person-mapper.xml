@@ -192,5 +192,79 @@
 			)
 		]]>
 	</insert>	
+	
+	<select id="listScrap" parameterType="lacool.personal.vo.PersonVo" resultType="lacool.personal.vo.PersonVo">
+		<![CDATA[	
+			SELECT  C.NOTI_ID
+				, C.BOARD_ID
+				, C.CATE_ID
+				, C.UP_NOTI_ID
+				, C.NOTI_KIND
+				, C.NOTI_TITLE
+				, C.NOTI_CONTS
+				, C.NOTI_URL
+				, C.NOTI_OPN_DIV
+				, C.FB_REG_YN
+				, C.DEL_YN
+				, C.STAT_CD
+				, C.NOTI_READ_CNT
+				, C.NOTI_OK_CNT
+				, C.NOTI_NG_CNT
+				, C.WRITE_IP
+				, C.NOTI_BGN_DTTM
+				, C.NOTI_END_DTTM
+				, C.SCRAP_CNT
+				, C.NOTI_OPN_CNT
+				, C.REG_ID
+				, C.REG_DTTM
+				, C.UPD_ID
+				, C.UPD_DTTM
+				, C.REF
+				, C.RESTEP
+				, C.RELEVEL
+				, E.USER_NM
+				, E.USER_FILE_NM
+				, E.USER_FILE_PATH  
+				, D.APND_FILE_ORGN
+				, D.APND_FILE_NM
+				, D.APND_FILE_PATH
+			FROM USER_SCRAP_INFO A
+			    ,PSN_USER B
+			    ,NOTI_INFO C
+			    ,NOTI_APND_FILE D
+			    ,PSN_USER E
+			WHERE A.USER_ID = #{userId}
+			AND A.USER_ID = B.USER_ID
+			AND A.NOTI_ID = C.NOTI_ID
+			AND C.NOTI_ID = D.NOTI_ID
+			AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID)
+			AND C.REG_ID = E.USER_ID
+			ORDER BY A.REG_DTTM DESC
+			LIMIT #{fromLimit}, #{toLimit}
+		]]>
+	</select>
+	
+	<select id="listScrapCnt" parameterType="lacool.personal.vo.PersonVo" resultType="int">
+		<![CDATA[	
+			SELECT  COUNT(A.NOTI_ID) CNT
+			FROM USER_SCRAP_INFO A
+			    ,PSN_USER B
+			    ,NOTI_INFO C
+			    ,NOTI_APND_FILE D
+			    ,PSN_USER E
+			WHERE A.USER_ID = #{userId}
+			AND A.USER_ID = B.USER_ID
+			AND A.NOTI_ID = C.NOTI_ID
+			AND C.NOTI_ID = D.NOTI_ID
+			AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID)
+			AND C.REG_ID = E.USER_ID
+		]]>
+	</select>	
+	
+	<delete id="deleteScrap" parameterType="lacool.personal.vo.PsnOpnVo">
+		DELETE FROM USER_SCRAP_INFO
+		WHERE USER_ID = #{userId}
+		AND NOTI_ID = #{notiId}
+	</delete>
 		
 </mapper>

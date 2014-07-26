@@ -6,6 +6,51 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#btnAllChk").click(function(){
+		$("input[id^=scrapChk]").each(function(){
+			$(this).attr("checked", true);
+			$(this).prop("checked", true);
+		});
+	});
+	
+	$("#btnChkCancel").click(function(){
+		$("input[id^=scrapChk]").each(function(){
+			$(this).attr("checked", false);
+		});
+	});
+	
+	$("#btnDelete").click(function(){
+		var delObject = {notiIdList : []};
+		
+		$("input[id^=scrapChk]:checked").each(function(){
+			//alert($(this).val());
+			//$("#li_"+$(this).val()).remove();
+			var obj = {notiId : ""};
+			obj.notiId = $(this).val();
+			delObject.notiIdList.push(obj);
+		});
+		
+			console.log(delObject);
+		if(delObject.notiIdList.length > 0){
+			if(!confirm("삭제하시겠습니까?")){
+				return;
+			}
+			$.post("${ctx}/personal/deleteScrap?format=json", {data:JSON.stringify(delObject)}, function(data){
+				if(data.error){
+					alert(data.error);
+					return;
+				}
+				location.href = "${ctx}/personal/scrap";
+			});
+		}
+		
+	});
+});
+</script>
 </head>
 
 <body onLoad="javascript:MenuOn(0102);">
@@ -45,12 +90,13 @@
 				<!-- tab_style01 - start -->
 				<div class="tab_st01">
 					<ul>
-						<li><a href="personal_home.html" target="_top">개인홈</a></li>
-						<li><a href="personal_informaion.html" target="_top">개인정보 관리</a></li>
-						<li class="sel"><a href="scrap.html" target="_top">스크랩</a></li>
-						<li><a href="temporary.html" target="_top">임시저장</a></li>
-						<li><a href="chat.html" target="_top">대화기록</a></li>
-						<li><a href="member_cancel.html" target="_top">회원탈퇴</a></li>
+						<li><a href="${ctx}/personal/home" target="_top">개인홈</a></li>
+						<li><a href="${ctx}/personal/info" target="_top">개인정보 관리</a></li>
+						<li class="sel"><a target="_top">스크랩</a></li>
+						<li><a href="${ctx}/personal/temporary" target="_top">임시저장</a></li>
+						<li><a href="${ctx}/personal/chat" target="_top">대화기록</a></li>
+						<li><a href="${ctx}/personal/member_cancel" target="_top">회원탈퇴</a></li>						
+						
 					</ul>
 				</div>
 				<!-- tab_style01 - end -->
@@ -63,7 +109,7 @@
 	<div class="title_1depth">
 		<ul>
 			<li class="title fl">스크랩한 컨텐츠</li>
-			<li class="num fr"><span class="t_num"><a href="#">345</a></span>&nbsp;<span class="t_num_txt">건</span></li>
+			<li class="num fr"><span class="t_num"><a href="#">${totalCnt}</a></span>&nbsp;<span class="t_num_txt">건</span></li>
 		</ul>
 	</div>
 	<!-- title_1depth/btn - end -->
@@ -71,16 +117,17 @@
 	<!-- ContentsBox_Style02 - start -->
 	<div class="cont_st02">
 		<ul>
-			<li class="col">
+			<c:forEach var="result" items="${listScrap}" end="3" varStatus="status">
+			<li class="col" id="li_${result.notiId}">
 				<!-- 0101 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="checkbox"><input type="checkbox" id="scrapChk_${result.notiId}" hidefocus="true" class="check" value="${result.notiId}"></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
+							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">${result.notiTitle}</a></span></div>
 							<div class="gauge">
 								<!-- chart_gauge03 - start -->
 								<table cellspacing="0" cellpadding="0" border="0">
@@ -99,6 +146,9 @@
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			
+			<%--
 			<li class="col">
 				<!-- 0102 - start -->
 				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
@@ -182,6 +232,7 @@
 				</div>
 				<!-- 0104 - end -->
 			</li>
+			 --%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style02 - end -->
@@ -189,16 +240,17 @@
 	<!-- ContentsBox_Style02 - start -->
 	<div class="cont_st02">
 		<ul>
-			<li class="col">
+			<c:forEach var="result" items="${listScrap}" begin="4" varStatus="status">
+			<li class="col" id="li_${result.notiId}">
 				<!-- 0101 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="checkbox"><input type="checkbox" id="scrapChk_${result.notiId}" hidefocus="true" class="check" value="${result.notiId}"></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
+							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">${result.notiTitle}</a></span></div>
 							<div class="gauge">
 								<!-- chart_gauge03 - start -->
 								<table cellspacing="0" cellpadding="0" border="0">
@@ -217,6 +269,9 @@
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			
+			<%--
 			<li class="col">
 				<!-- 0102 - start -->
 				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
@@ -300,10 +355,30 @@
 				</div>
 				<!-- 0104 - end -->
 			</li>
+			--%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style02 - end -->
 	<div class="blank_height20"></div>
+	<div class="paging">
+		  <k:paging name="${pageInfo}" action="personal/home" jsFunction="fn_link_page">
+		    <div class="btn fl">
+		  	<k:get property="firstPage"/>
+		  	<k:get property="prevPageGroup"/>
+		  	</div>
+		  	<div class="pagenum fl">
+		  	<k:get property="paging"/>
+		  	</div>
+		  	<div class="btn fr">
+		  	<k:get property="nextPageGroup"/>
+		  	<k:get property="lastPage"/>
+		  	</div>
+		  </k:paging>
+		<div class="cb"></div>
+	</div>	
+	
+	
+	<%--
 	<!-- Paging - start -->
 	<div class="paging">
 		<div class="btn fl"><input type="button" class="btni_first" title="처음" onclick="" /><input type="button" class="btni_prev" title="이전" onclick="" /></div>
@@ -312,11 +387,12 @@
 		<div class="cb"></div>
 	</div>
 	<!-- Paging - end -->
-
+    --%>
+    
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
-		<div class="sub"><input type="button" class="btns" value="전체 선택" onclick="" /><input type="button" class="btns" value="선택 해제" onclick="" /></div>
-		<div class="main"><input type="button" class="btnm" value="선택 삭제" onclick="" /></div>
+		<div class="sub"><input type="button" class="btns" value="전체 선택" id="btnAllChk" /><input type="button" class="btns" value="선택 해제" id="btnChkCancel" /></div>
+		<div class="main"><input type="button" class="btnm" value="선택 삭제" id="btnDelete" /></div>
 		<div class="cb"></div>
 	</div>
 	<!-- Btn_Form(Sub/Main) - end -->
