@@ -239,6 +239,7 @@
 			AND C.NOTI_ID = D.NOTI_ID
 			AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID)
 			AND C.REG_ID = E.USER_ID
+			AND C.DEL_YN = 'N'
 			ORDER BY A.REG_DTTM DESC
 			LIMIT #{fromLimit}, #{toLimit}
 		]]>
@@ -258,13 +259,85 @@
 			AND C.NOTI_ID = D.NOTI_ID
 			AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID)
 			AND C.REG_ID = E.USER_ID
+			AND C.DEL_YN = 'N'
 		]]>
 	</select>	
 	
-	<delete id="deleteScrap" parameterType="lacool.personal.vo.PsnOpnVo">
+	<delete id="deleteScrap" parameterType="lacool.personal.vo.PersonVo">
 		DELETE FROM USER_SCRAP_INFO
 		WHERE USER_ID = #{userId}
 		AND NOTI_ID = #{notiId}
+	</delete>
+
+	<select id="listTmpSave" parameterType="lacool.personal.vo.PersonVo" resultType="lacool.personal.vo.PersonVo">
+		<![CDATA[	
+			SELECT  C.NOTI_ID
+				, C.BOARD_ID
+				, C.CATE_ID
+				, C.UP_NOTI_ID
+				, C.NOTI_KIND
+				, C.NOTI_TITLE
+				, C.NOTI_CONTS
+				, C.NOTI_URL
+				, C.NOTI_OPN_DIV
+				, C.FB_REG_YN
+				, C.DEL_YN
+				, C.STAT_CD
+				, C.NOTI_READ_CNT
+				, C.NOTI_OK_CNT
+				, C.NOTI_NG_CNT
+				, C.WRITE_IP
+				, C.NOTI_BGN_DTTM
+				, C.NOTI_END_DTTM
+				, C.SCRAP_CNT
+				, C.NOTI_OPN_CNT
+				, C.REG_ID
+				, C.REG_DTTM
+				, C.UPD_ID
+				, C.UPD_DTTM
+				, C.REF
+				, C.RESTEP
+				, C.RELEVEL
+				, B.USER_NM
+				, B.USER_FILE_NM
+				, B.USER_FILE_PATH  
+				, D.APND_FILE_ORGN
+				, D.APND_FILE_NM
+				, D.APND_FILE_PATH
+			FROM NOTI_INFO C LEFT OUTER JOIN NOTI_APND_FILE D
+			     ON (C.NOTI_ID = D.NOTI_ID AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID))
+			    ,PSN_USER B
+			WHERE B.USER_ID = #{userId}
+			AND C.REG_ID = B.USER_ID
+			AND C.STAT_CD = '9'  /* tmp save code */
+			ORDER BY C.REG_DTTM DESC
+			LIMIT #{fromLimit}, #{toLimit}
+		]]>
+	</select>
+	
+	<select id="listTmpSaveCnt" parameterType="lacool.personal.vo.PersonVo" resultType="int">
+			SELECT  COUNT(C.NOTI_ID) CNT
+			FROM NOTI_INFO C LEFT OUTER JOIN NOTI_APND_FILE D
+			     ON (C.NOTI_ID = D.NOTI_ID AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID))
+			    ,PSN_USER B
+			WHERE B.USER_ID = #{userId}
+			AND C.REG_ID = B.USER_ID
+			AND C.STAT_CD = '9'  /* tmp save code */	
+	</select>
+	
+	<delete id="updateToSave" parameterType="lacool.personal.vo.PersonVo">
+		UPDATE NOTI_INFO
+		SET STAT_CD = NULL, DEL_YN = 'N'
+		WHERE NOTI_ID = #{notiId}
+		AND REG_ID = #{userId}
+		AND STAT_CD = '9'
+	</delete>
+	
+	<delete id="deleteTmpSave" parameterType="lacool.personal.vo.PersonVo">
+		DELETE FROM NOTI_INFO
+		WHERE NOTI_ID = #{notiId}
+		AND REG_ID = #{userId}
+		AND STAT_CD = '9'
 	</delete>
 		
 </mapper>

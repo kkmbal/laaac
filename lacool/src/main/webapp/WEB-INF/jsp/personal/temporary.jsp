@@ -6,6 +6,41 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+function updateToSave(notiId){
+	if(!confirm("복원하시겠습니까?")){
+		return;
+	}
+	var obj = {notiId : notiId};
+	$.post("${ctx}/personal/updateToSave?format=json", {data:JSON.stringify(obj)}, function(data){
+		if(data.error){
+			alert(data.error);
+			return;
+		}
+		location.href = "${ctx}/personal/temporary";
+	});	
+}
+
+function deleteTmpSave(notiId){
+	if(!confirm("삭제하시겠습니까?")){
+		return;
+	}
+	var obj = {notiId : notiId};
+	$.post("${ctx}/personal/deleteTmpSave?format=json", {data:JSON.stringify(obj)}, function(data){
+		if(data.error){
+			alert(data.error);
+			return;
+		}
+		location.href = "${ctx}/personal/temporary";
+	});	
+}
+
+$(document).ready(function(){
+	
+});
+</script>
 </head>
 
 <body onLoad="javascript:MenuOn(0102);">
@@ -40,17 +75,17 @@
 	<!-- Contents_Title - start -->
 	<div class="contents_title">
 		<ul>
-			<li class="title fl">김동준 <span class="sub">님의 개인홈</span></li>
+			<li class="title fl">${userVo.userNm} <span class="sub">님의 개인홈</span></li>
 			<li class="tab_area fr">
 				<!-- tab_style01 - start -->
 				<div class="tab_st01">
 					<ul>
-						<li><a href="personal_home.html" target="_top">개인홈</a></li>
-						<li><a href="personal_informaion.html" target="_top">개인정보 관리</a></li>
-						<li><a href="scrap.html" target="_top">스크랩</a></li>
-						<li class="sel"><a href="temporary.html" target="_top">임시저장</a></li>
-						<li><a href="chat.html" target="_top">대화기록</a></li>
-						<li><a href="member_cancel.html" target="_top">회원탈퇴</a></li>
+						<li><a href="${ctx}/personal/home" target="_top">개인홈</a></li>
+						<li><a href="${ctx}/personal/info" target="_top">개인정보 관리</a></li>
+						<li><a href="${ctx}/personal/scrap" target="_top">스크랩</a></li>
+						<li class="sel"><a  target="_top">임시저장</a></li>
+<%-- 						<li><a href="${ctx}/personal/search" target="_top">대화기록</a></li> --%>
+						<li><a href="${ctx}/member/member_cancel" target="_top">회원탈퇴</a></li>							
 					</ul>
 				</div>
 				<!-- tab_style01 - end -->
@@ -63,7 +98,7 @@
 	<div class="title_1depth">
 		<ul>
 			<li class="title fl">임시저장 컨텐츠</li>
-			<li class="num fr"><span class="t_num"><a href="#">345</a></span>&nbsp;<span class="t_num_txt">건</span></li>
+			<li class="num fr"><span class="t_num"><a href="#">${totalCnt}</a></span>&nbsp;<span class="t_num_txt">건</span></li>
 		</ul>
 	</div>
 	<!-- title_1depth/btn - end -->
@@ -71,14 +106,25 @@
 	<!-- ContentsBox_Style03 - start -->
 	<div class="cont_st03">
 		<ul>
+			<c:forEach var="result" items="${listTmp}" end="3" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
-				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
+				<div class="photo">
+					<c:if test="${not empty  result.userFileNm}">
+					<a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo"></a>
+					</c:if>
+					<c:if test="${empty  result.userFileNm}">
+					<a href="#"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></a>
+					</c:if>
+				</div>
+				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">${result.notiTitle}</a></span></div>
+				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="updateToSave('${result.notiId}')" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="deleteTmpSave('${result.notiId}')" /></div>
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			
+			<%--
 			<li class="col">
 				<!-- 0102 - start -->
 				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
@@ -99,9 +145,10 @@
 				<!-- 0104 - start -->
 				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
 				<div class="title"><span class="t_inact">제목 미등록</span></div>
-				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
+				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="updateToSave('${result.notiId}')" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0104 - end -->
 			</li>
+			 --%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style03 - end -->
@@ -109,14 +156,25 @@
 	<!-- ContentsBox_Style03 - start -->
 	<div class="cont_st03">
 		<ul>
+			<c:forEach var="result" items="${listScrap}" begin="4" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
-				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
+				<div class="photo">
+					<c:if test="${not empty  result.userFileNm}">
+					<a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo"></a>
+					</c:if>
+					<c:if test="${empty  result.userFileNm}">
+					<a href="#"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></a>
+					</c:if>
+				</div>
+				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">${result.notiTitle}</a></span></div>
+				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="deleteTmpSave('${result.notiId}')" /></div>
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			
+			<%--
 			<li class="col">
 				<!-- 0102 - start -->
 				<div class="photo"><img src="${ctx}/resources/images/photo/imgs_no_232.gif" class="photo"></div>
@@ -140,10 +198,29 @@
 				<div class="btn fr"><input type="button" class="btni_write01" title="계속 작성" onclick="" />&nbsp;<input type="button" class="btni_del01" title="삭제" onclick="" /></div>
 				<!-- 0104 - end -->
 			</li>
+			 --%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style03 - end -->
 	<div class="blank_height20"></div>
+	<div class="paging">
+		  <k:paging name="${pageInfo}" action="personal/temporary" jsFunction="fn_link_page">
+		    <div class="btn fl">
+		  	<k:get property="firstPage"/>
+		  	<k:get property="prevPageGroup"/>
+		  	</div>
+		  	<div class="pagenum fl">
+		  	<k:get property="paging"/>
+		  	</div>
+		  	<div class="btn fr">
+		  	<k:get property="nextPageGroup"/>
+		  	<k:get property="lastPage"/>
+		  	</div>
+		  </k:paging>
+		<div class="cb"></div>
+	</div>	
+	
+	<%-- 
 	<!-- Paging - start -->
 	<div class="paging">
 		<div class="btn fl"><input type="button" class="btni_first_inact" title="처음" onclick="" /><input type="button" class="btni_prev_inact" title="이전" onclick="" /></div>
@@ -152,7 +229,7 @@
 		<div class="cb"></div>
 	</div>
 	<!-- Paging - end -->
-
+	--%>
 
 </div>
 <!-- contents-end -->

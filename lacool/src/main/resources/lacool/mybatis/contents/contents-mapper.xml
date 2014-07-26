@@ -289,6 +289,7 @@
 			UPDATE NOTI_INFO
 			SET NOTI_OK_CNT = NOTI_OK_CNT + 1
 			WHERE NOTI_ID = #{notiId}
+			AND DEL_YN = 'N'
 		]]>
 	</update>	
 	
@@ -297,6 +298,7 @@
 			UPDATE NOTI_INFO
 			SET NOTI_NG_CNT = NOTI_NG_CNT + 1
 			WHERE NOTI_ID = #{notiId}
+			AND DEL_YN = 'N'
 		]]>
 	</update>	
 	
@@ -305,6 +307,7 @@
 			UPDATE NOTI_INFO
 			SET SCRAP_CNT = SCRAP_CNT + 1
 			WHERE NOTI_ID = #{notiId}
+			AND DEL_YN = 'N'
 		]]>
 	</update>	
 	
@@ -314,6 +317,7 @@
 			SET NOTI_READ_CNT = NOTI_READ_CNT + 1
 			WHERE NOTI_ID = #{notiId}
 			AND REG_ID != #{userId}
+			AND DEL_YN = 'N'
 		]]>
 	</update>	
 	
@@ -329,6 +333,7 @@
 			 NOTI_INFO C
 		WHERE A.NOTI_ID = C.NOTI_ID
 		AND C.CATE_ID = #{cateId}
+		AND C.DEL_YN = 'N'
 		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 		ORDER BY NOTI_OK_CNT DESC
 		LIMIT 6

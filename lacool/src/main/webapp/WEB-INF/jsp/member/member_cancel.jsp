@@ -6,6 +6,17 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#btnSave").click(function(){
+		if($("#chkDel").is(":checked")){
+			window.open("${ctx}/member/member_cancel_pop01", "pop", "height=200,width=200,resizable=no,scrollbars=no");
+		}
+	});
+});
+</script>
 </head>
 
 <body onLoad="javascript:MenuOn(0102);">
@@ -40,17 +51,17 @@
 	<!-- Contents_Title - start -->
 	<div class="contents_title">
 		<ul>
-			<li class="title fl">김동준 <span class="sub">님의 개인홈</span></li>
+			<li class="title fl">${userVo.userNm} <span class="sub">님의 개인홈</span></li>
 			<li class="tab_area fr">
 				<!-- tab_style01 - start -->
 				<div class="tab_st01">
 					<ul>
-						<li><a href="personal_home.html" target="_top">개인홈</a></li>
-						<li><a href="personal_informaion.html" target="_top">개인정보 관리</a></li>
-						<li><a href="scrap.html" target="_top">스크랩</a></li>
-						<li><a href="temporary.html" target="_top">임시저장</a></li>
-						<li><a href="chat.html" target="_top">대화기록</a></li>
-						<li class="sel"><a href="member_cancel.html" target="_top">회원탈퇴</a></li>
+						<li><a href="${ctx}/personal/home" target="_top">개인홈</a></li>
+						<li><a href="${ctx}/personal/info" target="_top">개인정보 관리</a></li>
+						<li><a href="${ctx}/personal/scrap" target="_top">스크랩</a></li>
+						<li><a href="${ctx}/personal/temporary" target="_top">임시저장</a></li>
+<%-- 						<li><a href="${ctx}/personal/search" target="_top">대화기록</a></li> --%>
+						<li class="sel"><a target="_top">회원탈퇴</a></li>
 					</ul>
 				</div>
 				<!-- tab_style01 - end -->
@@ -84,7 +95,7 @@
 			<td class="left">회원께서 작성하신 게시글도 탈회 후 삭제할 수 없습니다.</td>
 		</tr>
 		<tr>
-			<td class="left" colspan="2">&nbsp;&nbsp;&nbsp;<input type="checkbox" name="type" hidefocus="true" class="check" value="A"><strong>위의 사항을 모두 확인하였으며, 이에 동의합니다.</strong></td>
+			<td class="left" colspan="2">&nbsp;&nbsp;&nbsp;<input type="checkbox" id="chkDel" hidefocus="true" class="check" value="Y"><strong>위의 사항을 모두 확인하였으며, 이에 동의합니다.</strong></td>
 		</tr>
 	</table>
 	<!-- Grid_Table_Input - end -->
@@ -92,7 +103,7 @@
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
 		<div class="sub"></div>
-		<div class="main"><input type="button" class="btnm" value="확인" onclick="" /><input type="button" class="btnm_cancel" value="취소" onclick="" /></div>
+		<div class="main"><input type="button" class="btnm" value="확인" id="btnSave" /><!-- <input type="button" class="btnm_cancel" value="취소" id="btnCancel" />  --></div>
 		<div class="cb"></div>
 	</div>
 	<!-- Btn_Form(Sub/Main) - end -->

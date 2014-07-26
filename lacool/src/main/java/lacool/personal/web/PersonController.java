@@ -217,16 +217,77 @@ public class PersonController {
 		modelMap.put("listScrap", listScrap);
 		modelMap.put("pageInfo", pageInfo);
 		modelMap.put("totalCnt", totalCnt);
+		modelMap.put("userVo", userVo);
 
 		return "personal/scrap";
 	}
 	
-	@RequestMapping(value="/deleteScrap")
-	public ModelMap scrap(HttpServletRequest request, ModelMap modelMap, String data){
+	
+	@RequestMapping(value="/temporary")
+	public String temporary(HttpServletRequest request, ModelMap modelMap
+			, @RequestParam(value="currPage", required=false, defaultValue="1") String currPage
+			, @RequestParam(value="fromLimit", required=false, defaultValue="0") String fromLimit){
 		
 		UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
-		personService.deleteScrap(data, userVo);
+
+		PersonVo personVo = new PersonVo();
+		personVo.setUserId(userVo.getUserId());
+
+		// 페이징 정보
+		PageInfo pageInfo = (PageInfo)personVo;
+		pageInfo.setCurrPage(Integer.parseInt(currPage));
+		pageInfo.setPageSize(10);
+		pageInfo.setListSize(8);
+
+		List<PersonVo> listTmp = personService.listTmpSave(personVo);
+		int totalCnt = personService.listTmpSaveCnt(personVo);
+		pageInfo.setRowCount(totalCnt);
 		
+		modelMap.put("listTmp", listTmp);
+		modelMap.put("pageInfo", pageInfo);
+		modelMap.put("totalCnt", totalCnt);
+		modelMap.put("userVo", userVo);
+
+		return "personal/temporary";
+	}
+	
+	@RequestMapping(value="/deleteScrap")
+	public ModelMap deleteScrap(HttpServletRequest request, ModelMap modelMap, String data){
+		try{
+			UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
+			personService.deleteScrap(data, userVo);
+		}catch(Exception e){
+			modelMap.put("error", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
+	
+	@RequestMapping(value="/deleteTmpSave")
+	public ModelMap deleteTmpSave(HttpServletRequest request, ModelMap modelMap, String data){
+		try{
+			UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
+			PersonVo personVo = BeanUtil.getData(data, PersonVo.class);
+			personVo.setUserId(userVo.getUserId());
+			personService.deleteTmpSave(personVo);
+		}catch(Exception e){
+			modelMap.put("error", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
+	
+	@RequestMapping(value="/updateToSave")
+	public ModelMap updateToSave(HttpServletRequest request, ModelMap modelMap, String data){
+		try{
+			UserVo userVo = (UserVo)WebUtils.getRequiredSessionAttribute(request, "userVo");
+			PersonVo personVo = BeanUtil.getData(data, PersonVo.class);
+			personVo.setUserId(userVo.getUserId());
+			personService.updateToSave(personVo);
+		}catch(Exception e){
+			modelMap.put("error", "error");
+			log.error(e.toString(), e);
+		}
 		return modelMap;
 	}
 	

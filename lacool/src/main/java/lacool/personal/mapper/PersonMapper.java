@@ -30,4 +30,13 @@ public interface PersonMapper {
 	public int listScrapCnt(PersonVo personVo);
 	
 	public void deleteScrap(PersonVo personVo);
+	
+	public List<PersonVo> listTmpSave(PersonVo personVo);
+
+	public int listTmpSaveCnt(PersonVo personVo);
+	
+	public void updateToSave(PersonVo personVo);
+	
+	public void deleteTmpSave(PersonVo personVo);
+	
 }

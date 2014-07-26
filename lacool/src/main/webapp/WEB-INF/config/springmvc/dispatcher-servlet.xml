@@ -52,6 +52,7 @@
 						<value>/member/doLogin</value>
 						<value>/member/doLogout</value>
 						<value>/member/userReg</value>
+						<value>/member/member_cancel_pop02</value>
 					</list>
 				</property>				
 			</bean>

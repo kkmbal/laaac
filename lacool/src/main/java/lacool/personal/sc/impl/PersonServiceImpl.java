@@ -80,4 +80,24 @@ public class PersonServiceImpl implements PersonService  {
 		}
 		
 	}
+	
+	@Override
+	public List<PersonVo> listTmpSave(PersonVo personVo){
+		return personMapper.listTmpSave(personVo);
+	}
+
+	@Override
+	public int listTmpSaveCnt(PersonVo personVo){
+		return personMapper.listTmpSaveCnt(personVo);
+	}
+	
+	@Override
+	public void updateToSave(PersonVo personVo){
+		 personMapper.updateToSave(personVo);
+	}
+	
+	@Override
+	public void deleteTmpSave(PersonVo personVo){
+		 personMapper.deleteTmpSave(personVo);
+	}
 }

@@ -34,8 +34,8 @@
 				AND PWD = #{pwd}
 			</if>	  	   
 			<if test="email != null and email != ''"> 
-				AND EMAIL = #{email}
-			</if>	  	
+				AND EMAIL = #{email} AND END_YN = 'N'
+			</if>	  				
 			<if test="(email == null or email == '') and (userId == null or userId == '')"> 
 				AND 1 = 2
 			</if>	  	
@@ -78,7 +78,7 @@
 		, #{userUrl}
 		, #{fbId}
 		, #{mailRecvYn}
-		, #{endYn}
+		, 'N'
 		, NULL
 		, #{userFileNm}
 		, #{userFilePath}
@@ -105,6 +105,15 @@
 	    <if test="userFileNm != null and userFileNm != ''"> , USER_FILE_NM = #{userFileNm} </if>
 	    <if test="userFilePath != null and userFilePath != ''"> , USER_FILE_PATH = #{userFilePath} </if>
 	    WHERE USER_ID = #{userId}
+	</update>
+	
+	<update id="userDelete" parameterType="lacool.member.vo.UserVo">
+		UPDATE PSN_USER 
+		SET UPD_ID = #{updId}
+			, UPD_DTTM = NOW()
+			, END_YN = 'Y'
+			, END_DTTM = NOW()
+		WHERE USER_ID = #{userId}
 	</update>
 		
 </mapper>

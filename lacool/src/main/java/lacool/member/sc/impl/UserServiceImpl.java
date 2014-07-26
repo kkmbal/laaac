@@ -32,5 +32,12 @@ public class UserServiceImpl implements UserService {
 		userVo.setUpdId("system");
 		userMapper.updateUser(userVo);
 	}
+	
+	@Override
+	public void userDelete(UserVo userVo) throws LaCoolException{
+		userVo.setRegId("system");
+		userVo.setUpdId("system");
+		userMapper.userDelete(userVo);
+	}
 
 }

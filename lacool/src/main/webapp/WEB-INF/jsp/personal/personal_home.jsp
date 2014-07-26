@@ -169,8 +169,8 @@ $(document).ready(function(){
 						<li><a href="${ctx}/personal/info" target="_top">개인정보 관리</a></li>
 						<li><a href="${ctx}/personal/scrap" target="_top">스크랩</a></li>
 						<li><a href="${ctx}/personal/temporary" target="_top">임시저장</a></li>
-						<li><a href="${ctx}/personal/chat" target="_top">대화기록</a></li>
-						<li><a href="${ctx}/personal/member_cancel" target="_top">회원탈퇴</a></li>
+<%-- 						<li><a href="${ctx}/personal/chat" target="_top">대화기록</a></li> --%>
+						<li><a href="${ctx}/member/member_cancel" target="_top">회원탈퇴</a></li>
 					</ul>
 				</div>
 				<!-- tab_style01 - end -->

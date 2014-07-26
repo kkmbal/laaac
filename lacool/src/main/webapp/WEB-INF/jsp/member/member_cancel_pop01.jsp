@@ -6,6 +6,24 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#btnSave").click(function(){
+		$.post("${ctx}/member/memberDelete?format=json", {data:""}, function(data){
+			if(data.error){
+				alert(data.error);
+				return;
+			}
+			location.href = "${ctx}/member/member_cancel_pop02";
+		});
+	});
+	
+	$("#btnCancel").click(function(){
+		self.close();
+	});
+});
+</script>
 </head>
 
 <body>
@@ -42,7 +60,7 @@
 
 	<!-- Popup_Style01_Btn - start -->
 	<div class="popup_st01_btn">
-		<input type="button" class="btnm" value="확인" onclick="" /><input type="button" class="btnm_cancel" value="취소" onclick="" />
+		<input type="button" class="btnm" value="확인" id="btnSave" /><input type="button" class="btnm_cancel" value="취소" id="btnCancel" />
 	</div>
 	<!-- Popup_Style01_Btn - end -->
 

@@ -79,7 +79,7 @@ public class UserController {
 			}
 		}catch(Exception e){
 			modelMap.put("error", e.toString());
-			log.error(e.toString(), e);
+			//log.error(e.toString(), e);
 		}
 		return modelMap;
 	}
@@ -120,6 +120,21 @@ public class UserController {
 			}else{
 				throw new LaCoolException("Not User");
 			}
+		}catch(Exception e){
+			modelMap.put("error", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
+	
+	@RequestMapping("/memberDelete")
+	public ModelMap memberDelete(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
+		try{
+			UserVo userVo = (UserVo)session.getAttribute("userVo");
+			userService.userDelete(userVo);
+			
+			request.getSession().removeAttribute("userVo");
+	    	request.getSession().invalidate();
 		}catch(Exception e){
 			modelMap.put("error", "error");
 			log.error(e.toString(), e);
