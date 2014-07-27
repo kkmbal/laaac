@@ -72,7 +72,7 @@ var apndFileList = [];
 		$("#btnGo").click(function(){
 			
 			var notiObject = {
-					"boardId":"BBS000001",
+					"boardId":"",
 					"notiId":"",
 					"cateId":"",
 					"upNotiId":"",

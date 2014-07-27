@@ -42,11 +42,11 @@
 				</property>			
 			</bean>
 		</mvc:interceptor>
-	 	<mvc:interceptor>
-		    <mvc:mapping path="/customer/*" />
-			<bean class="lacool.common.web.AuthInterceptor">
-			</bean>
-		</mvc:interceptor>
+<!-- 	 	<mvc:interceptor> -->
+<!-- 		    <mvc:mapping path="/customer/*" /> -->
+<!-- 			<bean class="lacool.common.web.AuthInterceptor"> -->
+<!-- 			</bean> -->
+<!-- 		</mvc:interceptor> -->
 	 	<mvc:interceptor>
 		    <mvc:mapping path="/member/*" />
 			<bean class="lacool.common.web.AuthInterceptor">
