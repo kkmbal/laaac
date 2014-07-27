@@ -41,6 +41,7 @@
 			WHERE A.REG_ID= #{userId}
 			AND   A.NOTI_ID = B.NOTI_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 			ORDER BY A.${order} DESC
 			LIMIT #{fromLimit}, #{toLimit}
@@ -55,6 +56,7 @@
 			WHERE A.REG_ID= #{userId}
 			AND   A.NOTI_ID = B.NOTI_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 		]]>
 	</select>
@@ -240,6 +242,7 @@
 			AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID)
 			AND C.REG_ID = E.USER_ID
 			AND C.DEL_YN = 'N'
+			AND C.BOARD_ID = 'LALALA001'
 			ORDER BY A.REG_DTTM DESC
 			LIMIT #{fromLimit}, #{toLimit}
 		]]>
@@ -260,6 +263,7 @@
 			AND D.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = C.NOTI_ID)
 			AND C.REG_ID = E.USER_ID
 			AND C.DEL_YN = 'N'
+			AND C.BOARD_ID = 'LALALA001'
 		]]>
 	</select>	
 	
@@ -310,6 +314,7 @@
 			WHERE B.USER_ID = #{userId}
 			AND C.REG_ID = B.USER_ID
 			AND C.STAT_CD = '9'  /* tmp save code */
+			AND C.BOARD_ID = 'LALALA001'
 			ORDER BY C.REG_DTTM DESC
 			LIMIT #{fromLimit}, #{toLimit}
 		]]>
@@ -322,7 +327,8 @@
 			    ,PSN_USER B
 			WHERE B.USER_ID = #{userId}
 			AND C.REG_ID = B.USER_ID
-			AND C.STAT_CD = '9'  /* tmp save code */	
+			AND C.STAT_CD = '9'  /* tmp save code */
+			AND C.BOARD_ID = 'LALALA001'	
 	</select>
 	
 	<delete id="updateToSave" parameterType="lacool.personal.vo.PersonVo">

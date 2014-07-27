@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lacool.customer.mapper.CustomerMapper">
+	
+	<select id="list" parameterType="lacool.customer.vo.CustomerVo" resultType="lacool.customer.vo.CustomerVo">
+		<![CDATA[	
+			SELECT @ROWNUM:=@ROWNUM+1 AS ROWNUM  
+			    , A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, A.ALARM_YN
+				, A.PRVT_YN
+			FROM NOTI_INFO A, (SELECT @ROWNUM:= #{fromLimit}) TMP
+			WHERE A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'BBS001'
+		]]>
+			<if test="searchKeyword == 'TITLE' and searchValue != '' and searchValue != null">
+			AND   	A.NOTI_TITLE LIKE CONCAT('%', #{searchValue} , '%')
+			</if>
+			<if test="searchKeyword == 'CONTENT' and searchValue != '' and searchValue != null">
+			AND   	A.NOTI_CONTS LIKE CONCAT('%', #{searchValue} , '%')
+			</if>		
+			<if test="searchKeyword == 'NAME' and searchValue != '' and searchValue != null">
+			AND   	A.USER_NM LIKE CONCAT('%', #{searchValue} , '%')
+			</if>		
+			ORDER BY A.REF DESC, A.RESTEP ASC
+			LIMIT #{fromLimit}, #{toLimit}
+	</select>
+	
+	<select id="listCnt" parameterType="lacool.customer.vo.CustomerVo" resultType="int">
+		<![CDATA[	
+			SELECT  COUNT(A.NOTI_ID) CNT
+			FROM NOTI_INFO A
+			WHERE A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'BBS001'
+		]]>
+			<if test="searchKeyword == 'TITLE' and searchValue != '' and searchValue != null">
+			AND   	A.NOTI_TITLE LIKE CONCAT('%', #{searchValue} , '%')
+			</if>
+			<if test="searchKeyword == 'CONTENT' and searchValue != '' and searchValue != null">
+			AND   	A.NOTI_CONTS LIKE CONCAT('%', #{searchValue} , '%')
+			</if>	
+			<if test="searchKeyword == 'NAME' and searchValue != '' and searchValue != null">
+			AND   	A.USER_NM LIKE CONCAT('%', #{searchValue} , '%')
+			</if>					
+	</select>
+	
+
+		
+</mapper>

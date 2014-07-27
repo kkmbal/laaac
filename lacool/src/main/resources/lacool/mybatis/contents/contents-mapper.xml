@@ -5,8 +5,8 @@
 
 	<insert id="insertBoardInfo" parameterType="lacool.contents.vo.BoardInfoVo">
 		<selectKey keyProperty="boardId" resultType="String" order="BEFORE" >
-		 SELECT CONCAT('BBS' , LPAD(CAST(REPLACE(IFNULL(MAX(BOARD_ID),0), 'BBS','') AS UNSIGNED) + 1, 6, '0')) AS boardId FROM BOARD_INFO
-	     WHERE BOARD_ID LIKE 'BBS%'	     
+		 SELECT CONCAT('LALALA' , LPAD(CAST(REPLACE(IFNULL(MAX(BOARD_ID),0), 'LALALA','') AS UNSIGNED) + 1, 3, '0')) AS boardId FROM BOARD_INFO
+	     WHERE BOARD_ID LIKE 'LALALA%'	     
 	    </selectKey>
 	  
 		<![CDATA[
@@ -179,6 +179,7 @@
 			WHERE A.NOTI_ID = #{notiId}
 			AND   A.REG_ID = B.USER_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 		]]>
 			<if test="userId != null and userId != ''"> 
 				AND B.USER_ID = #{userId}
@@ -334,6 +335,7 @@
 		WHERE A.NOTI_ID = C.NOTI_ID
 		AND C.CATE_ID = #{cateId}
 		AND C.DEL_YN = 'N'
+		AND C.BOARD_ID = 'LALALA001'
 		AND A.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 		ORDER BY NOTI_OK_CNT DESC
 		LIMIT 6
@@ -525,6 +527,7 @@
 			    ,PSN_USER D
 			WHERE A.NOTI_ID = B.NOTI_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 			AND   A.NOTI_ID = C.NOTI_ID
 			AND   C.USER_ID = #{userId}
@@ -547,6 +550,7 @@
 				,PSN_USER D
 			WHERE A.NOTI_ID = B.NOTI_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 			AND   A.NOTI_ID = C.NOTI_ID
 			AND   C.USER_ID = #{userId}
@@ -602,6 +606,7 @@
 			WHERE A.REG_ID = D.USER_ID
 			AND   A.NOTI_ID = B.NOTI_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 		]]>
 			<if test="searchKeyword != null and searchKeyword != ''"> 
@@ -620,6 +625,7 @@
 			WHERE A.REG_ID = D.USER_ID
 			AND   A.NOTI_ID = B.NOTI_ID
 			AND   A.DEL_YN = 'N'
+			AND   A.BOARD_ID = 'LALALA001'
 			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
 		]]>
 			<if test="searchKeyword != null and searchKeyword != ''"> 
