@@ -27,7 +27,8 @@ public class ContentsServiceImpl implements ContentsService {
 		JSONObject notiObject = JSONObject.fromObject(data);
 		
 		NotiInfoVo notiInfoVo = new NotiInfoVo();
-		notiInfoVo.setBoardId(notiObject.getString("boardId"));
+		//notiInfoVo.setBoardId(notiObject.getString("boardId"));
+		notiInfoVo.setBoardId("LALALA001");
 		notiInfoVo.setNotiId(notiObject.getString("notiId"));
 		notiInfoVo.setCateId(notiObject.getString("cateId"));
 		notiInfoVo.setUpNotiId(notiObject.getString("upNotiId"));
