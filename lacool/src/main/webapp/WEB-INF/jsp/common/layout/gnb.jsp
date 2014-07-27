@@ -48,7 +48,14 @@
 						});						
 					}
 				}
-			});			
+			});
+			
+			//검색
+			$("#btnSearch").click(function(){
+				if($("#searchKeyword").val() != ""){
+					sfrm.submit();
+				}
+			});
 	});
 	</script>
  
@@ -93,12 +100,13 @@
 		 로그인 후 - end -->
 	</div>
 
+	<form name="sfrm" id="sfrm" action="${ctx}/contents/search" method="post">
 	<div class="gnb_search_area">
 		<h2 class="blind">검색</h2>
 		<div class="gnb_search_center">
 			<div class="gnb_search_line01">
-				<div class="fl"><input name="" type="text" class="gnb_search_input" value=""></div>
-				<div class="btn fr"><input type="button" class="btni_search" title="검색" onclick="" /></div>
+				<div class="fl"><input name="searchKeyword" id="searchKeyword" type="text" class="gnb_search_input" value=""></div>
+				<div class="btn fr"><input type="button" class="btni_search" title="검색" id="btnSearch" /></div>
 			</div>
 			<div class="gnb_search_line02">
 				<div class="gnb_search_word fl">
@@ -114,6 +122,7 @@
 			</div>
 		</div>
 	</div>
+	</form>
 
 	<div class="gnb_menu">
 		<h2 class="blind">로고/메뉴</h2>
@@ -126,7 +135,7 @@
 			<li><a href="${ctx}/personal/home" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0102','','${ctx}/resources/images/gnb/menu2-ov.gif',1)">
 <img src="${ctx}/resources/images/gnb/menu2.gif" width="94" height="63" border="0" name="gnbmenu0102" id="gnbmenu0102" title="개인 홈"></a></li>
 			<li><img src="${ctx}/resources/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
-			<li><a href="${ctx}/contents/history" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0103','','${ctx}/resources/images/gnb/menu3-ov.gif',1)">
+			<li><a href="${ctx}/contents/listHistory" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0103','','${ctx}/resources/images/gnb/menu3-ov.gif',1)">
 <img src="${ctx}/resources/images/gnb/menu3.gif" width="83" height="63" border="0" name="gnbmenu0103" id="gnbmenu0103" title="히스토리"></a></li>
 			<li><img src="${ctx}/resources/images/gnb/gnb_menu_line.gif" align="absmiddle" /></li>
 			<li><a href="${ctx}/category/ask_category" target="_top" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('gnbmenu0104','','${ctx}/resources/images/gnb/menu4-ov.gif',1)">

@@ -7,7 +7,76 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
-</head>v
+
+<script type="text/javascript">
+var fromLimit = ${fromLimit};
+var searchKeyword = '${searchKeyword}';
+
+
+function listSearch(){
+	var json = {
+			"searchKeyword" : searchKeyword,
+			"fromLimit" : fromLimit
+		};		
+	
+	$.post("${ctx}/contents/listSearch?format=json", {data:JSON.stringify(json)}, function(data){
+		if(data.error){
+			alert(data.error);
+			return;
+		}
+		//$("#opnDiv div").remove();
+		if(data.listSearch){
+			var json = $.parseJSON(JSON.stringify(data.listSearch));
+			for(var i=0;i<json.length;i++){
+				$("#search_div > ul").append(
+						'<li>'
+						+'<div class="search_set">'
+						+'	<ul>'
+						+'		<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/'+json[i].apndFileNm+'" class="photo"></a></li>'
+						+'		<li class="title">'
+						+'			<div class="ti"><a href="#">'+json[i].notiTitle+'</a></div>'
+						+'			<div class="name"><a href="#">'+json[i].userNm+'</a></div>'
+						+'		</li>'
+						+'		<li class="content">'
+						+'			<span class="t_ellipsis_height" style="width:450px; height:81px;"><a href="#">'
+						+'			<table cellpadding="0" cellspacing="0" border="0">'
+						+'				<tr>'
+						+'					<td width="450" height="81" align="left" valign="middle">'+json[i].notiConts+'</td>'
+						+'				</tr>'
+						+'			</table>'
+						+'			</a></span>'
+						+'		</li>'
+						+'		<li class="chart">'
+						+'			<div class="gauge">'
+						+'				<table cellspacing="0" cellpadding="0" border="0">'
+						+'					<tr>'
+						+'						<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>'
+						+'						<td width="151" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st04.gif" align="absmiddle"></td>'
+						+'						<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>'
+						+'					</tr>'
+						+'				</table>'
+						+'			</div>'
+						+'			<div class="scrap"><a href="#">'+json[i].scrapCnt+'</a>&nbsp;<a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle"></a></div>'
+						+'		</li>'
+						+'	</ul>'
+						+'</div>'
+						+'</li>	'					
+				);						
+			}
+		}	
+		fromLimit = data.fromLimit;
+	});	
+	event.stopPropagation();
+	event.preventDefault();
+}
+
+	$(document).ready(function(){
+		
+		
+		
+	});
+</script>
+</head>
 
 <body>
 <!--[if IE 8]><div class="wrapper ie8"><![endif]-->
@@ -50,28 +119,29 @@
 	<div class="title_1depth">
 		<ul>
 			<li class="title fl">검색 결과</li>
-			<li class="num fr"><span class="t_num"><a href="#">55</a></span>&nbsp;<span class="t_num_txt">건</span></li>
+			<li class="num fr"><span class="t_num"><a href="#">${totalCnt}</a></span>&nbsp;<span class="t_num_txt">건</span></li>
 		</ul>
 	</div>
 	<!-- Title_1depth/btn - end -->
 	<!-- Search_List - start -->
-	<div class="search_list">
+	<div class="search_list" id="search_div">
 		<ul>
+			<c:forEach var="result" items="${listSearch}" varStatus="status">
 			<li>
 				<!-- search_set01 - start -->
 				<div class="search_set">
 					<ul>
-						<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo1_250_01.jpg" class="photo"></a></li>
+						<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></li>
 						<li class="title">
-							<div class="ti"><a href="#">제주도, 산책길 새섬 제주도, 산책길 새섬</a></div>
-							<div class="name"><a href="#">김동준</a></div>
+							<div class="ti"><a href="#">${result.notiTitle}</a></div>
+							<div class="name"><a href="#">${result.userNm}</a></div>
 						</li>
 						<li class="content">
 							<span class="t_ellipsis_height" style="width:450px; height:81px;"><a href="#">
 							<!-- table - start -->
 							<table cellpadding="0" cellspacing="0" border="0">
 								<tr>
-									<td width="450" height="81" align="left" valign="middle">제주도 부근에 가파도, 마라도, 비양도, 우도, 가파도, 마라도, 비양도, 우도, 가파도, 마라도, 비양도, 우도 등 섬이 많지만 걸어서 갈 수 있는 섬은 새섬 하나뿐이며, 육지와 새섬 사이에는 다리, 육지와 새섬 사이에는 2009년 둘을 잇는 다리, 새연교가 제주도 부근에 가파도, 마라도, 비양도, 우도, 가파도, 마라도, 비양도, 우도, 가파도, 우도, 가파도</td>
+									<td width="450" height="81" align="left" valign="middle">${result.notiConts}</td>
 								</tr>
 							</table>
 							<!-- table - end -->
@@ -89,12 +159,15 @@
 								</table>
 								<!-- chart_gauge03 - end -->
 							</div>
-							<div class="scrap"><a href="#">11378</a>&nbsp;<a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle"></a></div>
+							<div class="scrap"><a href="#">${result.scrapCnt}</a>&nbsp;<a href="#"><img src="${ctx}/resources/images/icon/i_scrap.gif" align="absmiddle"></a></div>
 						</li>
 					</ul>
 				</div>
 				<!-- search_set01 - end -->
 			</li>
+			</c:forEach>
+			
+			<%-- 
 			<li>
 				<!-- search_set02 - start -->
 				<div class="search_set">
@@ -251,6 +324,7 @@
 				</div>
 				<!-- search_set05 - end -->
 			</li>
+			--%>
 		</ul>
 	</div>
 	<!-- Search_List - end -->
@@ -260,7 +334,7 @@
 	<!-- More_Btn - start -->
 	<div class="more">
 		<div class="btn fl">&nbsp;</div>
-		<div class="center fl"><img src="${ctx}/resources/images/icon/i-more.gif" align="absmiddle"><a href="#">더보기</a></div>
+		<div class="center fl"><img src="${ctx}/resources/images/icon/i-more.gif" align="absmiddle"><a href="#" onclick="listSearch()">더보기</a></div>
 		<div class="btn fr"><input type="button" class="btni_top" title="위로" onclick="" /></div>
 		<div class="cb"></div>
 	</div>

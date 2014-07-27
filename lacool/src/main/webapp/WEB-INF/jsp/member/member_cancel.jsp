@@ -80,7 +80,7 @@ $(document).ready(function(){
 		</colgroup>
 		<tr>
 			<td class="right"><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>
-			<td class="left">회원탈퇴 후 사용하고 계신 사용자 이름<strong>(abcd)</strong>은 재가입 및 복구가 불가능합니다.</td>
+			<td class="left">회원탈퇴 후 사용하고 계신 사용자 이름<strong>(${userVo.userId})</strong>은 재가입 및 복구가 불가능합니다.</td>
 		</tr>
 		<tr>
 			<td class="right"><img src="${ctx}/resources/images/icon/i_check.gif" align="absmiddle">&nbsp;&nbsp;</td>

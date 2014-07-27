@@ -6,6 +6,15 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#period").change(function(){
+		location.href = "${ctx}/contents/listHistory?period="+$(this).val();
+	});
+});
+</script>
 </head>
 
 <body onLoad="javascript:MenuOn(0103);">
@@ -46,27 +55,28 @@
 	<!-- Contents_Title - end -->
 	<div class="blank_height20"></div>
 	<div>
-		<select name="" class="select" style="width:234px;">
-		<option value="" selected>1주일</option>
-		<option value="">15일</option>
-		<option value="">30일</option>
-		<option value="">6개월</option>
-		<option value="">전체</option>
+		<select name="period" id="period" class="select" style="width:234px;">
+		<option value="7" <c:if test="${period=='7'}">selected</c:if> >1주일</option>
+		<option value="15" <c:if test="${period=='15'}">selected</c:if> >15일</option>
+		<option value="30" <c:if test="${period=='30'}">selected</c:if> >30일</option>
+		<option value="180" <c:if test="${period=='180'}">selected</c:if> >6개월</option>
+		<option value="" <c:if test="${empty period}">selected</c:if> >전체</option>
 		</select>
 	</div>
 	<div class="blank_height20"></div>
 	<!-- ContentsBox_Style04 - start -->
 	<div class="cont_st04">
 		<ul>
+			<c:forEach var="result" items="${listHistory}" end="3" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
+							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">${result.notiTitle}</a></span></div>
 							<div class="gauge">
 								<!-- chart_gauge03 - start -->
 								<table cellspacing="0" cellpadding="0" border="0">
@@ -85,6 +95,9 @@
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			
+			<%-- 
 			<li class="col">
 				<!-- 0102 - start -->
 				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
@@ -165,6 +178,7 @@
 				</div>
 				<!-- 0104 - end -->
 			</li>
+			--%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style04 - end -->
@@ -172,15 +186,16 @@
 	<!-- ContentsBox_Style04 - start -->
 	<div class="cont_st04">
 		<ul>
+			<c:forEach var="result" items="${listHistory}" begin="4" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0101.jpg" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
+						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>
 						<li>
 							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
+							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">${result.notiTitle}</a></span></div>
 							<div class="gauge">
 								<!-- chart_gauge03 - start -->
 								<table cellspacing="0" cellpadding="0" border="0">
@@ -199,6 +214,9 @@
 				<!-- 0101 - end -->
 			</li>
 			<li class="blank">&nbsp;</li>
+			</c:forEach>
+			
+			<%-- 
 			<li class="col">
 				<!-- 0102 - start -->
 				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
@@ -279,10 +297,31 @@
 				</div>
 				<!-- 0104 - end -->
 			</li>
+			--%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style04 - end -->
 	<div class="blank_height20"></div>
+	<div class="paging">
+		  <k:paging name="${pageInfo}" action="contents/listHistory" jsFunction="fn_link_page">
+		    <div class="btn fl">
+		  	<k:get property="firstPage"/>
+		  	<k:get property="prevPageGroup"/>
+		  	</div>
+		  	<div class="pagenum fl">
+		  	<k:get property="paging"/>
+		  	</div>
+		  	<div class="btn fr">
+		  	<k:get property="nextPageGroup"/>
+		  	<k:get property="lastPage"/>
+		  	</div>
+		  </k:paging>
+		<div class="cb"></div>
+	</div>		
+	
+	
+	
+	<%-- 
 	<!-- Paging - start -->
 	<div class="paging">
 		<div class="btn fl"><input type="button" class="btni_first" title="처음" onclick="" /><input type="button" class="btni_prev" title="이전" onclick="" /></div>
@@ -291,7 +330,7 @@
 		<div class="cb"></div>
 	</div>
 	<!-- Paging - end -->
-
+	--%>
 
 </div>
 <!-- contents-end -->

@@ -83,7 +83,6 @@ public class ContentsServiceImpl implements ContentsService {
 
 	@Override
 	public NotiInfoVo getContensDetail(NotiInfoVo vo) {
-		contentsMapper.updateReadCnt(vo);
 		return contentsMapper.getContensDetail(vo);
 	}
 
@@ -132,6 +131,9 @@ public class ContentsServiceImpl implements ContentsService {
 		}else if("002".equals(notiEvalInfoVo.getNotiEvalDiv())){
 			//반대
 			contentsMapper.updateNotiEvalNg(notiEvalInfoVo);
+		}else if("003".equals(notiEvalInfoVo.getNotiEvalDiv())){
+			//읽기
+			contentsMapper.updateReadCnt(notiEvalInfoVo);
 		}
 	}
 	
@@ -165,5 +167,25 @@ public class ContentsServiceImpl implements ContentsService {
 		notiOpnVo.setRestep(resultNotiOpnVo.getRestep()+1);
 		notiOpnVo.setRelevel(resultNotiOpnVo.getRelevel()+1);
 		contentsMapper.insertOpnForReply(notiOpnVo);
+	}
+	
+	@Override
+	public List<NotiInfoVo> listUserHistory(NotiInfoVo vo){
+		return contentsMapper.listUserHistory(vo);
+	}
+	
+	@Override
+	public int listUserHistoryCnt(NotiInfoVo vo){
+		return contentsMapper.listUserHistoryCnt(vo);
+	}
+	
+	@Override
+	public List<NotiInfoVo> listSearch(NotiInfoVo vo){
+		return contentsMapper.listSearch(vo);
+	}
+	
+	@Override
+	public int listSearchCnt(NotiInfoVo vo){
+		return contentsMapper.listSearchCnt(vo);
 	}
 }

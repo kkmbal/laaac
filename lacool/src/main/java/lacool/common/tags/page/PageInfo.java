@@ -25,19 +25,19 @@ public abstract class PageInfo {
 		this.spaces = spaces;
 	}
 	public int getFromLimit() {
-		this.fromLimit = (this.getCurrPage()-1)* this.getListSize();
+		if(getCurrPage() != 0)	this.fromLimit = (this.getCurrPage()-1)* this.getListSize();
 		return fromLimit;
 	}
-//	public void setFromLimit(int fromLimit) {
-//		this.fromLimit = fromLimit;
-//	}
+	public void setFromLimit(int fromLimit) {
+		this.fromLimit = fromLimit;
+	}
 	public int getToLimit() {
-		this.toLimit = this.getListSize();
+		if(getListSize() != 0) this.toLimit = this.getListSize();
 		return toLimit;
 	}
-//	public void setToLimit(int toLimit) {
-//		this.toLimit = toLimit;
-//	}
+	public void setToLimit(int toLimit) {
+		this.toLimit = toLimit;
+	}
 	
 	public String getSearchKeyword() {
 		return searchKeyword;

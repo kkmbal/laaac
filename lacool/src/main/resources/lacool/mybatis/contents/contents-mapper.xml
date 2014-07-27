@@ -275,7 +275,7 @@
 			, #{notiEvalDiv}
 			, #{userId}
 			, #{userNm}
-			, #{delYn}
+			, 'N'
 			, #{regId}
 			, NOW()
 			, #{updId}
@@ -311,7 +311,7 @@
 		]]>
 	</update>	
 	
-	<update id="updateReadCnt" parameterType="lacool.contents.vo.NotiInfoVo">
+	<update id="updateReadCnt" parameterType="lacool.contents.vo.NotiEvalInfoVo">
 	    <![CDATA[
 			UPDATE NOTI_INFO
 			SET NOTI_READ_CNT = NOTI_READ_CNT + 1
@@ -482,6 +482,149 @@
 			, NOW()
 			)
 		]]>
-	</insert>				
+	</insert>	
+	
+	<select id="listUserHistory" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiInfoVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+			     , B.APND_FILE_SEQ
+			     , B.APND_FILE_ORGN
+			     , B.APND_FILE_NM
+			     , B.APND_FILE_PATH	
+			     , D.USER_FILE_NM
+			     , D.USER_FILE_PATH
+			FROM NOTI_INFO A
+			    ,NOTI_APND_FILE B
+			    ,NOTI_EVAL_INFO C
+			    ,PSN_USER D
+			WHERE A.NOTI_ID = B.NOTI_ID
+			AND   A.DEL_YN = 'N'
+			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+			AND   A.NOTI_ID = C.NOTI_ID
+			AND   C.USER_ID = #{userId}
+			AND   C.NOTI_EVAL_DIV = '003'
+			AND   A.REG_ID = D.USER_ID
+		]]>
+			<if test="period != null and period != ''"> 
+				AND  C.REG_DTTM BETWEEN (NOW() - INTERVAL #{period} DAY) AND NOW()
+			</if>
+			ORDER BY C.REG_DTTM DESC
+			LIMIT #{fromLimit}, #{toLimit}
+	</select>				
+	
+	<select id="listUserHistoryCnt" parameterType="lacool.contents.vo.NotiInfoVo" resultType="int">
+		<![CDATA[	
+			SELECT  COUNT(A.NOTI_ID) CNT
+			FROM NOTI_INFO A
+			    ,NOTI_APND_FILE B
+			    ,NOTI_EVAL_INFO C
+				,PSN_USER D
+			WHERE A.NOTI_ID = B.NOTI_ID
+			AND   A.DEL_YN = 'N'
+			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+			AND   A.NOTI_ID = C.NOTI_ID
+			AND   C.USER_ID = #{userId}
+			AND   C.NOTI_EVAL_DIV = '003'
+			AND   A.REG_ID = D.USER_ID
+		]]>
+			<if test="period != null and period != ''"> 
+				AND  C.REG_DTTM BETWEEN (NOW() - INTERVAL #{period} DAY) AND NOW()
+			</if>
+	</select>		
+	
+	
+	<select id="listSearch" parameterType="lacool.contents.vo.NotiInfoVo" resultType="lacool.contents.vo.NotiInfoVo">
+		<![CDATA[	
+			SELECT  A.NOTI_ID
+				, A.BOARD_ID
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, B.APND_FILE_SEQ
+			     , B.APND_FILE_ORGN
+			     , B.APND_FILE_NM
+			     , B.APND_FILE_PATH	
+			     , D.USER_FILE_NM
+			     , D.USER_FILE_PATH
+			     , D.USER_NM
+			     , D.USER_ID
+			FROM NOTI_INFO A
+				,NOTI_APND_FILE B
+			    ,PSN_USER D
+			WHERE A.REG_ID = D.USER_ID
+			AND   A.NOTI_ID = B.NOTI_ID
+			AND   A.DEL_YN = 'N'
+			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		]]>
+			<if test="searchKeyword != null and searchKeyword != ''"> 
+				AND  A.NOTI_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+			ORDER BY A.REG_DTTM DESC
+			LIMIT #{fromLimit}, #{toLimit}
+	</select>		
+	
+	<select id="listSearchCnt" parameterType="lacool.contents.vo.NotiInfoVo" resultType="int">
+		<![CDATA[	
+			SELECT  COUNT(A.NOTI_ID) CNT
+			FROM NOTI_INFO A
+				,NOTI_APND_FILE B
+			    ,PSN_USER D
+			WHERE A.REG_ID = D.USER_ID
+			AND   A.NOTI_ID = B.NOTI_ID
+			AND   A.DEL_YN = 'N'
+			AND   B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+		]]>
+			<if test="searchKeyword != null and searchKeyword != ''"> 
+				AND  A.NOTI_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+			</if>
+	</select>		
 				
 </mapper>

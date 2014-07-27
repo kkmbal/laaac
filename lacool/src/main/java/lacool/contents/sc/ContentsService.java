@@ -35,4 +35,12 @@ public interface ContentsService {
 	public void insertOpn(NotiOpnVo notiOpnVo);
 	
 	public void insertReplyOpn(NotiOpnVo notiOpnVo);
+	
+	public List<NotiInfoVo> listUserHistory(NotiInfoVo vo);
+	
+	public int listUserHistoryCnt(NotiInfoVo vo);
+	
+	public List<NotiInfoVo> listSearch(NotiInfoVo vo);
+	
+	public int listSearchCnt(NotiInfoVo vo);
 }

@@ -49,5 +49,13 @@ public interface ContentsMapper {
 	
 	public void updateScrapCnt(UserScrapInfoVo scrapInfoVo);
 	
-	public void updateReadCnt(NotiInfoVo vo);
+	public void updateReadCnt(NotiEvalInfoVo notiEvalInfoVo);
+	
+	public List<NotiInfoVo> listUserHistory(NotiInfoVo vo);
+	
+	public int listUserHistoryCnt(NotiInfoVo vo);
+	
+	public List<NotiInfoVo> listSearch(NotiInfoVo vo);
+	
+	public int listSearchCnt(NotiInfoVo vo);
 }

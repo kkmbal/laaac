@@ -1,6 +1,8 @@
 package lacool.contents.vo;
 
-public class NotiInfoVo {
+import lacool.common.tags.page.PageInfo;
+
+public class NotiInfoVo extends PageInfo{
 	private String notiId;
 	private String upNotiId;
 	private String boardId;
@@ -34,7 +36,44 @@ public class NotiInfoVo {
 	private String userFileNm;
 	private String userFilePath;
 	
+	private String apndFileSeq;
+	private String apndFileOrgn;
+	private String apndFileNm;
+	private String apndFilePath;
 	
+	private String period;
+	
+	
+	public String getPeriod() {
+		return period;
+	}
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+	public String getApndFileSeq() {
+		return apndFileSeq;
+	}
+	public void setApndFileSeq(String apndFileSeq) {
+		this.apndFileSeq = apndFileSeq;
+	}
+	public String getApndFileOrgn() {
+		return apndFileOrgn;
+	}
+	public void setApndFileOrgn(String apndFileOrgn) {
+		this.apndFileOrgn = apndFileOrgn;
+	}
+	public String getApndFileNm() {
+		return apndFileNm;
+	}
+	public void setApndFileNm(String apndFileNm) {
+		this.apndFileNm = apndFileNm;
+	}
+	public String getApndFilePath() {
+		return apndFilePath;
+	}
+	public void setApndFilePath(String apndFilePath) {
+		this.apndFilePath = apndFilePath;
+	}
 	public String getUserFileNm() {
 		return userFileNm;
 	}
