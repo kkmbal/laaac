@@ -325,7 +325,7 @@ public class ContentsController {
     @RequestMapping("/bbsFileUpload") 
     @ResponseBody 
     public void bbsFileUpload(HttpServletRequest request, HttpServletResponse response, ModelMap model, HttpSession session) throws Exception{
-    	JSONArray jsonArr = FileUtil.uploadFile(request, "/resources/images/upload/");   
+    	JSONArray jsonArr = FileUtil.uploadFile(request, "resources/images/upload/contents/");   
     	
         HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(response);
         response.getWriter().print(jsonArr.toString());

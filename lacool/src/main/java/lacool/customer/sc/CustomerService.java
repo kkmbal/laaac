@@ -10,4 +10,6 @@ public interface CustomerService {
 
 	int listCnt(CustomerVo customerVo);
 
+	CustomerVo insert(CustomerVo customerVo);
+
 }

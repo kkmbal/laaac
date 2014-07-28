@@ -49,7 +49,7 @@
 			<if test="searchKeyword == 'NAME' and searchValue != '' and searchValue != null">
 			AND   	A.USER_NM LIKE CONCAT('%', #{searchValue} , '%')
 			</if>		
-			ORDER BY A.REF DESC, A.RESTEP ASC
+			ORDER BY A.ALARM_YN DESC, A.REF DESC, A.RESTEP ASC
 			LIMIT #{fromLimit}, #{toLimit}
 	</select>
 	
@@ -71,6 +71,137 @@
 			</if>					
 	</select>
 	
-
+	<select id="getMaxRef"  parameterType="lacool.customer.vo.CustomerVo" resultType="String">
+		SELECT IFNULL(MAX(REF),0)+1 FROM NOTI_INFO WHERE BOARD_ID = #{boardId}
+	</select>
+	
+	<insert id="insert" parameterType="lacool.customer.vo.CustomerVo">
+		<selectKey keyProperty="notiId" resultType="String" order="BEFORE" >
+		 SELECT CONCAT('C' , LPAD(CAST(REPLACE(IFNULL(MAX(NOTI_ID),0), 'C','') AS UNSIGNED) + 1, 8, '0')) AS notiId FROM NOTI_INFO
+	     WHERE NOTI_ID LIKE 'C%'	    
+	    </selectKey>
+	  
+		<![CDATA[
+		INSERT INTO NOTI_INFO(
+		  NOTI_ID
+		, BOARD_ID
+		, CATE_ID
+		, UP_NOTI_ID
+		, NOTI_KIND
+		, NOTI_TITLE
+		, NOTI_CONTS
+		, NOTI_URL
+		, NOTI_OPN_DIV
+		, FB_REG_YN
+		, DEL_YN
+		, STAT_CD
+		, USER_ID
+		, USER_NM
+		, NOTI_READ_CNT
+		, NOTI_OK_CNT
+		, NOTI_NG_CNT
+		, WRITE_IP
+		, NOTI_BGN_DTTM
+		, NOTI_END_DTTM
+		, SCRAP_CNT
+		, NOTI_OPN_CNT
+		, PRVT_YN
+		, ALARM_YN
+		, REG_ID
+		, REG_DTTM
+		, UPD_ID
+		, UPD_DTTM
+		, REF
+		, RESTEP
+		, RELEVEL
+		)VALUES (
+		  #{notiId}
+		, #{boardId}
+		, #{cateId}
+		, #{upNotiId}
+		, #{notiKind}
+		, #{notiTitle}
+		, #{notiConts}
+		, #{notiUrl}
+		, #{notiOpnDiv}
+		, #{fbRegYn}
+		, #{delYn}
+		, #{statCd}
+		, #{userId}
+		, #{userNm}
+		, #{notiReadCnt}
+		, #{notiOkCnt}
+		, #{notiNgCnt}
+		, #{writeIp}
+		, NOW()
+		, CAST( '9999-12-31 23:59:59' AS DATETIME )
+		, #{scrapCnt}
+		, #{notiOpnCnt}
+		, #{prvtYn}
+		, #{alarmYn}
+		, #{regId}
+		, NOW()
+		, #{updId}
+		, NOW()
+		, #{ref}
+		, #{restep}
+		, #{relevel}	
+		)
+		]]>
+	</insert>
+	
+	<update id="update" parameterType="lacool.customer.vo.CustomerVo">
+		<![CDATA[
+		UPDATE NOTI_INFO
+		SET NOTI_TITLE = #{notiTitle},
+			NOTI_CONTS = #{notiConts},
+			PRVT_YN = #{prvtYn},
+			UPD_ID = #{updId},
+			UPD_DTTM = NOW()
+		WHERE NOTI_ID = #{notoId}
+		AND REG_ID = #{userId}
+		AND DEL_YN = 'N'
+		]]>
+	</update>
+		
+	<insert id="insertNotiApndFile" parameterType="lacool.contents.vo.NotiApndFileVo">
+		<selectKey keyProperty="apndFileSeq" resultType="String" order="BEFORE" >
+		  SELECT IFNULL(MAX(APND_FILE_SEQ),0)+1 AS apndFileSeq FROM NOTI_APND_FILE	     	    
+	    </selectKey>
+	    <![CDATA[
+			INSERT INTO NOTI_APND_FILE(
+			 NOTI_ID
+			, APND_FILE_SEQ
+			, APND_FILE_TP
+			, APND_FILE_SZ
+			, APND_FILE_ORGN
+			, APND_FILE_NM
+			, APND_FILE_PATH
+			, APND_FILE_PRE_PATH
+			, APND_FILE_PRE_NM
+			, DEL_YN
+			, REG_ID
+			, REG_DTTM
+			, UPD_ID
+			, UPD_DTTM
+			) VALUES (
+			 #{notiId}
+			, #{apndFileSeq}
+			, #{apndFileTp}
+			, #{apndFileSz}
+			, #{apndFileOrgn}
+			, #{apndFileNm}
+			, #{apndFilePath}
+			, #{apndFilePrePath}
+			, #{apndFilePreNm}
+			, #{delYn}
+			, #{regId}
+			, NOW()
+			, #{updId}
+			, NOW()
+			)
+		]]>
+	
+	</insert>		
 		
 </mapper>

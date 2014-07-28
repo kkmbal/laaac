@@ -7,6 +7,19 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+	$("#btnCustomerSearch").click(function(){	
+		frm.submit();
+	});
+	$("#btnWrite").click(function(){	
+		location.href = "${ctx}/customer/customer_write";
+	});
+});
+</script>
 </head>
 
 <body>
@@ -52,20 +65,22 @@
 		<tr>
 			<td class="left">
 				<!-- start -->
+				<form name="frm" id="frm" method="get" action="${ctx}/customer/list">
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><select name="" class="select" style="width:150px;">
+						<td><select name="searchKeyword" id="searchKeyword" class="select" style="width:150px;">
 						<option value="">선택</option>
-						<option value="" selected>제목</option>
-						<option value="">작성자</option>
-						<option value="">내용</option>
+						<option value="TITLE" <c:if test="${searchKeyword == 'TITLE'}">selected</c:if>>제목</option>
+						<option value="NAME"  <c:if test="${searchKeyword == 'NAME'}">selected</c:if>>작성자</option>
+						<option value="CONTENT"  <c:if test="${searchKeyword == 'CONTENT'}">selected</c:if>>내용</option>
 						</select></td>
 						<td class="gridt_blank" nowrap></td>
-						<td><input name="" type="text" class="input" style="width:480px;" value=""></td>
+						<td><input name="searchValue" id="searchValue" type="text" class="input" style="width:480px;" value="${searchValue}"></td>
 						<td class="gridt_blank" nowrap></td>
-						<td nowrap><input type="button" class="btn_search" value="검색" onclick="" /></td>
+						<td nowrap><input type="button" class="btn_search" value="검색" id="btnCustomerSearch"  /></td>
 					</tr>
 				</table>
+				</form>
 				<!-- end -->
 			</td>
 		</tr>
@@ -74,7 +89,7 @@
 	<!-- Grid_Table_Search - end -->
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
-		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" onclick="location.href='customer_write.html'" /></div>
+		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" id="btnWrite" /></div>
 		<div class="main"><!-- <input type="button" class="btnm" value="완료" onclick="" /><input type="button" class="btnm_cancel" value="취소" onclick="" /> --></div>
 		<div class="cb"></div>
 	</div>
@@ -96,76 +111,45 @@
 			<th class="center">조회수</th>
 			<th class="center end">등록일</th>
 		</tr>
+<!-- 		<tr class="gridt_list_point01"> -->
+<!-- 			<td class="center">100</td> -->
+<%-- 			<td class="left"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> <a href="customer_read.html" target="_top"><strong>관리자가 작성한 게시물 / 신규 게시물 / 읽지 않은 게시물</strong></a></td> --%>
+<!-- 			<td class="center">관리자</td> -->
+<!-- 			<td class="right">234</td> -->
+<!-- 			<td class="center end">2014.04.01 12:34:44</td> -->
+<!-- 		</tr> -->
+<!-- 		<tr class="gridt_list_point01"> -->
+<!-- 			<td class="center">99</td> -->
+<!-- 			<td class="left"><a href="#"><strong>신규 게시물 / 읽지 않은 게시물</strong></a></td> -->
+<!-- 			<td class="center">작성자</td> -->
+<!-- 			<td class="right">23</td> -->
+<!-- 			<td class="center end">2014.04.01 12:34:44</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'"> -->
+<!-- 			<td class="center">98</td> -->
+<!-- 			<td class="left"><a href="#"><strong>읽지 않은 게시물</strong></a></td> -->
+<!-- 			<td class="center">관리자</td> -->
+<!-- 			<td class="right">1560</td> -->
+<!-- 			<td class="center end">2014.04.01 12:34:44</td> -->
+<!-- 		</tr> -->
+		
+		
+		<c:forEach var="result" items="${list}" varStatus="status">
+		<c:if test="${result.alarmYn != 'Y'}">
+		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">		
+		</c:if>
+		<c:if test="${result.alarmYn=='Y'}">
 		<tr class="gridt_list_point01">
-			<td class="center">100</td>
-			<td class="left"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> <a href="customer_read.html" target="_top"><strong>관리자가 작성한 게시물 / 신규 게시물 / 읽지 않은 게시물</strong></a></td>
-			<td class="center">관리자</td>
-			<td class="right">234</td>
-			<td class="center end">2014.04.01 12:34:44</td>
+		</c:if>
+			<td class="center">${result.rownum}</td>
+			<td class="left"><c:if test="${result.alarmYn=='Y'}"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> </c:if> <c:if test="${result.notiReadCnt == 0 or result.alarmYn=='Y'}"><a href="#"><strong>${result.notiTitle}</strong></a></c:if> <c:if test="${result.notiReadCnt > 0 and result.alarmYn !='Y'}"><a href="#">${result.notiTitle}</a></c:if></td>
+			<td class="center">${result.userNm}</td>
+			<td class="right">${result.notiReadCnt}</td>
+			<td class="center end">${result.regDttm}</td>
 		</tr>
-		<tr class="gridt_list_point01">
-			<td class="center">99</td>
-			<td class="left"><a href="#"><strong>신규 게시물 / 읽지 않은 게시물</strong></a></td>
-			<td class="center">작성자</td>
-			<td class="right">23</td>
-			<td class="center end">2014.04.01 12:34:44</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">98</td>
-			<td class="left"><a href="#"><strong>읽지 않은 게시물</strong></a></td>
-			<td class="center">관리자</td>
-			<td class="right">1560</td>
-			<td class="center end">2014.04.01 12:34:44</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">97</td>
-			<td class="left"><a href="#">제목</a></td>
-			<td class="center">작성자</td>
-			<td class="right">2580</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">96</td>
-			<td class="left"><img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;비밀글</td>
-			<td class="center">관리자</td>
-			<td class="right">50</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">95</td>
-			<td class="left"><a href="#">제목</a></td>
-			<td class="center">작성자</td>
-			<td class="right">234</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">94</td>
-			<td class="left"><img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">&nbsp;<a href="#">[답글]관리자가의 답글</a></td>
-			<td class="center">관리자</td>
-			<td class="right">23</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">93</td>
-			<td class="left"><img src="${ctx}/resources/images/icon/i_reply_no.gif" align="absmiddle">&nbsp;<img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">&nbsp;<a href="#">[답글]관리자의 답글에 다시 작성자가 답글을 쓸 경우</a></td>
-			<td class="center">작성자</td>
-			<td class="right">1560</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">92</td>
-			<td class="left"><img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;<a href="#">비밀글</a></td>
-			<td class="center">관리자</td>
-			<td class="right">2580</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
-		<tr class="gridt_list_bg01" onmouseover="this.className='gridt_list_bg01_ov'" onmousedown="this.className='gridt_list_bg01_dn'" onmouseout="this.className='gridt_list_bg01_ot'">
-			<td class="center">91</td>
-			<td class="left"><img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">&nbsp;<img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;<a href="#">[답글]비밀글</a></td>
-			<td class="center">작성자</td>
-			<td class="right">50</td>
-			<td class="center end">2014.04.01</td>
-		</tr>
+		</c:forEach>
+		
 	</table>
 	<!-- Grid_Table_List - end -->
 
@@ -173,9 +157,17 @@
 
 	<!-- Paging - start -->
 	<div class="paging">
-		<div class="btn fl"><input type="button" class="btni_first_inact" title="처음" onclick="" /><input type="button" class="btni_prev_inact" title="이전" onclick="" /></div>
-		<div class="pagenum fl"><span class="iListNum">1</span><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a></div>
-		<div class="btn fr"><input type="button" class="btni_next" title="다음" onclick="" /><input type="button" class="btni_last" title="끝" onclick="" /></div>
+		  <k:paging name="${pageInfo}" action="customer/list" jsFunction="fn_link_page">
+		    <div class="btn fl">
+		  	<k:get property="firstPage"/><k:get property="prevPageGroup"/>
+		  	</div>
+		  	<div class="pagenum fl">
+		  	<k:get property="paging"/>
+		  	</div>
+		  	<div class="btn fr">
+		  	<k:get property="nextPageGroup"/><k:get property="lastPage"/>
+		  	</div>
+		  </k:paging>
 		<div class="cb"></div>
 	</div>
 	<!-- Paging - end -->

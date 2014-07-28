@@ -31,7 +31,7 @@
 				<li class="line">l</li>
 				<li><a href="#"><strong>개인정보취급방침</strong></a></li>
 				<li class="line">l</li>
-				<li><a href="#">고객문의</a></li>
+				<li><a href="${ctx}/customer/list">고객문의</a></li>
 			</ul>
 		</div>
 		<div class="blank_height15"></div>

@@ -56,7 +56,7 @@ public class PagingHelper {
 		StringBuilder sb = new StringBuilder();
 		for(int i = startPage ; i < endPage ; i++){
 			if(i == currPage){
-				sb.append("<strong>").append(i).append("</strong>");
+				sb.append("<span class='iListNum'>").append(i).append("</span>");
 			}else{
 //				sb.append("<a href='/mvoip_m/listBoard.do?board.currPage="+i+"'>"+i+"</a>");
 				sb.append("<a href='"+action+"currPage="+i+"'>"+i+"</a>");
@@ -97,25 +97,25 @@ public class PagingHelper {
 	public String getPrevPageGroup() {
 		//return prevPageGroup > 0 ? "<a href='"+action+"?currPage="+prevPageGroup+"'>"+"&lt;"+"</a>" : "";
 		//return prevPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+prevPageGroup+"'><img src=\""+contextPath+"/img/icn/pre.gif\" alt=\"이전\" /></a>" : "";
-		return prevPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+prevPageGroup+"'><input type=\"button\" class=\"btni_prev_inact\" title=\"이전\" onclick=\"\"></a>" : "<input type=\"button\" class=\"btni_prev_inact\" title=\"이전\" onclick=\"\">";
+		return prevPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+prevPageGroup+"'><input type=\"button\" class=\"btni_prev_inact\" title=\"이전\" onclick=\"\"></a>" : "";
 	}
 
 	public String getNextPageGroup() {
 		//return nextPageGroup > 0 ? "<a href='"+action+"?currPage="+nextPageGroup+"'>"+"&gt;"+"</a>" : "";
 		//return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+nextPageGroup+"'><img src=\""+contextPath+"/img/icn/next.gif\" alt=\"다음\" /></a>" : "";
-		return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+nextPageGroup+"'><input type=\"button\" class=\"btni_next\" title=\"다음\" onclick=\"\"></a>" : "<input type=\"button\" class=\"btni_next\" title=\"다음\" onclick=\"\">";
+		return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+nextPageGroup+"'><input type=\"button\" class=\"btni_next\" title=\"다음\" onclick=\"\"></a>" : "";
 	}
 
 	public String getFirstPage(){
 		//return prevPageGroup > 0 ?"<a href='"+action+"?currPage=1'>처음</a>" : "";
 		//return prevPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage=1'><img src=\""+contextPath+"/img/icn/first.gif\" alt=\"처음\" /></a>" : "";
-		return prevPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage=1'><input type=\"button\" class=\"btni_first_inact\" title=\"처음\" onclick=\"\"></a>" : "<input type=\"button\" class=\"btni_first_inact\" title=\"처음\" onclick=\"\">";
+		return prevPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage=1'><input type=\"button\" class=\"btni_first_inact\" title=\"처음\" onclick=\"\"></a>" : "";
 	}
 	
 	public String getLastPage(){
 		//return nextPageGroup > 0 ? "<a href='"+action+"?currPage="+totalPage+"'>마지막</a>" : "";
-		//return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+totalPage+"'><img src=\""+contextPath+"/img/icn/end.gif\" alt=\"마지막\" /></a>" : "33";
-		return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+totalPage+"'><input type=\"button\" class=\"btni_last\" title=\"끝\" onclick=\"\"></a>" : "<input type=\"button\" class=\"btni_last\" title=\"끝\" onclick=\"\">";
+		//return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+totalPage+"'><img src=\""+contextPath+"/img/icn/end.gif\" alt=\"마지막\" /></a>" : "";
+		return nextPageGroup > 0 ? "<a class=\"direction\" href='"+action+"&currPage="+totalPage+"'><input type=\"button\" class=\"btni_last\" title=\"끝\" onclick=\"\"></a>" : "";
 	}
 
 	public int getSearchListSize() {

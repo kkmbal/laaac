@@ -292,7 +292,7 @@ public class PersonController {
     @RequestMapping("/bbsFileUpload") 
     @ResponseBody 
     public void bbsFileUpload(HttpServletRequest request, HttpServletResponse response, ModelMap model, HttpSession session) throws Exception{
-    	JSONArray jsonArr = FileUtil.uploadFile(request, "resources/images/photo/");   
+    	JSONArray jsonArr = FileUtil.uploadFile(request, "resources/images/upload/photo/");   
     	
         HttpServletResponseWrapper wrapper = new HttpServletResponseWrapper(response);
         response.getWriter().print(jsonArr.toString());

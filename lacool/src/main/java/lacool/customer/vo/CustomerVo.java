@@ -36,7 +36,29 @@ public class CustomerVo extends PageInfo{
 	private String alarmYn;
 	private int rownum;
 	
+	private String apndFileOrgn;
+	private String apndFileNm;
+	private String apndFilePath;
 	
+	
+	public String getApndFileOrgn() {
+		return apndFileOrgn;
+	}
+	public void setApndFileOrgn(String apndFileOrgn) {
+		this.apndFileOrgn = apndFileOrgn;
+	}
+	public String getApndFileNm() {
+		return apndFileNm;
+	}
+	public void setApndFileNm(String apndFileNm) {
+		this.apndFileNm = apndFileNm;
+	}
+	public String getApndFilePath() {
+		return apndFilePath;
+	}
+	public void setApndFilePath(String apndFilePath) {
+		this.apndFilePath = apndFilePath;
+	}
 	public int getRownum() {
 		return rownum;
 	}

@@ -305,15 +305,13 @@ $(document).ready(function(){
 	<div class="paging">
 		  <k:paging name="${pageInfo}" action="contents/listHistory" jsFunction="fn_link_page">
 		    <div class="btn fl">
-		  	<k:get property="firstPage"/>
-		  	<k:get property="prevPageGroup"/>
+		  	<k:get property="firstPage"/><k:get property="prevPageGroup"/>
 		  	</div>
 		  	<div class="pagenum fl">
 		  	<k:get property="paging"/>
 		  	</div>
 		  	<div class="btn fr">
-		  	<k:get property="nextPageGroup"/>
-		  	<k:get property="lastPage"/>
+		  	<k:get property="nextPageGroup"/><k:get property="lastPage"/>
 		  	</div>
 		  </k:paging>
 		<div class="cb"></div>
