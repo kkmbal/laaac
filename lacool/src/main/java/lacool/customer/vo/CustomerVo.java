@@ -34,13 +34,27 @@ public class CustomerVo extends PageInfo{
 	private String updDttm;
 	private String prvtYn;
 	private String alarmYn;
-	private int rownum;
+	private String notiSeq;
 	
+	private String apndFileSeq;
 	private String apndFileOrgn;
 	private String apndFileNm;
 	private String apndFilePath;
+	private String apndFileSz;
 	
 	
+	public String getApndFileSeq() {
+		return apndFileSeq;
+	}
+	public void setApndFileSeq(String apndFileSeq) {
+		this.apndFileSeq = apndFileSeq;
+	}
+	public String getApndFileSz() {
+		return apndFileSz;
+	}
+	public void setApndFileSz(String apndFileSz) {
+		this.apndFileSz = apndFileSz;
+	}
 	public String getApndFileOrgn() {
 		return apndFileOrgn;
 	}
@@ -59,11 +73,11 @@ public class CustomerVo extends PageInfo{
 	public void setApndFilePath(String apndFilePath) {
 		this.apndFilePath = apndFilePath;
 	}
-	public int getRownum() {
-		return rownum;
+	public String getNotiSeq() {
+		return notiSeq;
 	}
-	public void setRownum(int rownum) {
-		this.rownum = rownum;
+	public void setNotiSeq(String notiSeq) {
+		this.notiSeq = notiSeq;
 	}
 	public String getNotiId() {
 		return notiId;

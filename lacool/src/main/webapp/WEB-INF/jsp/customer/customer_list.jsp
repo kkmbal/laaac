@@ -10,6 +10,9 @@
 
 <script type="text/javascript">
 
+function fnGetBoardView(notiId, notiSeq){
+	location.href = "${ctx}/customer/read?notiId="+notiId+"&notiSeq="+notiSeq;
+}
 
 $(document).ready(function(){
 	$("#btnCustomerSearch").click(function(){	
@@ -142,8 +145,12 @@ $(document).ready(function(){
 		<c:if test="${result.alarmYn=='Y'}">
 		<tr class="gridt_list_point01">
 		</c:if>
-			<td class="center">${result.rownum}</td>
-			<td class="left"><c:if test="${result.alarmYn=='Y'}"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> </c:if> <c:if test="${result.notiReadCnt == 0 or result.alarmYn=='Y'}"><a href="#"><strong>${result.notiTitle}</strong></a></c:if> <c:if test="${result.notiReadCnt > 0 and result.alarmYn !='Y'}"><a href="#">${result.notiTitle}</a></c:if></td>
+			<td class="center">${result.notiSeq}</td>
+			<td class="left">
+				<c:if test="${result.alarmYn=='Y'}"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> </c:if> 
+				<c:if test="${result.notiReadCnt == 0 or result.alarmYn=='Y'}"><a href="#" onclick="fnGetBoardView('${result.notiId}','${result.notiSeq}')"><strong>${result.notiTitle}</strong></a></c:if> 
+				<c:if test="${result.notiReadCnt > 0 and result.alarmYn !='Y'}"><a href="#" onclick="fnGetBoardView('${result.notiId}','${result.notiSeq}')">${result.notiTitle}</a></c:if>
+			</td>
 			<td class="center">${result.userNm}</td>
 			<td class="right">${result.notiReadCnt}</td>
 			<td class="center end">${result.regDttm}</td>

@@ -72,7 +72,7 @@
 		<ul class="gnb_info">
 			<li><img src="${ctx}/resources/images/gnb/gnb_info_line.gif" /></li>
         	<c:choose>
-        		<c:when test="${not empty userVo}">
+        		<c:when test="${not empty userVo && not empty userVo.userId}">
         			<li class="login"><a href="#" id="goPerson">${userVo.userNm}</a></li>
         			<li><img src="${ctx}/resources/images/gnb/gnb_info_line.gif" /></li>
 					<li class="members"><a href="${ctx}/member/doLogout" target="_top">로그아웃</a></li>

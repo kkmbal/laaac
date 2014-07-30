@@ -14,10 +14,22 @@ public interface CustomerMapper {
 	int listCnt(CustomerVo customerVo);
 	
 	String getMaxRef(CustomerVo customerVo);
+	
+	String getNotiSeq(CustomerVo customerVo);
 
 	void insert(CustomerVo customerVo);
 
 	void update(CustomerVo customerVo);
 
 	void insertNotiApndFile(NotiApndFileVo apndVo);
+
+	CustomerVo read(CustomerVo customerVo);
+
+	CustomerVo readPrev(CustomerVo customerVo);
+
+	CustomerVo readNext(CustomerVo customerVo);
+
+	NotiApndFileVo getNotiApndFile(NotiApndFileVo vo);
+
+	void delete(CustomerVo vo);
 }

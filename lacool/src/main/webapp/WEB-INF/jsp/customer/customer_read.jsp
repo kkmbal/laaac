@@ -7,6 +7,48 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+function fnGetBoardView(notiId, notiSeq){
+	location.href = "${ctx}/customer/read?notiId="+notiId+"&notiSeq="+notiSeq;
+}
+
+var fnDoFileDown = function fnDoFileDown(notiId, fileseq, filename, fileorg){	
+	
+	 var jsonObject = {
+		'apndFileOrgn' : fileorg,
+		'apndFileName' : filename,
+		'apndFileSeq' :  fileseq,
+		'notiId' : notiId
+	 };
+	 
+	 var url = "${ctx}/customer/bbsFileDownload.do?data="+encodeURI(JSON.stringify(jsonObject),"UTF-8");
+	 document.dummy.location.href = url;
+};
+
+$(document).ready(function(){
+	$("#btnList").click(function(){	
+		location.href = "${ctx}/customer/list?currPage=${currPage}";
+	});
+	$("#btnWrite").click(function(){	
+		location.href = "${ctx}/customer/customer_write";
+	});
+	$("#btnDelete").click(function(){	
+		location.href = "${ctx}/customer/delete?notiId=${customerVo.notiId}";
+		
+	});
+	$("#btnDelPop").click(function(){	
+		var left = (screen.width/2)-(296/2);
+		$("#delPop").css("left",left).css("top", 400).show();
+		
+	});
+	$(".btnDeleteClose").click(function(){	
+		$("#delPop").hide();
+		
+	});
+});
+</script>
 </head>
 
 <body>
@@ -60,22 +102,23 @@
 		</colgroup>
 		<tr>
 			<th class="headl">번호</th>
-			<td class="headl">345,789</td>
+			<td class="headl">${customerVo.notiSeq}</td>
 			<th class="headl">조회수</th>
-			<td class="headl">356,000</td>
+			<td class="headl">${customerVo.notiReadCnt}</td>
 			<th class="headl">작성자</th>
-			<td class="headl">김동준</td>
+			<td class="headl">${customerVo.userNm}</td>
 			<th class="headl">등록일</th>
-			<td class="headl">2014.05.15 15:30</td>
+			<td class="headl">${customerVo.regDttm}</td>
 		</tr>
 		<tr>
-			<td class="title" colspan="8">1000년을 이어온 유산 팔만대장경</td>
+			<td class="title" colspan="8">${customerVo.notiTitle}</td>
 		</tr>
 		<tr>
 			<td class="content" colspan="8">
-			해인사 대장경판은 지금까지 잘 보관되고 있지만, 일본의 요구로 해인사에 보관되지 못하고 일본으로 보내졌을 뻔하였으며, 또한 화재나 전쟁으로 사라질 위험을 몇 차례 겪었다. 첫 번째 위기는 조선 초기에 있었다. [조선왕조실록]에 따르면 일본과 유구국 및 쓰시마가 고려 말부터 사신을 보내 팔만대장경을 요구하기 시작하다가 조선 초기에 이르러 각종 토산물을 바치면서 더욱 끈질기게 요구해왔다. 특히 세종 때에는 대장경판의 자체를 요구하기까지 하였다. [세종실록] 세종 5년(1423) 12월, 6년 정월, 2월, 12월, 7년 4월, 5월 등의 기록에는 일본 사신이 단식까지 하면서 완강하게 팔만대장경판을 요구하자 세종은 대장경판이 우리나라에 오직 한 벌 밖에 없으므로 줄 수 없다고 말하며, 팔만대장경판을 대신하여 범자(梵字)의 밀교대장경판, 주화엄경판 1질,금자(金字) [화엄경], [호국인왕경], [아미타경], [석가보] 등을 주어 가져가게 하였다. 세종 6년 1월 20일조 기사 등을 보면, 왜통사 윤인보와 그의 아우 윤인시 그리고 그의 집에 있는 왜노 3명이 대장경판을 약탈하려는 사건까지 일어난다.
+			${customerVo.notiConts}
 			</td>
 		</tr>
+		<c:if test="${not empty customerVo.apndFileOrgn}">
 		<tr>
 			<th class="file">첨부파일</th>
 			<td class="file" colspan="7">
@@ -84,14 +127,15 @@
 					<tr>
 						<td class="filel"><img src="${ctx}/resources/images/icon/i_file.gif"></td>
 						<td width="5" nowrap></td>
-						<td class="filel"><span class="t_file"><a href="#">파일명.ppt</a></span></td>
+						<td class="filel"><span class="t_file"><a href="#" onclick="fnDoFileDown('${customerVo.notiId}','${customerVo.apndFileSeq}','${customerVo.apndFileNm}','${customerVo.apndFileOrgn}')">${customerVo.apndFileOrgn}</a></span></td>
 						<td width="5" nowrap></td>
-						<td class="filel"><span class="t_num_txt">(1.345 kb)</span></td>
+						<td class="filel"><span class="t_num_txt">(${customerVo.apndFileSz} kb)</span></td>
 					</tr>
 				</table>
 				<!-- gridt_file - end -->
 			</td>
 		</tr>
+		</c:if>
 		<tr class="gridt_read_bg01" onmouseover="this.className='gridt_read_bg01_ov'" onmousedown="this.className='gridt_read_bg01_dn'" onmouseout="this.className='gridt_read_bg01_ot'">
 			<td class="listprev" colspan="8">
 				<!-- start -->
@@ -101,7 +145,12 @@
 						<td class="gridt_blank" nowrap></td>
 						<td><img src="${ctx}/resources/images/icon/i_prev.gif"></td>
 						<td width="25" nowrap></td>
-						<td><a href="#">이전 글의 제목 들어가는 곳</a></td>
+						<td>
+							<c:if test="${not empty prevCustomerVo.notiId}">
+							<a href="#" onclick="fnGetBoardView('${prevCustomerVo.notiId}','${prevCustomerVo.notiSeq}')">${prevCustomerVo.notiTitle}</a>
+							</c:if>
+							<c:if test="${empty prevCustomerVo.notiId}">마지막</c:if>
+						</td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -116,7 +165,12 @@
 						<td class="gridt_blank" nowrap></td>
 						<td><img src="${ctx}/resources/images/icon/i_next.gif"></td>
 						<td width="25" nowrap></td>
-						<td><a href="#">다음 글의 제목 들어가는 곳</a></td>
+						<td>
+							<c:if test="${not empty nextCustomerVo.notiId}">
+							<a href="#" onclick="fnGetBoardView('${nextCustomerVo.notiId}','${nextCustomerVo.notiSeq}')">${nextCustomerVo.notiTitle}</a>
+							</c:if>
+							<c:if test="${empty nextCustomerVo.notiId}">마지막</c:if>
+						</td>
 					</tr>
 				</table>
 				<!-- end -->
@@ -128,8 +182,8 @@
 
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
-		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" onclick="location.href='customer_write.html'" /><input type="button" class="btns_st04" value="답글 쓰기" onclick="location.href='customer_reply.html'" /><input type="button" class="btns" value="수정" onclick="location.href='customer_modify.html'" /><input type="button" class="btns" value="삭제" onclick="" /></div>
-		<div class="main"><input type="button" class="btnm" value="목록" onclick="location.href='customer_list.html'" /><!-- <input type="button" class="btnm_cancel" value="목록" onclick="" /> --></div>
+		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" id="btnWrite" /><input type="button" class="btns_st04" value="답글 쓰기" onclick="location.href='customer_reply.html'" /><input type="button" class="btns" value="수정" onclick="location.href='customer_modify.html'" /><input type="button" class="btns" value="삭제" id="btnDelPop" /></div>
+		<div class="main"><input type="button" class="btnm" value="목록" id="btnList" /></div>
 		<div class="cb"></div>
 	</div>
 	<!-- Btn_Form(Sub/Main) - end -->
@@ -149,8 +203,42 @@
 </div>
 <!-- ***** WRAPPER - end ***** -->
 
+<iframe name="dummy" width=0 height=0 border=0 style="visibility:hidden"></iframe>
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->
+
+
+<div class="popup_st01" style="width:296px; height:176px; z-index:100; position:absolute; display:none;" id="delPop">
+	<!-- Title/Btn_close - start -->
+	<div class="popup_st01_title">
+		<ul>
+			<li class="btn fr"><input type="button" class="btni_close02 btnDeleteClose" title="닫기" /></li>
+		</ul>
+	</div>
+	<!-- Title/Btn_close - end -->
+
+	<!-- 내용 들어가는 곳 - start -->
+	<div class="popup_st01_contents">
+
+		<!-- start -->
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		  <tr>
+		    <td class="popup_st01_contents_txt">게시물을 삭제합니다.<br>삭제된 게시물은 복구할 수 없습니다.</td>
+		  </tr>
+		</table>
+		<!-- end -->
+
+	</div>
+	<!-- 내용 들어가는 곳 - end -->
+
+	<!-- Popup_Style01_Btn - start -->
+	<div class="popup_st01_btn">
+		<input type="button" class="btnm" value="확인" id="btnDelete" /><input type="button" class="btnm_cancel btnDeleteClose" value="취소"  />
+	</div>
+	<!-- Popup_Style01_Btn - end -->
+</div>
+
+
 </body>
 </html>

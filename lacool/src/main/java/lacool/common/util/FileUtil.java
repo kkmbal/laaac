@@ -175,6 +175,7 @@ public class FileUtil {
             	jsonObject.put("apndFileNm", tmpFile.getName());
             	jsonObject.put("apndFileOrgn", fileItem.getName());
             	jsonObject.put("apndFilePath", savePath);
+            	jsonObject.put("apndFileSz", fileItem.getSize());
             	jsonArr.add(jsonObject);
             	
             }

@@ -44,7 +44,8 @@ $(document).ready(function(){
 				"prvtYn":"N",
 				"apndFileNm":"", 
 				"apndFileOrgn":"", 
-				"apndFilePath":""
+				"apndFilePath":"",
+				"apndFileSz":0
 				};
 		saveObject.notiTitle = $("#notiTitle").val();
 		saveObject.notiConts = $("#notiConts").val();
@@ -69,6 +70,7 @@ $(document).ready(function(){
 						saveObject.apndFileNm = json[0].apndFileNm;
 						saveObject.apndFileOrgn = json[0].apndFileOrgn;
 						saveObject.apndFilePath = json[0].apndFilePath;
+						saveObject.apndFileSz = json[0].apndFileSz;
 					}
 					
 					console.log(JSON.stringify(saveObject))

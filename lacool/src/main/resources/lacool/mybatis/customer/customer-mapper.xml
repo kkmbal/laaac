@@ -5,7 +5,7 @@
 	
 	<select id="list" parameterType="lacool.customer.vo.CustomerVo" resultType="lacool.customer.vo.CustomerVo">
 		<![CDATA[	
-			SELECT @ROWNUM:=@ROWNUM+1 AS ROWNUM  
+			SELECT A.NOTI_SEQ  
 			    , A.NOTI_ID
 				, A.BOARD_ID
 				, A.CATE_ID
@@ -36,9 +36,9 @@
 				, A.RELEVEL
 				, A.ALARM_YN
 				, A.PRVT_YN
-			FROM NOTI_INFO A, (SELECT @ROWNUM:= #{fromLimit}) TMP
+			FROM NOTI_INFO A
 			WHERE A.DEL_YN = 'N'
-			AND   A.BOARD_ID = 'BBS001'
+			AND   A.BOARD_ID = #{boardId}
 		]]>
 			<if test="searchKeyword == 'TITLE' and searchValue != '' and searchValue != null">
 			AND   	A.NOTI_TITLE LIKE CONCAT('%', #{searchValue} , '%')
@@ -58,7 +58,7 @@
 			SELECT  COUNT(A.NOTI_ID) CNT
 			FROM NOTI_INFO A
 			WHERE A.DEL_YN = 'N'
-			AND   A.BOARD_ID = 'BBS001'
+			AND   A.BOARD_ID = #{boardId}
 		]]>
 			<if test="searchKeyword == 'TITLE' and searchValue != '' and searchValue != null">
 			AND   	A.NOTI_TITLE LIKE CONCAT('%', #{searchValue} , '%')
@@ -75,6 +75,14 @@
 		SELECT IFNULL(MAX(REF),0)+1 FROM NOTI_INFO WHERE BOARD_ID = #{boardId}
 	</select>
 	
+	<select id="getNotiSeq" parameterType="lacool.customer.vo.CustomerVo" resultType="String" >
+		    <![CDATA[
+			SELECT IFNULL(MAX(NOTI_SEQ),0)+1 NOTI_SEQ
+			FROM NOTI_INFO
+			WHERE BOARD_ID = #{boardId}
+			]]>
+	</select>	
+	
 	<insert id="insert" parameterType="lacool.customer.vo.CustomerVo">
 		<selectKey keyProperty="notiId" resultType="String" order="BEFORE" >
 		 SELECT CONCAT('C' , LPAD(CAST(REPLACE(IFNULL(MAX(NOTI_ID),0), 'C','') AS UNSIGNED) + 1, 8, '0')) AS notiId FROM NOTI_INFO
@@ -85,6 +93,7 @@
 		INSERT INTO NOTI_INFO(
 		  NOTI_ID
 		, BOARD_ID
+		, NOTI_SEQ
 		, CATE_ID
 		, UP_NOTI_ID
 		, NOTI_KIND
@@ -117,6 +126,7 @@
 		)VALUES (
 		  #{notiId}
 		, #{boardId}
+		, #{notiSeq}
 		, #{cateId}
 		, #{upNotiId}
 		, #{notiKind}
@@ -201,7 +211,158 @@
 			, NOW()
 			)
 		]]>
+	</insert>	
 	
-	</insert>		
+	<select id="read" parameterType="lacool.customer.vo.CustomerVo" resultType="lacool.customer.vo.CustomerVo">
+		<![CDATA[	
+			SELECT A.NOTI_ID
+				, A.BOARD_ID
+				, A.NOTI_SEQ
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, A.ALARM_YN
+				, A.PRVT_YN
+				, B.APND_FILE_SEQ
+				, B.APND_FILE_ORGN
+				, B.APND_FILE_NM
+				, B.APND_FILE_PATH
+				, B.APND_FILE_SZ
+			FROM NOTI_INFO A LEFT OUTER JOIN NOTI_APND_FILE B
+			     ON A.NOTI_ID = B.NOTI_ID AND B.APND_FILE_SEQ = (SELECT MIN(APND_FILE_SEQ) FROM NOTI_APND_FILE WHERE NOTI_ID = A.NOTI_ID)
+			WHERE A.DEL_YN = 'N'
+			AND   A.BOARD_ID = #{boardId}
+			AND   A.NOTI_ID = #{notiId}
+		]]>
+	</select>		
 		
+	
+	<select id="readPrev" parameterType="lacool.customer.vo.CustomerVo" resultType="lacool.customer.vo.CustomerVo">
+		<![CDATA[	
+			SELECT A.NOTI_ID
+				, A.BOARD_ID
+				, A.NOTI_SEQ
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, A.ALARM_YN
+				, A.PRVT_YN
+			FROM NOTI_INFO A
+			WHERE A.DEL_YN = 'N'
+			AND   A.BOARD_ID = #{boardId}
+			AND   A.NOTI_SEQ < #{notiSeq}
+			ORDER BY A.NOTI_SEQ DESC
+			LIMIT 1
+		]]>
+	</select>		
+	
+	<select id="readNext" parameterType="lacool.customer.vo.CustomerVo" resultType="lacool.customer.vo.CustomerVo">
+		<![CDATA[	
+			SELECT A.NOTI_ID
+				, A.BOARD_ID
+				, A.NOTI_SEQ
+				, A.CATE_ID
+				, A.UP_NOTI_ID
+				, A.NOTI_KIND
+				, A.NOTI_TITLE
+				, A.NOTI_CONTS
+				, A.NOTI_URL
+				, A.NOTI_OPN_DIV
+				, A.FB_REG_YN
+				, A.DEL_YN
+				, A.STAT_CD
+				, A.USER_NM
+				, A.NOTI_READ_CNT
+				, A.NOTI_OK_CNT
+				, A.NOTI_NG_CNT
+				, A.WRITE_IP
+				, A.NOTI_BGN_DTTM
+				, A.NOTI_END_DTTM
+				, A.SCRAP_CNT
+				, A.NOTI_OPN_CNT
+				, A.REG_ID
+				, CAST( DATE_FORMAT( A.REG_DTTM,'%Y-%m-%d %T' ) AS CHAR(19) ) REG_DTTM 
+				, A.UPD_ID
+				, A.UPD_DTTM
+				, A.REF
+				, A.RESTEP
+				, A.RELEVEL
+				, A.ALARM_YN
+				, A.PRVT_YN
+			FROM NOTI_INFO A
+			WHERE A.DEL_YN = 'N'
+			AND   A.BOARD_ID = #{boardId}
+			AND   A.NOTI_SEQ > #{notiSeq}
+			ORDER BY A.NOTI_SEQ ASC
+			LIMIT 1
+		]]>
+	</select>		
+	
+	
+	<select id="getNotiApndFile" parameterType="lacool.contents.vo.NotiApndFileVo" resultType="lacool.contents.vo.NotiApndFileVo">
+		<![CDATA[	
+			SELECT A.APND_FILE_SEQ
+				 , A.APND_FILE_ORGN
+				 , A.APND_FILE_NM
+				 , A.APND_FILE_PATH
+			FROM NOTI_APND_FILE A
+			WHERE A.NOTI_ID = #{notiId}
+			AND   A.APND_FILE_SEQ = #{apndFileSeq}
+		]]>
+	</select>		
+	
+	<delete id="delete" parameterType="lacool.customer.vo.CustomerVo">
+	    <![CDATA[
+	    	DELETE FROM NOTI_INFO
+	    	WHERE NOTI_ID = #{notiId}
+	    	AND   REG_ID = #{regId}
+		]]>
+	</delete>	
+	
 </mapper>

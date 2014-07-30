@@ -31,12 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public CustomerVo insert(CustomerVo customerVo) {
-		customerVo.setBoardId("BBS001");
+		
 		customerVo.setDelYn("N");
 		
 		if(StringUtils.isEmpty(customerVo.getNotiId())){
 			String ref = customerMapper.getMaxRef(customerVo);
+			String notiSeq = customerMapper.getNotiSeq(customerVo);
 			customerVo.setRef(ref);
+			customerVo.setNotiSeq(notiSeq);
 			customerMapper.insert(customerVo);
 		}else{
 			customerMapper.update(customerVo);
@@ -47,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
 			apndVo.setNotiId(customerVo.getNotiId()) ;
 			apndVo.setApndFileSeq("") ;
 			apndVo.setApndFileTp("") ;
-			apndVo.setApndFileSz("0") ;
+			apndVo.setApndFileSz(customerVo.getApndFileSz()) ;
 			apndVo.setApndFileOrgn(customerVo.getApndFileOrgn()) ;
 			apndVo.setApndFileNm(customerVo.getApndFileNm()) ;					
 			apndVo.setApndFilePath(customerVo.getApndFilePath()) ;					
@@ -62,6 +64,31 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		
 		return customerVo;
+	}
+
+	@Override
+	public CustomerVo read(CustomerVo customerVo) {
+		return customerMapper.read(customerVo);
+	}
+
+	@Override
+	public CustomerVo readPrev(CustomerVo customerVo) {
+		return customerMapper.readPrev(customerVo);
+	}
+
+	@Override
+	public CustomerVo readNext(CustomerVo customerVo) {
+		return customerMapper.readNext(customerVo);
+	}
+
+	@Override
+	public NotiApndFileVo getNotiApndFile(NotiApndFileVo vo) {
+		return customerMapper.getNotiApndFile(vo);
+	}
+
+	@Override
+	public void delete(CustomerVo vo) {
+		customerMapper.delete(vo);
 	}
 
 }

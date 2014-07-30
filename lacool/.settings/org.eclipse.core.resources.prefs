@@ -17,7 +17,6 @@ encoding//src/main/webapp/WEB-INF/jsp/contents/new_contents.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/customer/customer_list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/customer/customer_modify.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/customer/customer_read.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/jsp/customer/customer_read_pop.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/customer/customer_reply.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/customer/customer_write.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/login.jsp=UTF-8
