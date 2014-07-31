@@ -47,6 +47,10 @@ public class CustomerServiceImpl implements CustomerService {
 		if(!StringUtils.isEmpty(customerVo.getApndFileNm())){
 			NotiApndFileVo apndVo = new NotiApndFileVo();
 			apndVo.setNotiId(customerVo.getNotiId()) ;
+			apndVo.setRegId(customerVo.getRegId());
+
+			customerMapper.deleteNotiApndFile(apndVo);
+			
 			apndVo.setApndFileSeq("") ;
 			apndVo.setApndFileTp("") ;
 			apndVo.setApndFileSz(customerVo.getApndFileSz()) ;

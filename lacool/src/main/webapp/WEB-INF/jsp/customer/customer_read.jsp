@@ -31,8 +31,8 @@ $(document).ready(function(){
 	$("#btnList").click(function(){	
 		location.href = "${ctx}/customer/list?currPage=${currPage}";
 	});
-	$("#btnWrite").click(function(){	
-		location.href = "${ctx}/customer/customer_write";
+	$("#btnWrite, #btnModify").click(function(){	
+		location.href = "${ctx}/customer/write?notiId=${customerVo.notiId}";
 	});
 	$("#btnDelete").click(function(){	
 		location.href = "${ctx}/customer/delete?notiId=${customerVo.notiId}";
@@ -182,7 +182,7 @@ $(document).ready(function(){
 
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
-		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" id="btnWrite" /><input type="button" class="btns_st04" value="답글 쓰기" onclick="location.href='customer_reply.html'" /><input type="button" class="btns" value="수정" onclick="location.href='customer_modify.html'" /><input type="button" class="btns" value="삭제" id="btnDelPop" /></div>
+		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" id="btnWrite" /><input type="button" class="btns_st04" value="답글 쓰기"  /><input type="button" class="btns" value="수정" id="btnModify" /><input type="button" class="btns" value="삭제" id="btnDelPop" /></div>
 		<div class="main"><input type="button" class="btnm" value="목록" id="btnList" /></div>
 		<div class="cb"></div>
 	</div>

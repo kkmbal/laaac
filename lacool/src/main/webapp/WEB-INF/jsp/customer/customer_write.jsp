@@ -9,15 +9,16 @@
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
 <script type="text/javascript">
 
-
 $(document).ready(function(){
 	$("#apndImg").bind("change",function(e) {
 		$("#fileNm").val($(this).val());
 	});
 	
+	<c:if test="${empty customerVo.notiId}">
 	$("#notiTitle, #notiConts").click(function(){
 		$(this).val("");
 	});
+	</c:if>
 	
 	$("#btnSave").click(function(){	
 		if($("#notiTitle").val() == "" || $("#notiTitle").val() == "제목을 30자 이내로 입력하세요."){
@@ -29,7 +30,7 @@ $(document).ready(function(){
 			return;
 		}
 		var saveObject = {
-				"notiId":"", 
+				"notiId":"${customerVo.notiId}", 
 				"upNotiId":"",
 				"notiTitle":"", 
 				"notiConts":"", 
@@ -42,9 +43,9 @@ $(document).ready(function(){
 				"restep":0,
 				"relevel":0,
 				"prvtYn":"N",
-				"apndFileNm":"", 
-				"apndFileOrgn":"", 
-				"apndFilePath":"",
+				"apndFileNm":"${customerVo.apndFileNm}", 
+				"apndFileOrgn":"${customerVo.apndFileOrgn}", 
+				"apndFilePath":"${customerVo.apndFilePath}",
 				"apndFileSz":0
 				};
 		saveObject.notiTitle = $("#notiTitle").val();
@@ -53,7 +54,7 @@ $(document).ready(function(){
 			saveObject.prvtYn = "Y";
 		}
 		
-		if(!confirm(" 등록하시겠습니까?")){
+		if(!confirm("등록하시겠습니까?")){
 			return;
 		}
 		
@@ -156,7 +157,9 @@ $(document).ready(function(){
 		</colgroup>
 		<tr>
 			<th class="left">제목</th>
-			<td class="left"><input name="notiTitle" id="notiTitle" type="text" class="input" style="width:870px;" value="제목을 30자 이내로 입력하세요."></td>
+			<td class="left">
+				<input name="notiTitle" id="notiTitle" type="text" class="input" style="width:870px;" value="<c:if test="${empty customerVo}">제목을 30자 이내로 입력하세요.</c:if><c:if test="${not empty customerVo}">${customerVo.notiTitle}</c:if>">
+			</td>
 		</tr>
 		<tr>
 			<th class="left">작성자</th>
@@ -165,14 +168,22 @@ $(document).ready(function(){
 				<table cellpadding="0" cellspacing="0" border="0" width="100%">
 					<tr>
 						<td width="100%">${userVo.userNm}</td>
-						<td align="right" style="padding-right:30px;" nowrap><input type="checkbox" name="prvtYn" id="prvtYn" hidefocus="true" class="check" value="Y">비밀글</td>
+						<td align="right" style="padding-right:30px;" nowrap>
+							<c:if test="${customerVo.prvtYn == 'Y'}">
+							<input type="checkbox" name="prvtYn" id="prvtYn" hidefocus="true" class="check" value="Y" checked>
+							</c:if>
+							<c:if test="${customerVo.prvtYn != 'Y'}">
+							<input type="checkbox" name="prvtYn" id="prvtYn" hidefocus="true" class="check" value="Y">
+							</c:if>
+							비밀글
+						</td>
 					</tr>
 				</table>
 				<!-- end -->
 			</td>
 		</tr>
 		<tr>
-			<td class="center" colspan="2"><textarea name="notiConts" id="notiConts" class="textarea" style="width:960px; height:250px;">내용을 입력하세요.</textarea></td>
+			<td class="center" colspan="2"><textarea name="notiConts" id="notiConts" class="textarea" style="width:960px; height:250px;"><c:if test="${empty customerVo}">내용을 입력하세요.</c:if><c:if test="${not empty customerVo}">${customerVo.notiConts}</c:if></textarea></td>
 		</tr>
 		<tr>
 			<th class="left">파일첨부</th>
@@ -181,10 +192,8 @@ $(document).ready(function(){
 				<form name="frm" id="frm" enctype="multipart/form-data" method="post">
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-<!-- 						<td><input name="" type="text" class="input" style="width:230px;" value=""></td> -->
 						<td><input name="fileNm" id="fileNm" type="text" class="input" readonly style="width:230px;" value=""></td>
 						<td class="gridt_blank" nowrap></td>
-<!-- 						<td><input type="button" class="btnd" value="파일찾기" onclick="" /></td> -->
 						<td>
 							<div class="btnd" style="width:50px;position:relative;">
 								파일찾기
@@ -197,6 +206,18 @@ $(document).ready(function(){
 				</table>
 				</form>
 				<!-- end -->
+				<c:if test="${not empty customerVo.apndFileNm}">
+				<div class="blank_height10"></div>
+				<!-- gridt_file - start -->
+				<table cellpadding="0" cellspacing="0" border="0" class="gridt_file">
+					<tr>
+						<td class="filel"><input type="button" class="btni_del03" title="삭제" onclick="" /></td>
+						<td class="gridt_blank" nowrap></td>
+						<td class="filel"><a href="#">${customerVo.apndFileOrgn}</a></td>
+					</tr>
+				</table>
+				<!-- gridt_file - end -->
+				</c:if>				
 			</td>
 		</tr>
 	</table>

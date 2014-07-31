@@ -19,7 +19,7 @@ $(document).ready(function(){
 		frm.submit();
 	});
 	$("#btnWrite").click(function(){	
-		location.href = "${ctx}/customer/customer_write";
+		location.href = "${ctx}/customer/write";
 	});
 });
 </script>

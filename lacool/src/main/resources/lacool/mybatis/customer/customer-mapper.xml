@@ -168,7 +168,7 @@
 			PRVT_YN = #{prvtYn},
 			UPD_ID = #{updId},
 			UPD_DTTM = NOW()
-		WHERE NOTI_ID = #{notoId}
+		WHERE NOTI_ID = #{notiId}
 		AND REG_ID = #{userId}
 		AND DEL_YN = 'N'
 		]]>
@@ -360,6 +360,14 @@
 	<delete id="delete" parameterType="lacool.customer.vo.CustomerVo">
 	    <![CDATA[
 	    	DELETE FROM NOTI_INFO
+	    	WHERE NOTI_ID = #{notiId}
+	    	AND   REG_ID = #{regId}
+		]]>
+	</delete>
+	
+		<delete id="deleteNotiApndFile" parameterType="lacool.customer.vo.CustomerVo">
+	    <![CDATA[
+	    	DELETE FROM NOTI_APND_FILE
 	    	WHERE NOTI_ID = #{notiId}
 	    	AND   REG_ID = #{regId}
 		]]>

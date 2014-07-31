@@ -32,4 +32,6 @@ public interface CustomerMapper {
 	NotiApndFileVo getNotiApndFile(NotiApndFileVo vo);
 
 	void delete(CustomerVo vo);
+
+	void deleteNotiApndFile(NotiApndFileVo apndVo);
 }
