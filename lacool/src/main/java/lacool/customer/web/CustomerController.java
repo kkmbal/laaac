@@ -133,6 +133,34 @@ public class CustomerController {
 		return "customer/customer_write";
 	}
 	
+	@RequestMapping(value="/reply")
+	public String reply(HttpServletRequest request, ModelMap modelMap
+			, @RequestParam(value="notiId", required=true) String notiId
+			, @RequestParam(value="notiSeq", required=false) String notiSeq
+			, @RequestParam(value="currPage", required=false, defaultValue="1") String currPage	){
+		
+		UserVo userVo = (UserVo)WebUtils.getSessionAttribute(request, "userVo");
+		
+		CustomerVo vo = new CustomerVo();
+		vo.setNotiId(notiId);
+		vo.setBoardId("BBS001");
+		
+		CustomerVo customerVo = customerService.read(vo);
+		if(customerVo != null){
+			modelMap.put("customerVo", customerVo);
+			modelMap.put("notiId", customerVo.getNotiId());
+			if(customerVo.getApndFileNm() != null){
+				long sz = Long.parseLong(customerVo.getApndFileSz())/1024L;
+				customerVo.setApndFileSz(String.valueOf(sz));
+			}
+		}
+		
+		modelMap.put("currPage", currPage);
+		modelMap.put("userVo", userVo);
+		
+		return "customer/customer_reply";
+	}
+	
 	@RequestMapping("/insert")
 	public ModelMap insert(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
 		try{
@@ -146,6 +174,26 @@ public class CustomerController {
 			
 			customerService.insert(customerVo);
 
+		}catch(Exception e){
+			modelMap.put("error", "error");
+			log.error(e.toString(), e);
+		}
+		return modelMap;
+	}
+	
+	@RequestMapping("/insertReply")
+	public ModelMap insertReply(HttpServletRequest request, HttpSession session, ModelMap modelMap, String data){
+		try{
+			UserVo sessionUserVo = (UserVo)session.getAttribute("userVo");
+			CustomerVo customerVo = BeanUtil.getData(data, CustomerVo.class);
+			customerVo.setUserId(sessionUserVo.getUserId());
+			customerVo.setUserNm(sessionUserVo.getUserNm());
+			customerVo.setRegId(sessionUserVo.getUserId());
+			customerVo.setUpdId(sessionUserVo.getUserId());
+			customerVo.setBoardId("BBS001");
+			
+			customerService.insertReply(customerVo);
+			
 		}catch(Exception e){
 			modelMap.put("error", "error");
 			log.error(e.toString(), e);

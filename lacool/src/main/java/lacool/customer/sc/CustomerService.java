@@ -23,4 +23,6 @@ public interface CustomerService {
 
 	void delete(CustomerVo vo);
 
+	void insertReply(CustomerVo customerVo);
+
 }

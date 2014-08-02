@@ -47,6 +47,10 @@ $(document).ready(function(){
 		$("#delPop").hide();
 		
 	});
+	$("#btnReply").click(function(){	
+		location.href = "${ctx}/customer/reply?notiId=${customerVo.notiId}";
+		
+	});
 });
 </script>
 </head>
@@ -182,7 +186,7 @@ $(document).ready(function(){
 
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
-		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" id="btnWrite" /><input type="button" class="btns_st04" value="답글 쓰기"  /><input type="button" class="btns" value="수정" id="btnModify" /><input type="button" class="btns" value="삭제" id="btnDelPop" /></div>
+		<div class="sub"><input type="button" class="btns_st04_write" value="글쓰기" id="btnWrite" /><input type="button" class="btns_st04" value="답글 쓰기" id="btnReply"  /><input type="button" class="btns" value="수정" id="btnModify" /><input type="button" class="btns" value="삭제" id="btnDelPop" /></div>
 		<div class="main"><input type="button" class="btnm" value="목록" id="btnList" /></div>
 		<div class="cb"></div>
 	</div>

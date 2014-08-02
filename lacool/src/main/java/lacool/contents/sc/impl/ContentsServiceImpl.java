@@ -52,9 +52,9 @@ public class ContentsServiceImpl implements ContentsService {
 		notiInfoVo.setNotiOpnCnt(notiObject.getString("notiOpnCnt"));
 		notiInfoVo.setRegId(userVo.getUserId());
 		notiInfoVo.setUpdId(userVo.getUserId());
-		notiInfoVo.setRef(notiObject.getString("ref"));
-		notiInfoVo.setRestep(notiObject.getString("restep"));
-		notiInfoVo.setRelevel(notiObject.getString("relevel"));
+		notiInfoVo.setRef(notiObject.getInt("ref"));
+		notiInfoVo.setRestep(notiObject.getInt("restep"));
+		notiInfoVo.setRelevel(notiObject.getInt("relevel"));
 		
 		contentsMapper.insertNotiInfo(notiInfoVo);
 		

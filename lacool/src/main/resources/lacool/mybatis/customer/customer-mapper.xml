@@ -71,7 +71,7 @@
 			</if>					
 	</select>
 	
-	<select id="getMaxRef"  parameterType="lacool.customer.vo.CustomerVo" resultType="String">
+	<select id="getMaxRef"  parameterType="lacool.customer.vo.CustomerVo" resultType="int">
 		SELECT IFNULL(MAX(REF),0)+1 FROM NOTI_INFO WHERE BOARD_ID = #{boardId}
 	</select>
 	
@@ -135,7 +135,7 @@
 		, #{notiUrl}
 		, #{notiOpnDiv}
 		, #{fbRegYn}
-		, #{delYn}
+		, 'N'
 		, #{statCd}
 		, #{userId}
 		, #{userNm}
@@ -372,5 +372,95 @@
 	    	AND   REG_ID = #{regId}
 		]]>
 	</delete>	
+	
+	
+	<update id="updateForReply" parameterType="lacool.customer.vo.CustomerVo">
+	    <![CDATA[
+			UPDATE NOTI_INFO
+			SET RESTEP = RESTEP + 1
+			WHERE USER_ID = #{userId}
+			AND   NOTI_ID = #{notiId}
+			AND   DEL_YN = 'N'
+			AND   REF = #{ref}
+			AND   RESTEP > #{restep}
+		]]>
+	</update>	
+	
+	<insert id="insertForReply" parameterType="lacool.customer.vo.CustomerVo">
+		<selectKey keyProperty="notiId" resultType="String" order="BEFORE" >
+		 SELECT CONCAT('C' , LPAD(CAST(REPLACE(IFNULL(MAX(NOTI_ID),0), 'C','') AS UNSIGNED) + 1, 8, '0')) AS notiId FROM NOTI_INFO
+	     WHERE NOTI_ID LIKE 'C%'	    
+	    </selectKey>
+	  
+		<![CDATA[
+		INSERT INTO NOTI_INFO(
+		  NOTI_ID
+		, BOARD_ID
+		, NOTI_SEQ
+		, CATE_ID
+		, UP_NOTI_ID
+		, NOTI_KIND
+		, NOTI_TITLE
+		, NOTI_CONTS
+		, NOTI_URL
+		, NOTI_OPN_DIV
+		, FB_REG_YN
+		, DEL_YN
+		, STAT_CD
+		, USER_ID
+		, USER_NM
+		, NOTI_READ_CNT
+		, NOTI_OK_CNT
+		, NOTI_NG_CNT
+		, WRITE_IP
+		, NOTI_BGN_DTTM
+		, NOTI_END_DTTM
+		, SCRAP_CNT
+		, NOTI_OPN_CNT
+		, PRVT_YN
+		, ALARM_YN
+		, REG_ID
+		, REG_DTTM
+		, UPD_ID
+		, UPD_DTTM
+		, REF
+		, RESTEP
+		, RELEVEL
+		)VALUES (
+		  #{notiId}
+		, #{boardId}
+		, #{notiSeq}
+		, #{cateId}
+		, #{upNotiId}
+		, #{notiKind}
+		, #{notiTitle}
+		, #{notiConts}
+		, #{notiUrl}
+		, #{notiOpnDiv}
+		, #{fbRegYn}
+		, 'N'
+		, #{statCd}
+		, #{userId}
+		, #{userNm}
+		, #{notiReadCnt}
+		, #{notiOkCnt}
+		, #{notiNgCnt}
+		, #{writeIp}
+		, NOW()
+		, CAST( '9999-12-31 23:59:59' AS DATETIME )
+		, #{scrapCnt}
+		, #{notiOpnCnt}
+		, #{prvtYn}
+		, #{alarmYn}
+		, #{regId}
+		, NOW()
+		, #{updId}
+		, NOW()
+		, #{ref}
+		, #{restep}
+		, #{relevel}	
+		)
+		]]>
+	</insert>	
 	
 </mapper>

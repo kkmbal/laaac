@@ -147,9 +147,27 @@ $(document).ready(function(){
 		</c:if>
 			<td class="center">${result.notiSeq}</td>
 			<td class="left">
-				<c:if test="${result.alarmYn=='Y'}"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> </c:if> 
-				<c:if test="${result.notiReadCnt == 0 or result.alarmYn=='Y'}"><a href="#" onclick="fnGetBoardView('${result.notiId}','${result.notiSeq}')"><strong>${result.notiTitle}</strong></a></c:if> 
-				<c:if test="${result.notiReadCnt > 0 and result.alarmYn !='Y'}"><a href="#" onclick="fnGetBoardView('${result.notiId}','${result.notiSeq}')">${result.notiTitle}</a></c:if>
+				<c:choose>
+					<c:when test="${result.prvtYn == 'Y' and result.regId != userVo.userId}">
+						<img src="${ctx}/resources/images/icon/i_lock.gif" align="absmiddle">&nbsp;비밀글
+					</c:when>
+					<c:otherwise>
+						<c:if test="${result.alarmYn=='Y'}"><img src="${ctx}/resources/images/icon/i-notice.gif" align="absbottom"> </c:if> 
+						<c:if test="${result.relevel > 0}">
+							<c:forEach var="lvl" begin="0" end="${result.relevel}">&nbsp;&nbsp;</c:forEach>
+							<img src="${ctx}/resources/images/icon/i_reply.gif" align="absmiddle">
+							[답글]
+						</c:if> 
+						<c:choose>
+							<c:when test="${result.notiReadCnt == 0 or result.alarmYn=='Y'}">
+								<a href="#" onclick="fnGetBoardView('${result.notiId}','${result.notiSeq}')"><strong>${result.notiTitle}</strong></a>
+							</c:when>
+							<c:otherwise>
+								<a href="#" onclick="fnGetBoardView('${result.notiId}','${result.notiSeq}')">${result.notiTitle}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
 			</td>
 			<td class="center">${result.userNm}</td>
 			<td class="right">${result.notiReadCnt}</td>

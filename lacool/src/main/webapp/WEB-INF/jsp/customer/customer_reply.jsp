@@ -7,6 +7,119 @@
 <head>
 <%@ include file="/WEB-INF/jsp/common/meta.jsp"%>
 <%@ include file="/WEB-INF/jsp/common/jsLibs.jsp"%>
+
+<script type="text/javascript">
+
+var fnDoFileDown = function fnDoFileDown(notiId, fileseq, filename, fileorg){	
+	
+	 var jsonObject = {
+		'apndFileOrgn' : fileorg,
+		'apndFileName' : filename,
+		'apndFileSeq' :  fileseq,
+		'notiId' : notiId
+	 };
+	 
+	 var url = "${ctx}/customer/bbsFileDownload.do?data="+encodeURI(JSON.stringify(jsonObject),"UTF-8");
+	 document.dummy.location.href = url;
+};
+
+$(document).ready(function(){
+	$("#apndImg").bind("change",function(e) {
+		$("#fileNm").val($(this).val());
+	});
+	
+	$("#notiTitle, #notiConts").click(function(){
+		$(this).val("");
+	});
+	
+	$("#btnSave").click(function(){	
+		if($("#notiTitle").val() == ""){
+			alert("제목을 입력하세요.");
+			return;
+		}
+		if($("#notiConts").val() == "" || $("#notiConts").val() == "답글을 작성해 주세요."){
+			alert("답글을 작성해 주세요.");
+			return;
+		}
+		var saveObject = {
+				"notiId":"${customerVo.notiId}", 
+				"upNotiId":"",
+				"notiTitle":"", 
+				"notiConts":"", 
+				"notiReadCnt":0,
+				"notiOkCnt":0,
+				"notiNgCnt":0,
+				"scrapCnt":0,
+				"notiOpnCnt":0,
+				"ref":0,
+				"restep":0,
+				"relevel":0,
+				"prvtYn":"N",
+				"apndFileNm":"", 
+				"apndFileOrgn":"", 
+				"apndFilePath":"",
+				"apndFileSz":0
+				};
+		saveObject.notiTitle = $("#notiTitle").val();
+		saveObject.notiConts = $("#notiConts").val();
+		if($("#prvtYn").is(":checked")){
+			saveObject.prvtYn = "Y";
+		}
+		
+		if(!confirm("등록하시겠습니까?")){
+			return;
+		}
+		
+		if($("#fileNm").val() != ""){
+	 		$("#frm").ajaxSubmit({
+				url : "${ctx}/customer/bbsFileUpload.do",
+				type : 'POST',
+				data : $("#frm").serialize(),
+				action: $("#dummy"),
+				success : function(data){			
+					var json = $.parseJSON(data);
+						
+					if(json.length > 0){
+						saveObject.apndFileNm = json[0].apndFileNm;
+						saveObject.apndFileOrgn = json[0].apndFileOrgn;
+						saveObject.apndFilePath = json[0].apndFilePath;
+						saveObject.apndFileSz = json[0].apndFileSz;
+					}
+					
+					console.log(JSON.stringify(saveObject))
+					
+					$.post("${ctx}/customer/insertReply?format=json", {data:JSON.stringify(saveObject)}, function(data){
+						if(data.error){
+							alert(data.error);
+							return;
+						}
+						alert("등록되었습니다.");
+						location.href = "${ctx}/customer/list";
+					});
+					
+				},error : function(){
+					alert("전송 실패 했습니다.");
+				},
+				clearForm: true,
+				resetForm: true
+			});				
+		}else{
+			$.post("${ctx}/customer/insertReply?format=json", {data:JSON.stringify(saveObject)}, function(data){
+				if(data.error){
+					alert(data.error);
+					return;
+				}
+				alert("등록되었습니다.");
+				location.href = "${ctx}/customer/list";
+			});
+		}			
+	});
+	
+	$("#btnList").click(function(){	
+		location.href = "${ctx}/customer/list";
+	});
+});
+</script>
 </head>
 
 <body>
@@ -60,22 +173,23 @@
 		</colgroup>
 		<tr>
 			<th class="headl">번호</th>
-			<td class="headl">345,789</td>
+			<td class="headl">${customerVo.notiSeq}</td>
 			<th class="headl">조회수</th>
-			<td class="headl">356,000</td>
+			<td class="headl">${customerVo.notiReadCnt}</td>
 			<th class="headl">작성자</th>
-			<td class="headl">김동준</td>
+			<td class="headl">${customerVo.userNm}</td>
 			<th class="headl">등록일</th>
-			<td class="headl">2014.05.15 15:30</td>
+			<td class="headl">${customerVo.regDttm}</td>
 		</tr>
 		<tr>
-			<td class="title" colspan="8">1000년을 이어온 유산 팔만대장경</td>
+			<td class="title" colspan="8">${customerVo.notiTitle}</td>
 		</tr>
 		<tr>
 			<td class="content" colspan="8">
-			해인사 대장경판은 지금까지 잘 보관되고 있지만, 일본의 요구로 해인사에 보관되지 못하고 일본으로 보내졌을 뻔하였으며, 또한 화재나 전쟁으로 사라질 위험을 몇 차례 겪었다. 첫 번째 위기는 조선 초기에 있었다. [조선왕조실록]에 따르면 일본과 유구국 및 쓰시마가 고려 말부터 사신을 보내 팔만대장경을 요구하기 시작하다가 조선 초기에 이르러 각종 토산물을 바치면서 더욱 끈질기게 요구해왔다. 특히 세종 때에는 대장경판의 자체를 요구하기까지 하였다. [세종실록] 세종 5년(1423) 12월, 6년 정월, 2월, 12월, 7년 4월, 5월 등의 기록에는 일본 사신이 단식까지 하면서 완강하게 팔만대장경판을 요구하자 세종은 대장경판이 우리나라에 오직 한 벌 밖에 없으므로 줄 수 없다고 말하며, 팔만대장경판을 대신하여 범자(梵字)의 밀교대장경판, 주화엄경판 1질,금자(金字) [화엄경], [호국인왕경], [아미타경], [석가보] 등을 주어 가져가게 하였다. 세종 6년 1월 20일조 기사 등을 보면, 왜통사 윤인보와 그의 아우 윤인시 그리고 그의 집에 있는 왜노 3명이 대장경판을 약탈하려는 사건까지 일어난다.
+			${customerVo.notiConts}
 			</td>
 		</tr>
+		<c:if test="${not empty customerVo.apndFileOrgn}">
 		<tr>
 			<th class="file">첨부파일</th>
 			<td class="file" colspan="7">
@@ -84,14 +198,15 @@
 					<tr>
 						<td class="filel"><img src="${ctx}/resources/images/icon/i_file.gif"></td>
 						<td width="5" nowrap></td>
-						<td class="filel"><span class="t_file"><a href="#">파일명.ppt</a></span></td>
+						<td class="filel"><span class="t_file"><a href="#" onclick="fnDoFileDown('${customerVo.notiId}','${customerVo.apndFileSeq}','${customerVo.apndFileNm}','${customerVo.apndFileOrgn}')">${customerVo.apndFileOrgn}</a></span></td>
 						<td width="5" nowrap></td>
-						<td class="filel"><span class="t_num_txt">(1.345 kb)</span></td>
+						<td class="filel"><span class="t_num_txt">(${customerVo.apndFileSz} kb)</span></td>
 					</tr>
 				</table>
 				<!-- gridt_file - end -->
 			</td>
 		</tr>
+		</c:if>
 	</table>
 	<!-- Grid_Table_READ - end -->
 
@@ -115,7 +230,7 @@
 		</colgroup>
 		<tr>
 			<th class="left">제목</th>
-			<td class="left"><input name="" type="text" class="input" style="width:870px;" value="[1000년을 이어온 유산 팔만대장경]에 대한 답글 입니다."></td>
+			<td class="left"><input name="notiTitle" id="notiTitle" type="text" class="input" style="width:870px;" value="[${customerVo.notiTitle}]에 대한 답글 입니다."></td>
 		</tr>
 		<tr>
 			<th class="left">작성자</th>
@@ -123,29 +238,36 @@
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0" width="100%">
 					<tr>
-						<td width="100%">은지수</td>
-						<td align="right" style="padding-right:30px;" nowrap><input type="checkbox" name="type" hidefocus="true" class="check" value="A">비밀글</td>
+						<td width="100%">${userVo.userNm}</td>
+						<td align="right" style="padding-right:30px;" nowrap><input type="checkbox" name="prvtYn" id="prvtYn" hidefocus="true" class="check" value="Y">비밀글</td>
 					</tr>
 				</table>
 				<!-- end -->
 			</td>
 		</tr>
 		<tr>
-			<td class="center" colspan="2"><textarea name="" class="textarea" style="width:960px; height:250px;">답글을 작성해 주세요.</textarea></td>
+			<td class="center" colspan="2"><textarea name="notiConts" id="notiConts" class="textarea" style="width:960px; height:250px;">답글을 작성해 주세요.</textarea></td>
 		</tr>
 		<tr>
 			<th class="left">파일첨부</th>
 			<td class="left">
 				<!-- start -->
+				<form name="frm" id="frm" enctype="multipart/form-data" method="post">
 				<table cellpadding="0" cellspacing="0" border="0">
 					<tr>
-						<td><input name="" type="text" class="input" style="width:230px;" value=""></td>
+						<td><input name="fileNm" id="fileNm" type="text" class="input" readonly style="width:230px;" value=""></td>
 						<td class="gridt_blank" nowrap></td>
-						<td><input type="button" class="btnd" value="파일찾기" onclick="" /></td>
+						<td>
+							<div class="btnd" style="width:50px;position:relative;">
+								파일찾기
+								<input type="file" size="1" id="apndImg" name="apndImg" value="파일찾기" style="position:absolute;left:0px;top:0px;width:80px;height:40px;display:inline-block;opacity: 0;filter: alpha(opacity:0);" />
+							</div>						
+						</td>
 						<td class="gridt_blank" nowrap></td>
 						<td><span class="t_num_txt">파일 0개 이하, 000MB 이하</span>&nbsp;<span class="t_num_txt">/</span>&nbsp;<span class="t_num">345MB</span></td>
 					</tr>
 				</table>
+				</form>
 				<!-- end -->
 			</td>
 		</tr>
@@ -154,8 +276,8 @@
 
 	<!-- Btn_Form(Sub/Main) - start -->
 	<div class="btn_form">
-		<div class="sub"><!-- <input type="button" class="btns_st04" value="글쓰기" onclick="" /> --></div>
-		<div class="main"><input type="button" class="btnm" value="등록" onclick="" /><input type="button" class="btnm_cancel" value="목록" onclick="location.href='customer_list.html'" /></div>
+		<div class="sub"></div>
+		<div class="main"><input type="button" class="btnm" value="등록" id="btnSave" /><input type="button" class="btnm_cancel" value="목록" id="btnList" /></div>
 		<div class="cb"></div>
 	</div>
 	<!-- Btn_Form(Sub/Main) - end -->
@@ -175,6 +297,7 @@
 </div>
 <!-- ***** WRAPPER - end ***** -->
 
+<iframe name="dummy" width=0 height=0 border=0 style="visibility:hidden"></iframe>
 
 <!--[if IE]></div><![endif]-->
 <!--[if !IE]></div><![endif]-->

@@ -6,6 +6,7 @@ import lacool.contents.vo.NotiApndFileVo;
 import lacool.customer.mapper.CustomerMapper;
 import lacool.customer.sc.CustomerService;
 import lacool.customer.vo.CustomerVo;
+import lacool.personal.vo.PsnOpnVo;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -35,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerVo.setDelYn("N");
 		
 		if(StringUtils.isEmpty(customerVo.getNotiId())){
-			String ref = customerMapper.getMaxRef(customerVo);
+			int ref = customerMapper.getMaxRef(customerVo);
 			String notiSeq = customerMapper.getNotiSeq(customerVo);
 			customerVo.setRef(ref);
 			customerVo.setNotiSeq(notiSeq);
@@ -93,6 +94,37 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void delete(CustomerVo vo) {
 		customerMapper.delete(vo);
+	}
+
+	@Override
+	public void insertReply(CustomerVo customerVo) {
+		CustomerVo resultCustomerVo = customerMapper.read(customerVo);
+		customerMapper.updateForReply(resultCustomerVo);
+		
+		String notiSeq = customerMapper.getNotiSeq(customerVo);
+		customerVo.setNotiSeq(notiSeq);
+		customerVo.setRef(resultCustomerVo.getRef());
+		customerVo.setRestep(resultCustomerVo.getRestep()+1);
+		customerVo.setRelevel(resultCustomerVo.getRelevel()+1);
+		customerMapper.insertForReply(customerVo);
+		
+		if(!StringUtils.isEmpty(customerVo.getApndFileNm())){
+			NotiApndFileVo apndVo = new NotiApndFileVo();
+			apndVo.setNotiId(customerVo.getNotiId()) ;
+			apndVo.setApndFileSeq("") ;
+			apndVo.setApndFileTp("") ;
+			apndVo.setApndFileSz(customerVo.getApndFileSz()) ;
+			apndVo.setApndFileOrgn(customerVo.getApndFileOrgn()) ;
+			apndVo.setApndFileNm(customerVo.getApndFileNm()) ;					
+			apndVo.setApndFilePath(customerVo.getApndFilePath()) ;					
+			apndVo.setApndFilePrePath("") ;
+			apndVo.setApndFilePreNm("") ;
+			apndVo.setDelYn("N") ;
+			apndVo.setRegId(customerVo.getUserId()) ;
+			apndVo.setUpdId(customerVo.getUserId()) ;
+			
+			customerMapper.insertNotiApndFile(apndVo);
+		}
 	}
 
 }

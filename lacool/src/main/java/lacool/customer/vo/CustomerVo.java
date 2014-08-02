@@ -24,9 +24,9 @@ public class CustomerVo extends PageInfo{
 	private String notiEndDttm;
 	private String scrapCnt;
 	private String cateId;
-	private String ref;
-	private String restep;
-	private String relevel;
+	private int ref;
+	private int restep;
+	private int relevel;
 	private String writeIp;
 	private String regId;
 	private String regDttm;
@@ -205,22 +205,22 @@ public class CustomerVo extends PageInfo{
 	public void setCateId(String cateId) {
 		this.cateId = cateId;
 	}
-	public String getRef() {
+	public int getRef() {
 		return ref;
 	}
-	public void setRef(String ref) {
+	public void setRef(int ref) {
 		this.ref = ref;
 	}
-	public String getRestep() {
+	public int getRestep() {
 		return restep;
 	}
-	public void setRestep(String restep) {
+	public void setRestep(int restep) {
 		this.restep = restep;
 	}
-	public String getRelevel() {
+	public int getRelevel() {
 		return relevel;
 	}
-	public void setRelevel(String relevel) {
+	public void setRelevel(int relevel) {
 		this.relevel = relevel;
 	}
 	public String getWriteIp() {
