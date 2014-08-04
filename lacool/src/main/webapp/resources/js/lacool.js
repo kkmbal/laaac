@@ -1,3 +1,24 @@
+String.prototype.trim = function(){
+	return this.replace(/(^\s*)|(\s*$)/g, "");
+};
+
+String.prototype.isMail = function(){
+	var elem = this.trim().match(/^[_\-\.0-9a-zA-Z]{3,}@[-.0-9a-zA-Z]{2,}\.[a-zA-Z]{2,4}$/);
+	return (elem)?true:false;
+};
+
+String.prototype.isPwd = function(){
+	var elem = this.trim().match(/([0-9a-zA-Z]){6,}/);
+	if(elem){
+		if(this.search(/[0-9]/g)<0 || this.search(/[a-z]/gi)<0){
+			return false;
+		}
+		return true;
+	}else{
+		return false;
+	}
+};
+
 function makeThumbnail(fileInput, fileNm, canvasImg, imageFile, width, height) {
 		    var fileInput = document.getElementById(fileInput);
 		    var fileNm = document.getElementById(fileNm);

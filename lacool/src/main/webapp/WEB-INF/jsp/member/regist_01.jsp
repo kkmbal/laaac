@@ -38,6 +38,11 @@ $(document).ready(function(){
 			alert("이메일을 입력하세요.");
 			return;
 		}
+		if(!$("#email").val().isMail()){
+			alert("이메일 형식이 올바르지 않습니다.");
+			return;
+		}
+
 		if($("#chkEmail").val() != "Y"){
 			alert("이메일 중복확인을 하세요.");
 			return;
@@ -46,10 +51,17 @@ $(document).ready(function(){
 			alert("비밀번호를 입력하세요.");
 			return;
 		}
+		
+		if(!$("#pwd").val().isPwd()){
+			alert("비밀번호가 올바르지 않습니다.");
+			return;
+		}
+		
 		if($("#pwd").val() != $("#pwd2").val()){
 			alert("비밀번호를 확인하세요.");
 			return;
 		}
+		
 		if (!$("#chkEqual").is(":checked")){
 			alert('회원 약관에 동의해야 합니다.');
 			return;
@@ -141,7 +153,7 @@ $(document).ready(function(){
 				<!-- start -->
 				<table cellpadding="0" cellspacing="0" border="0" width="100%">
 					<tr>
-						<td align="left" width="100%"><input type="checkbox" name="chkEqual" id="chkEqual" hidefocus="true" class="check" value="A" checked>회원 약관에 동의함</td>
+						<td align="left" width="100%"><input type="checkbox" name="chkEqual" id="chkEqual" hidefocus="true" class="check" value="A">회원 약관에 동의함</td>
 						<td align="right"><input type="button" class="btnd_st01" value="회원 약관 보기" onclick="" /></td>
 					</tr>
 				</table>
