@@ -19,6 +19,55 @@ String.prototype.isPwd = function(){
 	}
 };
 
+function drawCircle(id, colors) {
+	for(var i=0;i<colors.length;i++){
+		var el = document.getElementById(id); // get canvas
+
+		var options = {
+			percent:  el.getAttribute('data-percent') || 25,
+			size: el.getAttribute('data-size') || 71,
+			lineWidth: el.getAttribute('data-line') || 7,
+			rotate: el.getAttribute('data-rotate') || 0
+		}
+
+		var lineWidth = options.lineWidth;
+		var percent = 0;
+		if(i == 0) percent = 100 / 100; 
+		else	percent = options.percent / 100;
+		
+		var canvas = document.createElement('canvas');
+		
+		var span = document.createElement('span');
+		if(i == 0){
+			span.textContent = options.percent + '%';
+		}
+			
+		if (typeof(G_vmlCanvasManager) !== 'undefined') {
+			G_vmlCanvasManager.initElement(canvas);
+		}
+
+		var ctx = canvas.getContext('2d');
+		canvas.width = canvas.height = options.size;
+
+		el.appendChild(span);
+		el.appendChild(canvas);
+
+		ctx.translate(options.size / 2, options.size / 2); // change center
+		ctx.rotate((-1 / 2 + options.rotate / 180) * Math.PI); // rotate -90 deg
+
+		//imd = ctx.getImageData(0, 0, 240, 240);
+		var radius = (options.size - options.lineWidth) / 2;
+
+		percent = Math.min(Math.max(0, percent || 1), 1);
+		ctx.beginPath();
+		ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, false);
+		ctx.strokeStyle = colors[i];
+        ctx.lineCap = 'butt'; // butt, round or square
+		ctx.lineWidth = lineWidth
+		ctx.stroke();
+	}
+}
+
 function makeThumbnail(fileInput, fileNm, canvasImg, imageFile, width, height) {
 		    var fileInput = document.getElementById(fileInput);
 		    var fileNm = document.getElementById(fileNm);

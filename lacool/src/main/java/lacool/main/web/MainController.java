@@ -33,22 +33,21 @@ public class MainController {
     	MainVo recentNotiInfo = mainService.getRecentNotiInfo(mainVo);
     	// 핫이슈
     	List<MainVo> listHotIssueNotiInfo = mainService.listHotIssueNotiInfo(mainVo);
-    	List<MainVo> hotIssue1 = new ArrayList<MainVo>(); // 첫3건
-    	List<MainVo> hotIssue2 = new ArrayList<MainVo>(); // 후3건
-    	for(int i=0;i<listHotIssueNotiInfo.size();i++){
-    		if(i > 2) break;
-    		hotIssue1.add(listHotIssueNotiInfo.get(i));
-    	}
-    	for(int i=3;i<listHotIssueNotiInfo.size();i++){
-    		hotIssue2.add(listHotIssueNotiInfo.get(i));
-    	}
+//    	List<MainVo> hotIssue1 = new ArrayList<MainVo>(); // 첫3건
+//    	List<MainVo> hotIssue2 = new ArrayList<MainVo>(); // 후3건
+//    	for(int i=0;i<listHotIssueNotiInfo.size();i++){
+//    		if(i > 2) break;
+//    		hotIssue1.add(listHotIssueNotiInfo.get(i));
+//    	}
+//    	for(int i=3;i<listHotIssueNotiInfo.size();i++){
+//    		hotIssue2.add(listHotIssueNotiInfo.get(i));
+//    	}
     	
     	// 이건어때요
     	List<MainVo> listNotiEvalOkInfo = mainService.listNotiEvalOkInfo(mainVo);
     	
     	modelMap.put("recentNotiInfo", recentNotiInfo);
-    	modelMap.put("hotIssue1", hotIssue1);
-    	modelMap.put("hotIssue2", hotIssue2);
+    	modelMap.put("listHotIssue", listHotIssueNotiInfo);
     	modelMap.put("listNotiEvalOkInfo", listNotiEvalOkInfo);
     	
     	return "/main";

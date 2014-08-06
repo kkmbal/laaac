@@ -133,7 +133,7 @@ $(document).ready(function(){
 	<div class="blank_height20"></div>
 	<!-- Main_Hot Issues 01 - start -->
 	<div class="main_issues">
-		<c:forEach var="result" items="${hotIssue1}" varStatus="status">
+		<c:forEach var="result" items="${listHotIssue}" end="2" varStatus="status">
 		<div class="col">
 			<span class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}" target="_top"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></span>
 			<span class="title t_ellipsis" style="width:320px;"><a href="#">${result.notiTitle}</a></span>
@@ -142,17 +142,23 @@ $(document).ready(function(){
 				<table cellspacing="0" cellpadding="0" border="0">
 					<tr>
 						<td width="71" height="71" align="center" valign="top">
+							<div id="ok_graph${result.notiId}" data-percent="50"></div>
+							<!-- 
 							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
 								<div class="txt"><span class="t_graph_num01">88</span><span class="t_graph_unit01">%</span></div>
 								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
 							</div>
+							-->
 						</td>
 						<td width="10"></td>
 						<td width="71" height="71" align="center" valign="top">
+							<div id="ng_graph${result.notiId}" data-percent="50"></div>
+							<!-- 
 							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
 								<div class="txt"><span class="t_graph_num01">40</span><span class="t_graph_unit01">%</span><br></div>
 								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
 							</div>
+							 -->
 						</td>
 					</tr>
 				</table>
@@ -160,6 +166,7 @@ $(document).ready(function(){
 			</span>
 		</div>
 		<div class="blank">&nbsp;</div>
+		<script>drawCircle('ok_graph${result.notiId}', ['#ffe1ff', '#ff0080']); drawCircle('ng_graph${result.notiId}', ['#f0f0f0', '#8e8e8e']);</script>
 		</c:forEach>
 		<%-- 
 		<div class="col">
@@ -219,7 +226,7 @@ $(document).ready(function(){
 	<div class="blank_height20 cb"></div>
 	<!-- Main_Hot Issues 02 - start -->
 	<div class="main_issues">
-		<c:forEach var="result" items="${hotIssue2}" varStatus="status">
+		<c:forEach var="result" items="${listHotIssue}" begin="3" varStatus="status">
 		<div class="col">
 			<span class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}" target="_self"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></span>
 			<span class="title t_ellipsis" style="width:320px;"><a href="#">${result.notiTitle}</a></span>
