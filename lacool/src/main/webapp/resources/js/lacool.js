@@ -24,11 +24,11 @@ function drawCircle(id, colors) {
 		var el = document.getElementById(id); // get canvas
 
 		var options = {
-			percent:  el.getAttribute('data-percent') || 25,
+			percent:  el.getAttribute('data-percent') || 0,
 			size: el.getAttribute('data-size') || 71,
 			lineWidth: el.getAttribute('data-line') || 7,
 			rotate: el.getAttribute('data-rotate') || 0
-		}
+		};
 
 		var lineWidth = options.lineWidth;
 		var percent = 0;
@@ -39,7 +39,9 @@ function drawCircle(id, colors) {
 		
 		var span = document.createElement('span');
 		if(i == 0){
-			span.textContent = options.percent + '%';
+			var t = document.createTextNode ( options.percent + '%' );
+			span.appendChild(t);
+			
 		}
 			
 		if (typeof(G_vmlCanvasManager) !== 'undefined') {
@@ -63,7 +65,7 @@ function drawCircle(id, colors) {
 		ctx.arc(0, 0, radius, 0, Math.PI * 2 * percent, false);
 		ctx.strokeStyle = colors[i];
         ctx.lineCap = 'butt'; // butt, round or square
-		ctx.lineWidth = lineWidth
+		ctx.lineWidth = lineWidth;
 		ctx.stroke();
 	}
 }

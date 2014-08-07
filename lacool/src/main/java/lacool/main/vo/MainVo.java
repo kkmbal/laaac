@@ -38,6 +38,22 @@ public class MainVo {
 	private String apndFileNm;
 	private String apndFilePath;
 	
+	private String okCntRatio;
+	private String ngCntRatio;
+	
+	
+	public String getOkCntRatio() {
+		return okCntRatio;
+	}
+	public void setOkCntRatio(String okCntRatio) {
+		this.okCntRatio = okCntRatio;
+	}
+	public String getNgCntRatio() {
+		return ngCntRatio;
+	}
+	public void setNgCntRatio(String ngCntRatio) {
+		this.ngCntRatio = ngCntRatio;
+	}
 	public String getNotiId() {
 		return notiId;
 	}

@@ -89,7 +89,9 @@
 		        , C.APND_FILE_SEQ
 		        , C.APND_FILE_ORGN
 		        , C.APND_FILE_NM
-		        , C.APND_FILE_PATH					
+		        , C.APND_FILE_PATH	
+				  , ROUND((NOTI_OK_CNT/(NOTI_OK_CNT+NOTI_NG_CNT))*100) OK_CNT_RATIO	
+				  , ROUND((NOTI_NG_CNT/(NOTI_OK_CNT+NOTI_NG_CNT))*100) NG_CNT_RATIO				
 			FROM NOTI_INFO A,
 			     PSN_USER B,
 			     NOTI_APND_FILE C
