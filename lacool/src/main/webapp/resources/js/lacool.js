@@ -77,6 +77,69 @@ function drawCircle(id, colors) {
 	}
 }
 
+
+(function ($) {
+    $.fn.progressbar = function (options) 
+    {
+        var settings = $.extend({
+        width:'300px',
+        height:'25px',
+        color:'#0ba1b5',
+        padding:'0px',
+        border:'1px solid #ddd'},options);
+ 
+        //Set css to container
+        $(this).css({
+            'width':settings.width,
+            'border':settings.border,
+            'border-radius':'5px',
+            'overflow':'hidden',
+            'display':'inline-block',
+            'padding': settings.padding,
+            'margin':'0px 10px 5px 5px'
+            });
+ 
+        // add progress bar to container
+        var progressbar =$("<div></div>");
+        progressbar.css({
+        'height':settings.height,
+        'text-align': 'right',
+        'vertical-align':'middle',
+        'color': '#fff',
+        'width': '0px',
+        'border-radius': '3px',
+        'background-color': settings.color
+		//,'float':'right'
+        });
+ 
+        $(this).append(progressbar);
+ 
+        this.progress = function(value)
+        {
+            var width = $(this).width() * value/100;
+            progressbar.width(width).html(value+"% ");
+        }
+        return this;
+    };
+ 
+}(jQuery));
+
+/*
+
+ var bar1 = $("#progress1").progressbar();
+bar1.progress(60); 
+ 
+var bar2 = $("#progress2").progressbar({color:'#145ABA'});
+bar2.progress(90);
+ 
+var bar3 = $("#progress3").progressbar({width:'400px',color:'#0A8F2B',border:'2px solid #0A8F2B',padding:'3px'});
+bar3.progress(80);
+ 
+var bar4 =$("#progress4").progressbar({width:'500px',color:'#B3240E',border:'1px solid #000000'});
+bar4.progress(50);
+ 
+*/ 
+
 function makeThumbnail(fileInput, fileNm, canvasImg, imageFile, width, height) {
 		    var fileInput = document.getElementById(fileInput);
 		    var fileNm = document.getElementById(fileNm);
