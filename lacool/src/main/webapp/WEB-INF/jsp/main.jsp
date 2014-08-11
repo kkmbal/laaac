@@ -23,10 +23,11 @@ function fnNotiEvalCate(cateId){
 		//GOOD
 		if(data.listNotiEvalOkOfCate){
 			var json = $.parseJSON(JSON.stringify(data.listNotiEvalOkOfCate));
+			console.log(json)
 			for(var i=0;i<json.length;i++){
 				$("#mainGood").append(
 						'<div class="col">'
-						+'<span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/'+json[i].apndFileNm+'" class="photo"></a></span>'
+						+'<span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/'+json[i].apndFileNm+'" class="photo"></a></span>'
 						+'<div class="content">'
 						+'<ul>'
 						+'<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">'+json[i].notiTitle+'</a></span></li>'
@@ -42,10 +43,11 @@ function fnNotiEvalCate(cateId){
 		//BAD
 		if(data.listNotiEvalNgOfCate){
 			var json = $.parseJSON(JSON.stringify(data.listNotiEvalNgOfCate));
+			console.log(json)
 			for(var i=0;i<json.length;i++){
 				$("#mainBad").append(
 						'<div class="col">'
-						+'<span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/'+json[i].apndFileNm+'" class="photo"></a></span>'
+						+'<span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/'+json[i].apndFileNm+'" class="photo"></a></span>'
 						+'<div class="content">'
 						+'<ul>'
 						+'<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">'+json[i].notiTitle+'</a></span></li>'
