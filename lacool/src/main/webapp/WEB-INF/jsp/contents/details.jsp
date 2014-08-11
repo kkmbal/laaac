@@ -356,7 +356,7 @@ function listNotiOpn(){
 	<!-- View_Title - end -->
 	<!-- View_Img_Main - start -->
 	<div class="view_img_box">
-		<div class="view_img_main"><img src="${ctx}/resources/images/upload/${firstFileVo.apndFileNm}" width="980" height="430"></div>
+		<div class="view_img_main"><img src="${ctx}/resources/images/upload/contents/${firstFileVo.apndFileNm}" width="980" height="430"></div>
 	</div>
 	<!-- View_Img_Main - end -->
 	<div class="blank_height10"></div>
@@ -364,9 +364,9 @@ function listNotiOpn(){
 	<div class="view_img_sub">
 		<ul>
 		    <c:forEach var="result" items="${fileVo}" varStatus="status">
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub${status.count});" onMouseOut="CgOut_01img(view_img_sub${status.count});"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a>
+			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub${status.count});" onMouseOut="CgOut_01img(view_img_sub${status.count});"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a>
 				<!-- view_img_sub01 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:0px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub${status.count}" onMouseOver="CgOver_01img(view_img_sub${status.count});OverStay();" onMouseOut="CgOut_01img(view_img_sub01);" nowrap><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></div>
+				<div class="view_img_sub_sel" style="position:absolute; left:0px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub${status.count}" onMouseOver="CgOver_01img(view_img_sub${status.count});OverStay();" onMouseOut="CgOut_01img(view_img_sub01);" nowrap><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></div>
 				<!-- view_img_sub01 - start -->
 			</li>
 			<li class="blank">&nbsp;</li>
@@ -698,7 +698,7 @@ function listNotiOpn(){
 			<div class="col">
 				<div class="con_best_li">
 					<ul>
-						<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></li>
+						<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></li>
 						<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">${result.notiTitle}</a></span></li>
 					</ul>
 				</div>

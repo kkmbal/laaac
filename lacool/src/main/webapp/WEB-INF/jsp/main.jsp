@@ -112,7 +112,7 @@ $(document).ready(function(){
 	<!-- Main_Latest - start -->
 	<div class="main_latest">
 		<ul>
-			<li class="photo"><span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${recentNotiInfo.apndFileNm}" width="85" height="60"></a></span></li>
+			<li class="photo"><span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${recentNotiInfo.apndFileNm}" width="85" height="60"></a></span></li>
 			<li class="txt">
 			<span class="id"><a href="#">${recentNotiInfo.userNm}</a></span><span class="t_line">l</span><span class="date">${recentNotiInfo.regDttm}</spin> <br />
 			<span class="t_ellipsis" style="width:858px;"><a href="#"><strong>[${recentNotiInfo.notiTitle}]</strong> ${recentNotiInfo.notiConts}</a></span>
@@ -135,7 +135,7 @@ $(document).ready(function(){
 	<div class="main_issues">
 		<c:forEach var="result" items="${listHotIssue}" end="2" varStatus="status">
 		<div class="col">
-			<span class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}" target="_top"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></span>
+			<span class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}" target="_top"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></span>
 			<span class="title t_ellipsis" style="width:320px;"><a href="#">${result.notiTitle}</a></span>
 			<span class="graph">
 				<!-- chart_gauge01 - start -->
@@ -228,7 +228,7 @@ $(document).ready(function(){
 	<div class="main_issues">
 		<c:forEach var="result" items="${listHotIssue}" begin="3" varStatus="status">
 		<div class="col">
-			<span class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}" target="_self"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></span>
+			<span class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}" target="_self"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></span>
 			<span class="title t_ellipsis" style="width:320px;"><a href="#">${result.notiTitle}</a></span>
 			<span class="graph">
 				<!-- chart_gauge01 - start -->
@@ -500,7 +500,7 @@ $(document).ready(function(){
 				<div style="position:absolute; left:0px; top:0px; width:52px; height:51px; z-index:10000;"><img src="${ctx}/resources/images/icon/i_best.png"></div>
 				<!-- icon best -->
 				<ul>
-					<li class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></li>
+					<li class="photo"><a href="${ctx}/contents/getContentsDetail?notiId=${result.notiId}"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></li>
 					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">${result.notiTitle}</a></span></li>
 				</ul>
 			</div>

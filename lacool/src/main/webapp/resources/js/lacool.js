@@ -3,20 +3,27 @@ String.prototype.trim = function(){
 };
 
 String.prototype.isMail = function(){
-	var elem = this.trim().match(/^[_\-\.0-9a-zA-Z]{3,}@[-.0-9a-zA-Z]{2,}\.[a-zA-Z]{2,4}$/);
-	return (elem)?true:false;
+	try{
+		console.log(typeof this)
+		console.log(this)
+		console.dir(this)
+		var elem = this.trim().match(/^[_\-\.0-9a-zA-Z]{3,}@[-.0-9a-zA-Z]{2,}\.[a-zA-Z]{2,4}$/);
+		return (elem)?true:false;
+	}catch(e){}
 };
 
 String.prototype.isPwd = function(){
-	var elem = this.trim().match(/([0-9a-zA-Z]){6,}/);
-	if(elem){
-		if(this.search(/[0-9]/g)<0 || this.search(/[a-z]/gi)<0){
+	try{
+		var elem = this.trim().match(/([0-9a-zA-Z]){6,}/);
+		if(elem){
+			if(this.search(/[0-9]/g)<0 || this.search(/[a-z]/gi)<0){
+				return false;
+			}
+			return true;
+		}else{
 			return false;
 		}
-		return true;
-	}else{
-		return false;
-	}
+	}catch(e){}
 };
 
 function drawCircle(id, colors) {

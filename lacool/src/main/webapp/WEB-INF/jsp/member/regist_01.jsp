@@ -143,7 +143,7 @@ $(document).ready(function(){
 			</td>
 		</tr>
 		<tr>
-			<td class="left_st01"><input name="pwd" id="pwd" type="text" class="input" style="width:480px;" value="비밀번호 (6자 이상 영문/숫자 혼합)" maxlength="30"></td>
+			<td class="left_st01"><input name="pwd" id="pwd" type="text" class="input" style="width:480px;" value="비밀번호" maxlength="30"> (6자 이상 영문/숫자 혼합)</td>
 		</tr>
 		<tr>
 			<td class="left_st01"><input name="pwd2" id="pwd2" type="text" class="input" style="width:480px;" value="비밀번호 확인" maxlength="30"></td>

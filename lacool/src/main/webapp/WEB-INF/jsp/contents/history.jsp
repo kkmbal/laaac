@@ -70,7 +70,7 @@ $(document).ready(function(){
 			<c:forEach var="result" items="${listHistory}" end="3" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
 						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>
@@ -189,7 +189,7 @@ $(document).ready(function(){
 			<c:forEach var="result" items="${listHistory}" begin="4" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
 						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>

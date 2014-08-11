@@ -121,7 +121,7 @@ $(document).ready(function(){
 			<li class="col" id="li_${result.notiId}">
 				<!-- 0101 - start -->
 				<div class="checkbox"><input type="checkbox" id="scrapChk_${result.notiId}" hidefocus="true" class="check" value="${result.notiId}"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
 						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>
@@ -244,7 +244,7 @@ $(document).ready(function(){
 			<li class="col" id="li_${result.notiId}">
 				<!-- 0101 - start -->
 				<div class="checkbox"><input type="checkbox" id="scrapChk_${result.notiId}" hidefocus="true" class="check" value="${result.notiId}"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></div>
 				<div class="content">
 					<ul>
 						<li><div class="photo_user"><a href="#"><img src="${ctx}/${result.userFilePath}${result.userFileNm}" class="photo_user"></a></div></li>

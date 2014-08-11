@@ -232,7 +232,7 @@ $(document).ready(function(){
 			<c:forEach var="result" items="${listUserContents}" end="3" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">${result.notiTitle}</a></span></div>
 				<div class="scrap fl">
 					<ul>
@@ -338,7 +338,7 @@ $(document).ready(function(){
 			<c:forEach var="result" items="${listUserContents}" begin="4" varStatus="status">
 			<li class="col">
 				<!-- 0101 - start -->
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></div>
+				<div class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></div>
 				<div class="title"><span class="t_ellipsis" style="width:222px;"><a href="#">${result.notiTitle}</a></span></div>
 				<div class="scrap fl">
 					<ul>
