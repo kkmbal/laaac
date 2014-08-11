@@ -32,7 +32,7 @@ function listSearch(){
 						'<li>'
 						+'<div class="search_set">'
 						+'	<ul>'
-						+'		<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/'+json[i].apndFileNm+'" class="photo"></a></li>'
+						+'		<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/'+json[i].apndFileNm+'" class="photo"></a></li>'
 						+'		<li class="title">'
 						+'			<div class="ti"><a href="#">'+json[i].notiTitle+'</a></div>'
 						+'			<div class="name"><a href="#">'+json[i].userNm+'</a></div>'
@@ -131,7 +131,7 @@ function listSearch(){
 				<!-- search_set01 - start -->
 				<div class="search_set">
 					<ul>
-						<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/${result.apndFileNm}" class="photo"></a></li>
+						<li class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${result.apndFileNm}" class="photo"></a></li>
 						<li class="title">
 							<div class="ti"><a href="#">${result.notiTitle}</a></div>
 							<div class="name"><a href="#">${result.userNm}</a></div>
