@@ -20,10 +20,13 @@ function fnNotiEvalCate(cateId){
 		$("#mainGood").empty();
 		$("#mainBad").empty();
 		
+		$("#cateEvalDiv  a").css("background-color","#F6E4E4");
+		$("#cateEvalDiv  a[id='CATE_"+cateId+"']").css("background-color","#FFFFFF");
+		
 		//GOOD
 		if(data.listNotiEvalOkOfCate){
 			var json = $.parseJSON(JSON.stringify(data.listNotiEvalOkOfCate));
-			console.log(json)
+			//console.log(json)
 			for(var i=0;i<json.length;i++){
 				$("#mainGood").append(
 						'<div class="col">'
@@ -43,7 +46,7 @@ function fnNotiEvalCate(cateId){
 		//BAD
 		if(data.listNotiEvalNgOfCate){
 			var json = $.parseJSON(JSON.stringify(data.listNotiEvalNgOfCate));
-			console.log(json)
+			//console.log(json)
 			for(var i=0;i<json.length;i++){
 				$("#mainBad").append(
 						'<div class="col">'
@@ -79,7 +82,12 @@ $(document).ready(function(){
 			for(var i=0;i<json.length;i++){
 				if(i > 9) break;
 				//$("#cateEvalDiv ul").append('<li id="main_'+json[i].cateId+'"><a href="#"><div class="tl10">'+json[i].cateNm+'</div></a><ul></ul></li>');
-				$("#cateEvalDiv ul").append('<li style="width:100px;"><a href="#" onclick="fnNotiEvalCate(\''+json[i].cateId+'\')" onMouseOver="document.tab_cate01.src=\'${ctx}/resources/images/main/tab_cate01-ov.gif\'" onMouseOut="document.tab_cate01.src=\'${ctx}/resources/images/main/tab_cate01.gif\'"><img src="${ctx}/resources/images/main/tab_cate01.gif" alt="" border="0" width="99" height="50" title="'+json[i].cateNm+'" name="tab_cate01"></a></li>');					
+				//$("#cateEvalDiv ul").append('<li style="width:100px;"><a href="#" onclick="fnNotiEvalCate(\''+json[i].cateId+'\')" onMouseOver="document.tab_cate01.src=\'${ctx}/resources/images/main/tab_cate01-ov.gif\'" onMouseOut="document.tab_cate01.src=\'${ctx}/resources/images/main/tab_cate01.gif\'"><img src="${ctx}/resources/images/main/tab_cate01.gif" alt="" border="0" width="99" height="50" title="'+json[i].cateNm+'" name="tab_cate01"></a></li>');
+					if(i==0){
+						$("#cateEvalDiv ul").append('<li style="width:100px;"><a href="#" onclick="fnNotiEvalCate(\''+json[i].cateId+'\')" id="CATE_'+json[i].cateId+'">'+json[i].cateNm+'</a></li>');					
+					}else{
+						$("#cateEvalDiv ul").append('<li style="width:100px;"><a href="#" style="background-color:#F6E4E4;" onclick="fnNotiEvalCate(\''+json[i].cateId+'\')"  id="CATE_'+json[i].cateId+'">'+json[i].cateNm+'</a></li>');					
+					}
 			}
 			if(json.length > 0){
 				fnNotiEvalCate(json[0].cateId);
@@ -287,7 +295,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 		</div>
-		<div class="blank">&nbsp;</div>
+		<c:if test="${status.count != 5}"><div class="blank">&nbsp;</div></c:if>
 		</c:forEach>
 		<div class="next"><input type="button" class="btni_arr01_next" title="다음보기" onclick="" /></div>
 	</div>
