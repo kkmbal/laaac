@@ -116,7 +116,7 @@ $(document).ready(function(){
 		<ul>
 			<li class="photo"><span class="photo"><a href="#"><img src="${ctx}/resources/images/upload/contents/${recentNotiInfo.apndFileNm}" width="85" height="60"></a></span></li>
 			<li class="txt">
-			<span class="id"><a href="#">${recentNotiInfo.userNm}</a></span><span class="t_line">l</span><span class="date">${recentNotiInfo.regDttm}</spin> <br />
+			<span class="id"><a href="#">${recentNotiInfo.userNm}</a></span><span class="t_line">l</span><span class="date">${recentNotiInfo.regDttm}</span> <br />
 			<span class="t_ellipsis" style="width:858px;"><a href="#"><strong>[${recentNotiInfo.notiTitle}]</strong> ${recentNotiInfo.notiConts}</a></span>
 			</li>
 			<li class="btn"><input type="button" class="btni_more" title="더보기" onclick="location.href='new_contents.html'" /></li>
@@ -145,22 +145,10 @@ $(document).ready(function(){
 					<tr>
 						<td width="71" height="71" align="center" valign="top">
 							<div id="ok_graph${result.notiId}" data-percent="${result.okCntRatio}"></div>
-							<!-- 
-							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">88</span><span class="t_graph_unit01">%</span></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
-							</div>
-							-->
 						</td>
 						<td width="10"></td>
 						<td width="71" height="71" align="center" valign="top">
 							<div id="ng_graph${result.notiId}" data-percent="${result.ngCntRatio}"></div>
-							<!-- 
-							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">40</span><span class="t_graph_unit01">%</span><br></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
-							</div>
-							 -->
 						</td>
 					</tr>
 				</table>
@@ -170,59 +158,6 @@ $(document).ready(function(){
 		<div class="blank">&nbsp;</div>
 		<script>drawCircle('ok_graph${result.notiId}', ['#ffe1ff', '#ff0080']); drawCircle('ng_graph${result.notiId}', ['#f0f0f0', '#8e8e8e']);</script>
 		</c:forEach>
-		<%-- 
-		<div class="col">
-			<span class="photo"><a href="상세보기.html" target="_self"><img src="${ctx}/resources/images/test/photo_issues.jpg" class="photo"></a></span>
-			<span class="title t_ellipsis" style="width:320px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span>
-			<span class="graph">
-				<!-- chart_gauge01 - start -->
-				<table cellspacing="0" cellpadding="0" border="0">
-					<tr>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">50</span><span class="t_graph_unit01">%</span></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
-							</div>
-						</td>
-						<td width="10"></td>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">50</span><span class="t_graph_unit01">%</span><br></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<!-- chart_gauge01 - end -->
-			</span>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="상세보기.html" target="_self"><img src="${ctx}/resources/images/test/photo_issues.jpg" class="photo"></a></span>
-			<span class="title t_ellipsis" style="width:320px;"><a href="#">[EXCO] 2014 대구 국제섬유박람회 프리뷰 인 대구</a></span>
-			<span class="graph">
-				<!-- chart_gauge01 - start -->
-				<table cellspacing="0" cellpadding="0" border="0">
-					<tr>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">25</span><span class="t_graph_unit01">%</span></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
-							</div>
-						</td>
-						<td width="10"></td>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">75</span><span class="t_graph_unit01">%</span><br></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<!-- chart_gauge01 - end -->
-			</span>
-		</div>
-		--%>
 	</div>
 	<!-- Main_Hot Issues 01 - end -->
 	<div class="blank_height20 cb"></div>
@@ -238,22 +173,10 @@ $(document).ready(function(){
 					<tr>
 						<td width="71" height="71" align="center" valign="top">
 							<div id="ok_graph${result.notiId}" data-percent="${result.okCntRatio}"></div>
-							<!-- 
-							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">88</span><span class="t_graph_unit01">%</span></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
-							</div>
-							 -->
 						</td>
 						<td width="10"></td>
 						<td width="71" height="71" align="center" valign="top">
 							<div id="ng_graph${result.notiId}" data-percent="${result.ngCntRatio}"></div>
-							<!-- 
-							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">40</span><span class="t_graph_unit01">%</span><br></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
-							</div>
-							 -->
 						</td>
 					</tr>
 				</table>
@@ -263,59 +186,6 @@ $(document).ready(function(){
 		<div class="blank">&nbsp;</div>
 		<script>drawCircle('ok_graph${result.notiId}', ['#ffe1ff', '#ff0080']); drawCircle('ng_graph${result.notiId}', ['#f0f0f0', '#8e8e8e']);</script>
 		</c:forEach>
-		<%--
-		<div class="col">
-			<span class="photo"><a href="#" target="_top"><img src="${ctx}/resources/images/test/photo_issues.jpg" class="photo"></a></span>
-			<span class="title t_ellipsis" style="width:320px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span>
-			<span class="graph">
-				<!-- chart_gauge01 - start -->
-				<table cellspacing="0" cellpadding="0" border="0">
-					<tr>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">50</span><span class="t_graph_unit01">%</span></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
-							</div>
-						</td>
-						<td width="10"></td>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">50</span><span class="t_graph_unit01">%</span><br></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<!-- chart_gauge01 - end -->
-			</span>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="상세보기.html" target="_self"><img src="${ctx}/resources/images/test/photo_issues.jpg" class="photo"></a></span>
-			<span class="title t_ellipsis" style="width:320px;"><a href="#">[EXCO] 2014 대구 국제섬유박람회 프리뷰 인 대구</a></span>
-			<span class="graph">
-				<!-- chart_gauge01 - start -->
-				<table cellspacing="0" cellpadding="0" border="0">
-					<tr>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_good" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_good.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">25</span><span class="t_graph_unit01">%</span></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_good_icon.gif"></div>
-							</div>
-						</td>
-						<td width="10"></td>
-						<td width="71" height="71" align="center" valign="top">
-							<div class="chart_gauge01_bad" style="background:url(${ctx}/resources/images/dashboard/ct_gauge01_bad.gif) no-repeat;" align="center">
-								<div class="txt"><span class="t_graph_num01">75</span><span class="t_graph_unit01">%</span><br></div>
-								<div class="icon"><img src="${ctx}/resources/images/dashboard/ct_gauge01_bad_icon.gif"></div>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<!-- chart_gauge01 - end -->
-			</span>
-		</div>
-		--%>
 	</div>
 	<!-- Main_Hot Issues 02 - end -->
 	<div class="blank_height50 cb"></div>
@@ -362,51 +232,6 @@ $(document).ready(function(){
 	<div class="blank_height10"></div>
 	<!-- Main_Good - start -->
 	<div class="main_good" id="mainGood">
-		<%--
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_good.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_good_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_good.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_good_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_good.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_good_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_good.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_good_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		--%>
 	</div>
 	<!-- Main_Good - end -->
 	<div class="blank_height30 cb"></div>
@@ -435,51 +260,6 @@ $(document).ready(function(){
 	<div class="blank_height10"></div>
 	<!-- Main_Bad - start -->
 	<div class="main_bad" id="mainBad">
-		<%--
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_bad.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_bad_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_bad.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_bad_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_bad.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_bad_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<span class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_bad.jpg" class="photo"></a></span>
-			<div class="content">
-				<ul>
-					<li class="title"><span class="t_ellipsis" style="width:150px;"><a href="#">대구 국제섬유박람회 프리뷰 인 대구</a></span></li>
-					<li class="num"><a href="#">120</a></li>
-					<li class="icon"><img src="${ctx}/resources/images/icon/i_bad_st01.gif"></li>
-				</ul>
-			</div>
-		</div>
-		--%>
 	</div>
 	<!-- Main_Bad - end -->
 	<div class="blank_height50 cb"></div>
@@ -509,43 +289,6 @@ $(document).ready(function(){
 		</div>
 		<div class="blank">&nbsp;</div>
 		</c:forEach>
-		<%--
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		--%>
 		<div class="next"><input type="button" class="btni_arr01_next" title="다음보기" onclick="" /></div>
 	</div>
 	<!-- Best - end -->
