@@ -264,6 +264,8 @@ function listNotiOpn(){
 				if(data.error){
 					alert(data.error);
 					return;
+				}else{
+					alert("등록되었습니다.");
 				}
 				if(data.scrapCnt){
 					$("#scrapCnt").html(data.scrapCnt);
@@ -284,6 +286,8 @@ function listNotiOpn(){
 				if(data.error){
 					alert(data.error);
 					return;
+				}else{
+					alert("등록되었습니다.");
 				}
 			});				
 		});
@@ -371,61 +375,6 @@ function listNotiOpn(){
 			</li>
 			<li class="blank">&nbsp;</li>
 			</c:forEach>
-			<%--
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub02);" onMouseOut="CgOut_02img(view_img_sub02);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
-				<!-- view_img_sub02 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub02" onMouseOver="CgOver_02img(view_img_sub02);OverStay();" onMouseOut="CgOut_02img(view_img_sub02);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
-				<!-- view_img_sub02 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub03);" onMouseOut="CgOut_01img(view_img_sub03);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
-				<!-- view_img_sub03 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub03" onMouseOver="CgOver_01img(view_img_sub03);OverStay();" onMouseOut="CgOut_01img(view_img_sub03);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
-				<!-- view_img_sub03 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub04);" onMouseOut="CgOut_02img(view_img_sub04);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
-				<!-- view_img_sub04 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub04" onMouseOver="CgOver_02img(view_img_sub04);OverStay();" onMouseOut="CgOut_02img(view_img_sub04);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
-				<!-- view_img_sub04 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub05);" onMouseOut="CgOut_01img(view_img_sub05);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
-				<!-- view_img_sub05 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub05" onMouseOver="CgOver_01img(view_img_sub05);OverStay();" onMouseOut="CgOut_01img(view_img_sub05);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
-				<!-- view_img_sub05 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub06);" onMouseOut="CgOut_02img(view_img_sub06);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
-				<!-- view_img_sub06 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub06" onMouseOver="CgOver_02img(view_img_sub06);OverStay();" onMouseOut="CgOut_02img(view_img_sub06);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
-				<!-- view_img_sub06 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub07);" onMouseOut="CgOut_01img(view_img_sub07);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
-				<!-- view_img_sub07 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub07" onMouseOver="CgOver_01img(view_img_sub07);OverStay();" onMouseOut="CgOut_01img(view_img_sub07);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
-				<!-- view_img_sub07 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub08);" onMouseOut="CgOut_02img(view_img_sub08);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
-				<!-- view_img_sub08 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub08" onMouseOver="CgOver_02img(view_img_sub08);OverStay();" onMouseOut="CgOut_02img(view_img_sub08);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
-				<!-- view_img_sub08 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_01img(view_img_sub09);" onMouseOut="CgOut_01img(view_img_sub09);"><img src="${ctx}/resources/images/test/photo_view_img_sub01.jpg" class="photo"></a>
-				<!-- view_img_sub09 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-80px; top:-253px; z-index:100; visibility: hidden;" id="view_img_sub09" onMouseOver="CgOver_01img(view_img_sub09);OverStay();" onMouseOut="CgOut_01img(view_img_sub09);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom01.jpg" class="photo"></div>
-				<!-- view_img_sub09 - start -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li style="position:relative"><a href="#" onMouseOver="CgOver_02img(view_img_sub10);" onMouseOut="CgOut_02img(view_img_sub10);"><img src="${ctx}/resources/images/test/photo_view_img_sub02.jpg" class="photo"></a>
-				<!-- view_img_sub10 - start -->
-				<div class="view_img_sub_sel" style="position:absolute; left:-161px; top:-253px; z-index:1000; visibility: hidden;" id="view_img_sub10" onMouseOver="CgOver_02img(view_img_sub10);OverStay();" onMouseOut="CgOut_02img(view_img_sub10);" nowrap><img src="${ctx}/resources/images/test/photo_view_img_sub_zoom02.jpg" class="photo"></div>
-				<!-- view_img_sub10 - start -->
-			</li>
-			 --%>
 		</ul>
 	</div>
 	<!-- View_Img_Sub - end -->
@@ -482,31 +431,6 @@ function listNotiOpn(){
 					<li class="blank">&nbsp;</li>
 					<li><a href="#"><img src="${ctx}/resources/${result.userFilePath}${result.userFilePath}" class="photo"></a></li>
 				</c:forEach>
-				<%--
-				<li class="select" style="position:relative;"><a href="#"><img src="${ctx}/resources/images/test/photo_user03.jpg" class="photo"></a>
-				<!-- icon sel -->
-				<div style="position:absolute; left:0px; top:40px; width:45px; height:6px; z-index:10000;"><img src="${ctx}/resources/images/icon/i_scrap_sel.gif"></div>
-				<!-- icon sel -->
-				</li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user04.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user05.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user06.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user07.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user08.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user09.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user10.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user11.jpg" class="photo"></a></li>
-				<li class="blank">&nbsp;</li>
-				<li><a href="#"><img src="${ctx}/resources/images/test/photo_user02.jpg" class="photo"></a></li>
-				--%>
 				<li class="next"><input type="button" class="btni_arr02_next" title="다음보기" onclick="" /></li>
 			</ul>
 		</div>
@@ -539,6 +463,7 @@ function listNotiOpn(){
 	</div>
 	<!-- scrap_by_view - end -->
 	<div class="blank_height50"></div>
+	<%--
 	<!-- Good and Bad - start -->
 	<div class="good_bad">
 		<div class="link_good fl">
@@ -682,6 +607,7 @@ function listNotiOpn(){
 	<div class="cb"></div>
 	<!-- Good and Bad - end -->
 	<div class="blank_height30"></div>
+	--%>
 	<!-- Title_1depth/btn - start -->
 	<div class="title_1depth">
 		<ul>
@@ -705,43 +631,6 @@ function listNotiOpn(){
 			</div>
 			<div class="blank">&nbsp;</div>
 		</c:forEach>
-		<%--
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="blank">&nbsp;</div>
-		<div class="col">
-			<div class="con_best_li">
-				<ul>
-					<li class="photo"><a href="#"><img src="${ctx}/resources/images/test/photo_best.jpg" class="photo"></a></li>
-					<li class="title"><span class="t_ellipsis" style="width:165px;"><a href="#">[전국] TGIF 세트할인권 0원!</a></span></li>
-				</ul>
-			</div>
-		</div>
-		--%>
 		<div class="next"><input type="button" class="btni_arr01_next" title="다음보기" onclick="" /></div>
 	</div>
 	<!-- Best - end -->
@@ -778,107 +667,10 @@ function listNotiOpn(){
 		</c:forEach>
 	</div>
 	
-	<%--
-	<!-- Comment01 - start -->
-	<div class="comment_area">
-		<!-- comment_read_set01 - start -->
-		<div class="comment_read">
-			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user06.jpg"></div>
-			<div class="content fl" style="width:925px;">
-				<ul>
-					<li class="txt1"><span class="id"><a href="#">덩이의 행복이야기</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
-					<li>던킨도너츠 이벤트 정보까지 함께 드릴께요! 해피 수요일 글레이즈드 3+3 행사 하더라고요. 2월 매주 수요일 2월 5일, 12일, 19일, 26일에는 레드벨벳 도넛 100만개 돌파기념
-으로 레드벨벳 3개 구매시 글레이즈드 드려요</li>
-				</ul>
-			</div>
-			<div class="cb"></div>
-		</div>
-		<!-- comment_read_set01 - end -->
-		<!-- comment_read_set02 - start -->
-		<div class="comment_read">
-			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user03.jpg"></div>
-			<div class="content fl" style="width:870px;">
-				<ul>
-					<li class="txt1"><span class="id"><a href="#">추억한페이지</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
-					<li>내나름대로 서프라이즈라고 준비했던 던킨이벤트ㅋㅋ결과는 완전 대성공이였다지요~~~</li>
-				</ul>
-			</div>
-			<div class="cb"></div>
-		</div>
-		<!-- comment_read_set02 - end -->
-		<!-- comment_comment_reply - start -->
-		<div class="comment_reply">
-			<ul>
-				<li class="reply">&nbsp;</li>
-				<li class="photo"><img src="${ctx}/resources/images/test/photo_user01.jpg"></li>
-				<li class="input"><textarea name="" class="textarea_comment" style="width:804px;"></textarea></li>
-				<li class="btn"><input type="button" class="btns_st06_cancel" value="취소" onclick="" /><br /><input type="button" class="btns_st06" style="margin-top:3px;" value="등록" onclick="" /></li>
-			</ul>
-		</div>
-		<!-- comment_comment_reply - end -->
-	</div>
-	<!-- Comment01 - end -->
-	<!-- Comment02 - start -->
-	<div class="comment_area">
-		<!-- comment_read_set01 - start -->
-		<div class="comment_read">
-			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user06.jpg"></div>
-			<div class="content fl" style="width:925px;">
-				<ul>
-					<li class="txt1"><span class="id"><a href="#">덩이의 행복이야기</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
-					<li>던킨도너츠 이벤트 정보까지 함께 드릴께요! 해피 수요일 글레이즈드 3+3 행사 하더라고요. 2월 매주 수요일 2월 5일, 12일, 19일, 26일에는 레드벨벳 도넛 100만개 돌파기념
-으로 레드벨벳 3개 구매시 글레이즈드 드려요</li>
-				</ul>
-			</div>
-			<div class="cb"></div>
-		</div>
-		<!-- comment_read_set01 - end -->
-		<!-- comment_read_set02 - start -->
-		<div class="comment_read">
-			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user01.jpg"></div>
-			<div class="content fl" style="width:870px;">
-				<ul>
-					<li class="txt1"><span class="id"><a href="#">김동준</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a><span class="t_line">l</span><a href="#">삭제</a></li>
-					<li>내나름대로 서프라이즈라고 준비했던 던킨이벤트ㅋㅋ결과는 완전 대성공이였다지요~~~</li>
-				</ul>
-			</div>
-			<div class="cb"></div>
-		</div>
-		<!-- comment_read_set02 - end -->
-		<!-- comment_read_set03 - start -->
-		<div class="comment_read">
-			<div class="reply">&nbsp;</div>
-			<div class="photo fl"><img src="${ctx}/resources/images/test/photo_user02.jpg"></div>
-			<div class="content fl" style="width:870px;">
-				<ul>
-					<li class="txt1"><span class="id"><a href="#">워터케어</a></span><span class="t_line">l</span>2013-10-20 10:15:00<span class="t_line">l</span><a href="#">답글</a></li>
-					<li>던킨도너츠 2월 이벤트 던킨도너츠 2월 이벤트 평소에도 도너츠를 좋아하는데 2월 한달간 매주 수요일에 3 + 3 도너츠를 3,300원에 구매할 수 있다는 정보!!던킨도너츠 2월 이벤트 던킨도너츠 2월 이벤트 평소에도 도너츠를 좋아하는데 2월 한달간 매주 수요일에 3 + 3 도너츠를 3,300원에 구매할 수 있다는 정보!!던킨도너츠 2월 이벤트 던킨도너츠 2월 이벤트 평소에도 도너츠를 좋아하는데 2월 한달간 매주 수요일에 3 + 3 도너츠를 3,300원에 구매할 수 있다는 정보!!</li>
-				</ul>
-			</div>
-			<div class="cb"></div>
-		</div>
-		<!-- comment_read_set03 - end -->
-	</div>
-	<!-- Comment02 - end -->
 	<div class="blank_height10"></div>
 	<!-- Paging - start -->
 	<div class="paging">
-		<div class="btn fl"><input type="button" class="btni_first_inact" title="처음" onclick="" /><input type="button" class="btni_prev_inact" title="이전" onclick="" /></div>
-		<div class="pagenum fl"><a href="#">1</a><a href="#">2</a><span class="iListNum">3</span><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a></div>
-		<div class="btn fr"><input type="button" class="btni_next" title="다음" onclick="" /><input type="button" class="btni_last" title="끝" onclick="" /></div>
-		<div class="cb"></div>
-	</div>
-	<!-- Paging - end -->
-	--%>
-	
-	<div class="blank_height10"></div>
-	<!-- Paging - start -->
-	<div class="paging">
-<!-- 		<div class="btn fl"><input type="button" class="btni_first_inact" title="처음" onclick="" /><input type="button" class="btni_prev_inact" title="이전" onclick="" /></div> -->
 		<div class="pagenum fl"><a href="#" onclick="listNotiOpn();" style="padding-left:120px;">더보기</a></div>
-<!-- 		<div class="btn fr"><input type="button" class="btni_next" title="다음" onclick="" /><input type="button" class="btni_last" title="끝" onclick="" /></div> -->
 		<div class="cb"></div>
 	</div>
 	<!-- Paging - end -->	
