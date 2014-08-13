@@ -133,7 +133,14 @@ $(document).ready(function(){
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+<%-- 										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td> --%>
+										<td width="131" height="20" align="center" valign="middle">
+											<span id="progress_ng_1_${status.count}"></span><span id="progress_ok_1_${status.count}"></span>
+											<script type="text/javascript">
+												$("#progress_ng_1_${status.count}").progressbar({width:'60px',height:'1px',color:'#A1A1A1',float:'right'}).progress(${result.ngCntRatio});
+										    	$("#progress_ok_1_${status.count}").progressbar({width:'60px',height:'1px',color:'#FF3399',float:'left'}).progress(${result.okCntRatio}); 									
+											</script>
+										</td>										
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -148,91 +155,6 @@ $(document).ready(function(){
 			<li class="blank">&nbsp;</li>
 			</c:forEach>
 			
-			<%--
-			<li class="col">
-				<!-- 0102 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
-				<div class="content">
-					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
-						<li>
-							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-							<div class="gauge">
-								<!-- chart_gauge03 - start -->
-								<table cellspacing="0" cellpadding="0" border="0">
-									<tr>
-										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
-										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
-									</tr>
-								</table>
-								<!-- chart_gauge03 - end -->
-							</div>
-							<!-- end -->
-						</li>
-					</ul>
-				</div>
-				<!-- 0102 - end -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li class="col">
-				<!-- 0103 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
-				<div class="content">
-					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
-						<li>
-							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-							<div class="gauge">
-								<!-- chart_gauge03 - start -->
-								<table cellspacing="0" cellpadding="0" border="0">
-									<tr>
-										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
-										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
-									</tr>
-								</table>
-								<!-- chart_gauge03 - end -->
-							</div>
-							<!-- end -->
-						</li>
-					</ul>
-				</div>
-				<!-- 0103 - end -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li class="col">
-				<!-- 0104 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
-				<div class="content">
-					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
-						<li>
-							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-							<div class="gauge">
-								<!-- chart_gauge03 - start -->
-								<table cellspacing="0" cellpadding="0" border="0">
-									<tr>
-										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
-										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
-									</tr>
-								</table>
-								<!-- chart_gauge03 - end -->
-							</div>
-							<!-- end -->
-						</li>
-					</ul>
-				</div>
-				<!-- 0104 - end -->
-			</li>
-			 --%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style02 - end -->
@@ -256,7 +178,14 @@ $(document).ready(function(){
 								<table cellspacing="0" cellpadding="0" border="0">
 									<tr>
 										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
+<%-- 										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td> --%>
+										<td width="131" height="20" align="center" valign="middle">
+											<span id="progress_ng_2_${status.count}"></span><span id="progress_ok_2_${status.count}"></span>
+											<script type="text/javascript">
+												$("#progress_ng_2_${status.count}").progressbar({width:'60px',height:'1px',color:'#A1A1A1',float:'right'}).progress(${result.ngCntRatio});
+										    	$("#progress_ok_2_${status.count}").progressbar({width:'60px',height:'1px',color:'#FF3399',float:'left'}).progress(${result.okCntRatio}); 									
+											</script>
+										</td>
 										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
 									</tr>
 								</table>
@@ -271,91 +200,6 @@ $(document).ready(function(){
 			<li class="blank">&nbsp;</li>
 			</c:forEach>
 			
-			<%--
-			<li class="col">
-				<!-- 0102 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0102.jpg" class="photo"></a></div>
-				<div class="content">
-					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
-						<li>
-							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-							<div class="gauge">
-								<!-- chart_gauge03 - start -->
-								<table cellspacing="0" cellpadding="0" border="0">
-									<tr>
-										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
-										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
-									</tr>
-								</table>
-								<!-- chart_gauge03 - end -->
-							</div>
-							<!-- end -->
-						</li>
-					</ul>
-				</div>
-				<!-- 0102 - end -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li class="col">
-				<!-- 0103 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0103.jpg" class="photo"></a></div>
-				<div class="content">
-					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
-						<li>
-							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-							<div class="gauge">
-								<!-- chart_gauge03 - start -->
-								<table cellspacing="0" cellpadding="0" border="0">
-									<tr>
-										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
-										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
-									</tr>
-								</table>
-								<!-- chart_gauge03 - end -->
-							</div>
-							<!-- end -->
-						</li>
-					</ul>
-				</div>
-				<!-- 0103 - end -->
-			</li>
-			<li class="blank">&nbsp;</li>
-			<li class="col">
-				<!-- 0104 - start -->
-				<div class="checkbox"><input type="checkbox" name="type" hidefocus="true" class="check" value="A"></div>
-				<div class="photo"><a href="#"><img src="${ctx}/resources/images/test/imgs_main0104.jpg" class="photo"></a></div>
-				<div class="content">
-					<ul>
-						<li><div class="photo_user"><a href="#"><img src="${ctx}/resources/images/test/photo_user01.jpg" class="photo_user"></a></div></li>
-						<li>
-							<!-- start -->
-							<div class="title"><span class="t_ellipsis" style="width:170px;"><a href="#">[오션리조트] 3인 가족 초대권 이벤트 3인 가족</a></span></div>
-							<div class="gauge">
-								<!-- chart_gauge03 - start -->
-								<table cellspacing="0" cellpadding="0" border="0">
-									<tr>
-										<td><input type="button" class="btni_bad03" title="나빠요" onclick="" /></td>
-										<td width="131" height="20" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st03.gif" align="absmiddle"></td>
-										<td><input type="button" class="btni_good03" title="좋아요" onclick="" /></td>
-									</tr>
-								</table>
-								<!-- chart_gauge03 - end -->
-							</div>
-							<!-- end -->
-						</li>
-					</ul>
-				</div>
-				<!-- 0104 - end -->
-			</li>
-			--%>
 		</ul>
 	</div>
 	<!-- ContentsBox_Style02 - end -->
