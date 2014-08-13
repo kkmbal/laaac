@@ -42,7 +42,22 @@ public class PersonVo extends PageInfo{
 	
 	private String order;
 	
+	private String okCntRatio;
+	private String ngCntRatio;
 	
+	
+	public String getOkCntRatio() {
+		return okCntRatio;
+	}
+	public void setOkCntRatio(String okCntRatio) {
+		this.okCntRatio = okCntRatio;
+	}
+	public String getNgCntRatio() {
+		return ngCntRatio;
+	}
+	public void setNgCntRatio(String ngCntRatio) {
+		this.ngCntRatio = ngCntRatio;
+	}
 	public String getOrder() {
 		return order;
 	}

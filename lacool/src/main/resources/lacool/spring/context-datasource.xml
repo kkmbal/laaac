@@ -18,9 +18,10 @@
 	<!-- mysql  -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/ts_lacool"/>
+<!--         <property name="url" value="jdbc:mysql://127.0.0.1:3306/ts_lacool"/> -->
+        <property name="url" value="jdbc:mysql://192.168.139.227:3306/ts_cool"/>
         <property name="username" value="root"/>
-        <property name="password" value=""/>
+        <property name="password" value="1"/>
     </bean>
     
 <!--     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->

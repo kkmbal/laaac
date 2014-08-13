@@ -82,11 +82,12 @@ function drawCircle(id, colors) {
     $.fn.progressbar = function (options) 
     {
         var settings = $.extend({
-        width:'300px',
-        height:'25px',
+        width:'150px',
+        height:'3px',
         color:'#0ba1b5',
         padding:'0px',
-        border:'1px solid #ddd'},options);
+        border:'1px solid #ddd',
+        float:'none'},options);
  
         //Set css to container
         $(this).css({
@@ -96,7 +97,7 @@ function drawCircle(id, colors) {
             'overflow':'hidden',
             'display':'inline-block',
             'padding': settings.padding,
-            'margin':'0px 10px 5px 5px'
+            'margin':'0px 0px 0px 0px'
             });
  
         // add progress bar to container
@@ -109,7 +110,7 @@ function drawCircle(id, colors) {
         'width': '0px',
         'border-radius': '3px',
         'background-color': settings.color
-		//,'float':'right'
+		,'float':settings.float
         });
  
         $(this).append(progressbar);
@@ -117,7 +118,8 @@ function drawCircle(id, colors) {
         this.progress = function(value)
         {
             var width = $(this).width() * value/100;
-            progressbar.width(width).html(value+"% ");
+            //progressbar.width(width).html(value+"% ");
+            progressbar.width(width);
         }
         return this;
     };

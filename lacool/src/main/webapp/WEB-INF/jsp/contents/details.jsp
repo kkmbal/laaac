@@ -319,7 +319,9 @@ function listNotiOpn(){
 			$("#opnConts").val("");
 		});
 		
-		
+		//gauge
+		$("#progress_ng").progressbar({color:'#A1A1A1',float:'right'}).progress(${contents.ngCntRatio});
+	    $("#progress_ok").progressbar({color:'#FF3399',float:'left'}).progress(${contents.okCntRatio}); 
 	});
 </script>
 </head>
@@ -405,7 +407,8 @@ function listNotiOpn(){
 					<!-- chart_gauge02 - start -->
 					<table cellspacing="0" cellpadding="0" border="0">
 						<tr>
-							<td width="315" height="24" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st02.gif" align="absmiddle"></td>
+<%-- 							<td width="315" height="24" align="center" valign="middle"><img src="${ctx}/resources/images/test/ct_gauge_st02.gif" align="absmiddle"></td> --%>
+							<td width="315" height="24" align="center" valign="middle"><span id="progress_ng"></span><span id="progress_ok"></span></td>
 						</tr>
 					</table>
 					<!-- chart_gauge02 - end -->
