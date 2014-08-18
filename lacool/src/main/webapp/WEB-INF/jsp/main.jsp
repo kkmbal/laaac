@@ -63,6 +63,18 @@ function fnNotiEvalCate(cateId){
 				);					
 			}
 		}
+		
+		$("#evalOkIndex").empty();
+		$("#evalNgIndex").empty();
+		//console.log(data.okIndex,data.ngIndex);
+		//GOOD INDEX
+		if(data.okIndex){
+			$("#evalOkIndex").append('<img src="${ctx}/resources/images/dashboard/ct_zoom_+'+data.okIndex+'.gif">');
+		}
+		//GOOD INDEX
+		if(data.ngIndex){
+			$("#evalNgIndex").append('<img src="${ctx}/resources/images/dashboard/ct_zoom_-'+data.ngIndex+'.gif">');
+		}
 	});		
 		event.preventDefault();
 		event.stopPropagation();
@@ -226,7 +238,8 @@ $(document).ready(function(){
 						<td><input type="button" class="btni_bad01" title="나빠요" onclick="" /></td>
 						<td width="325" height="24">
 							<div style="background: #ffffff url(${ctx}/resources/images/dashboard/ct_zoom_good_bg.gif) repeat-x top left; widtd:325px; height:24px;">
-								<a href="#"><img src="${ctx}/resources/images/dashboard/ct_zoom_+50.gif"></a>
+<%-- 								<a href="#"><img src="${ctx}/resources/images/dashboard/ct_zoom_+50.gif"></a> --%>
+								<a href="#" id="evalOkIndex"></a>
 							</div>
 						</td>
 						<td><input type="button" class="btni_good01" title="좋아요" onclick="" /></td>
@@ -253,7 +266,8 @@ $(document).ready(function(){
 						<td><input type="button" class="btni_bad01" title="나빠요" onclick="" /></td>
 						<td width="325" height="24">
 							<div style="background: #ffffff url(${ctx}/resources/images/dashboard/ct_zoom_bad_bg.gif) repeat-x top left; widtd:325px; height:24px;">
-								<a href="#"><img src="${ctx}/resources/images/dashboard/ct_zoom_-50.gif"></a>
+<%-- 								<a href="#"><img src="${ctx}/resources/images/dashboard/ct_zoom_-50.gif"></a> --%>
+								<a href="#" id="evalNgIndex"></a>
 							</div>
 						</td>
 						<td><input type="button" class="btni_good01" title="좋아요" onclick="" /></td>
