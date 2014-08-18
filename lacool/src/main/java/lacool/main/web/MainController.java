@@ -63,9 +63,13 @@ public class MainController {
 		List<MainVo> listNotiEvalOkOfCate = mainService.listNotiEvalOkOfCate(mainVo);
 		List<MainVo> listNotiEvalNgOfCate = mainService.listNotiEvalNgOfCate(mainVo);
 		
+		String okIndex = mainService.getEvalOkIndex(mainVo);
+		String ngIndex = mainService.getEvalNgIndex(mainVo);
 		
 		modelMap.put("listNotiEvalOkOfCate", listNotiEvalOkOfCate);
 		modelMap.put("listNotiEvalNgOfCate", listNotiEvalNgOfCate);
+		modelMap.put("okIndex", okIndex);
+		modelMap.put("ngIndex", ngIndex);
 		
 		return modelMap;
 	}    

@@ -34,5 +34,15 @@ public class MainServiceImpl implements MainService {
 	public List<MainVo> listNotiEvalNgOfCate(MainVo mainVo){
 		return mainMapper.listNotiEvalNgOfCate(mainVo);
 	}
+
+	@Override
+	public String getEvalOkIndex(MainVo mainVo) {
+		return mainMapper.getEvalOkIndex(mainVo);
+	}
+
+	@Override
+	public String getEvalNgIndex(MainVo mainVo) {
+		return mainMapper.getEvalNgIndex(mainVo);
+	}
 	
 }

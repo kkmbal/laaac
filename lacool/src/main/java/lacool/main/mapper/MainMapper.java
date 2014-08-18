@@ -18,4 +18,8 @@ public interface MainMapper {
 	public List<MainVo> listNotiEvalOkOfCate(MainVo mainVo);
 	
 	public List<MainVo> listNotiEvalNgOfCate(MainVo mainVo);
+
+	public String getEvalOkIndex(MainVo mainVo);
+
+	public String getEvalNgIndex(MainVo mainVo);
 }
